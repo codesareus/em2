@@ -6,7 +6,10 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.pipeline import make_pipeline
 import streamlit as st
 import pandas as pd
-import os
+
+# Set matplotlib font to support Chinese characters
+plt.rcParams['font.sans-serif'] = ['SimHei']  # Use SimHei or Arial Unicode MS
+plt.rcParams['axes.unicode_minus'] = False
 
 # Function to calculate 7-point moving average
 def moving_average(data, window_size=7):
@@ -33,13 +36,13 @@ def save_data(data, data1, data2, filename="data.csv"):
 
 # Function to load data from a CSV file
 def load_data(filename="data.csv"):
-    if os.path.exists(filename):
+    try:
         df = pd.read_csv(filename)
         data = [float(x) for x in df["耳鸣级数"].iloc[0].split(",")]
         data1 = [float(x) for x in df["脾胃"].iloc[0].split(",")]
         data2 = [float(x) for x in df["睡眠质量"].iloc[0].split(",")]
         return data, data1, data2
-    else:
+    except FileNotFoundError:
         return None, None, None
 
 # Streamlit App
@@ -78,6 +81,15 @@ if st.sidebar.button("保存数据"):
     else:
         st.sidebar.error("无法保存数据，请检查输入格式。")
 
+# Add a divider before the new section
+st.sidebar.markdown("---")
+
+# Add the title for the new section
+st.sidebar.header("耳鸣级数参考方法")
+
+# Add the image (replace 'path_to_your_image.png' with the actual path to your image)
+st.sidebar.image("tinnitus_reference.png", caption="耳鸣级数参考图", use_container_width=True)
+
 # Check if data is valid
 if data is not None and data1 is not None and data2 is not None:
     # Calculate moving averages
@@ -105,7 +117,7 @@ if data is not None and data1 is not None and data2 is not None:
     last_date = new_date.strftime("%b %d, %Y")
 
     # Plotting
-    plt.rcParams['font.sans-serif'] = ['SimSong']
+    plt.rcParams['font.sans-serif'] = ['Arial Unicode MS']  # Use SimHei or Arial Unicode MS
     plt.rcParams['axes.unicode_minus'] = False
 
     datasets = [new_data, new_data1, new_data2, new_data4]
@@ -134,17 +146,16 @@ if data is not None and data1 is not None and data2 is not None:
         
         st.pyplot(fig)
 
-    #reformat last_date string    
+    # Reformat last_date string    
     last_date = new_date.strftime("%b %d, %Y")
     
     # Display last 30-day average
     dataave30 = np.mean(data[-30:])
-    st.write(f"耳鸣级数最近30天p平均值: {dataave30:.2f}")
+    st.write(f"耳鸣级数最近30天平均值: {dataave30:.2f}")
 
-    
     ###################### Trend analysis #############
 
-    #page break
+    # Page break
     st.markdown("---")
     
     # Trend Analysis: Double Moving Averages and Linear Regression
@@ -234,4 +245,4 @@ if data is not None and data1 is not None and data2 is not None:
 
     st.write(f"多项式回归分析结果:")
     st.write(f"- R²: {poly_model.score(time_steps, double_ma_data):.3f}")
-    st.write(f"- {prediction_days}天预测值 ({prediction_days}天后， {future_date_str}): {last_poly_prediction:.2f}")
+    st.write(f"- {prediction_days}天预测值 ({prediction_days}天后， {future_date_str}): {last_poly_prediction:.2f}")       
