@@ -88,7 +88,7 @@ st.sidebar.markdown("---")
 st.sidebar.header("耳鸣级数参考方法")
 
 # Add the image (replace 'path_to_your_image.png' with the actual path to your image)
-st.sidebar.image("tinnitus_reference.png", caption="耳鸣级数参考图", use_container_width=True)
+st.sidebar.image("erming_jishu.png", caption="耳鸣级数参考图", use_container_width=True)
 
 # Check if data is valid
 if data is not None and data1 is not None and data2 is not None:
