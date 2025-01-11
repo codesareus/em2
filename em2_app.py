@@ -6,8 +6,10 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.pipeline import make_pipeline
 import streamlit as st
 import pandas as pd
+import matplotlib.font_manager as fm
 
 # Set matplotlib font to support Chinese characters
+fm.fontManager.addfont('SimHei.ttf') 
 plt.rcParams['font.sans-serif'] = ['SimHei']  # Use SimHei or Arial Unicode MS
 plt.rcParams['axes.unicode_minus'] = False
 
@@ -117,7 +119,8 @@ if data is not None and data1 is not None and data2 is not None:
     last_date = new_date.strftime("%b %d, %Y")
 
     # Plotting
-    plt.rcParams['font.sans-serif'] = ['Arial Unicode MS']  # Use SimHei or Arial Unicode MS
+    fm.fontManager.addfont('SimHei.ttf')
+    plt.rcParams['font.sans-serif'] = ['SimHei']  # Use SimHei or Arial Unicode MS
     plt.rcParams['axes.unicode_minus'] = False
 
     datasets = [new_data, new_data1, new_data2, new_data4]
