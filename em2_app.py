@@ -77,7 +77,7 @@ data2 = parse_input(sleep_input)
 
 # Add a "key" input box for automatic saving
 st.sidebar.subheader("自动保存设置")
-key_input = st.sidebar.text_input("输入密钥以自动保存数据:")
+key_input = st.sidebar.text_input("输入密钥以自动保存数据:", type="password")  # Hide the entered key
 
 # Automatically save data if the key is "zzzzzzzzz"
 if key_input.strip() == "zzzzzzzzz":
