@@ -9,7 +9,7 @@ import pandas as pd
 import matplotlib.font_manager as fm
 
 # Set matplotlib font to support Chinese characters
-fm.fontManager.addfont('SimHei.ttf') 
+fm.fontManager.addfont('SimHei.ttf')
 plt.rcParams['font.sans-serif'] = ['SimHei']  # Use SimHei or Arial Unicode MS
 plt.rcParams['axes.unicode_minus'] = False
 
@@ -75,13 +75,31 @@ data = parse_input(er_ming_input)
 data1 = parse_input(pi_wei_input)
 data2 = parse_input(sleep_input)
 
-# Save data button
-if st.sidebar.button("保存数据"):
+# Add a "key" input box for automatic saving
+st.sidebar.subheader("自动保存设置")
+key_input = st.sidebar.text_input("输入密钥以自动保存数据:")
+
+# Automatically save data if the key is "zzzzzzzzz"
+if key_input.strip() == "zzzzzzzzz":
     if data is not None and data1 is not None and data2 is not None:
         save_data(data, data1, data2)
-        st.sidebar.success("数据已保存！")
+        st.sidebar.success("数据已自动保存！")
     else:
         st.sidebar.error("无法保存数据，请检查输入格式。")
+
+# Add a button to download the saved data as a CSV file
+if st.sidebar.button("下载数据为CSV文件"):
+    if data is not None and data1 is not None and data2 is not None:
+        save_data(data, data1, data2, "health_data.csv")
+        with open("health_data.csv", "rb") as file:
+            st.sidebar.download_button(
+                label="点击下载CSV文件",
+                data=file,
+                file_name="health_data.csv",
+                mime="text/csv"
+            )
+    else:
+        st.sidebar.error("没有可下载的数据，请先输入数据并保存。")
 
 # Add a divider before the new section
 st.sidebar.markdown("---")
