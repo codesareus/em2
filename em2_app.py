@@ -263,8 +263,17 @@ if data is not None and data1 is not None and data2 is not None:
 
     st.pyplot(fig)
 
+ 
+    # Add the current date
+    current_tinnitus_level = data[-1]  # Latest value in the tinnitus data
+    current_double_ma_tinnitus_level = double_ma_data[-1]  # Latest value in the double moving average data
+    
+    current_date = datetime.now().strftime("%Y年%m月%d日")
+    st.markdown(f"**当前日期：** {current_date} (耳鸣级数： {current_tinnitus_level:.2f}，双动态均值： {current_double_ma_tinnitus_level:.2f})")
+
     # Display regression results
     st.write(f"线性回归分析结果:")
+
     st.write(f"- 斜率 (m): {linear_model.coef_[0]:.4f}")
     st.write(f"- 截距 (b): {linear_model.intercept_:.4f}")
     st.write(f"- R²: {linear_model.score(time_steps, double_ma_data):.3f}")
@@ -272,4 +281,13 @@ if data is not None and data1 is not None and data2 is not None:
 
     st.write(f"多项式回归分析结果:")
     st.write(f"- R²: {poly_model.score(time_steps, double_ma_data):.3f}")
-    st.write(f"- {prediction_days}天预测值 ({prediction_days}天后， {future_date_str}): {last_poly_prediction:.2f}")       
+    st.write(f"- {prediction_days}天预测值 ({prediction_days}天后， {future_date_str}): {last_poly_prediction:.2f}")
+
+    # Add some additional insights or explanations if needed
+st.markdown("""
+**解释:**
+- **斜率 (m):** 表示耳鸣级数随时间的变化率。正斜率表示耳鸣级数有上升趋势，负斜率表示下降趋势。
+- **截距 (b):** 表示回归线与y轴的交点，即当时间为0时的耳鸣级数预测值。
+- **R²:** 表示模型的拟合优度，值越接近1表示模型对数据的解释能力越强。
+- **预测值:** 表示根据回归模型预测的未来耳鸣级数值。
+""")
