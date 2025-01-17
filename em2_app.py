@@ -221,6 +221,12 @@ if data is not None and data1 is not None and data2 is not None:
     
     # Plot the trend analysis
     fig, ax = plt.subplots(figsize=(10, 5))
+    
+    # Add the current date as a text label at the top center of the plot
+    current_date = datetime.now().strftime("%Y-%m-%d")
+    ax.text(0.5, 0.8, current_date, horizontalalignment='center', verticalalignment='center', 
+        transform=ax.transAxes, fontsize=12, color="blue")
+  
     ax.scatter(time_steps, double_ma_data, color="blue", label="原始数据")
     ax.plot(time_steps, linear_model.predict(time_steps), color="red", label="线性回归")
     ax.plot(time_steps, poly_model.predict(time_steps), color="green", label="多项式回归 (2次)")
