@@ -223,24 +223,45 @@ if data is not None and data1 is not None and data2 is not None:
     fig, ax = plt.subplots(figsize=(10, 5))
     
     # Add the current date as a text label at the top center of the plot
-    current_date = datetime.now().strftime("%Y-%m-%d")
-    ax.text(0.5, 0.8, current_date, horizontalalignment='center', verticalalignment='center', 
+
+    # Add the current date
+    current_tinnitus_level = data[-1]  # Latest value in the tinnitus data
+    current_double_ma_tinnitus_level = double_ma_data[-1]  # Latest value in the double moving average data
+    
+    current_date = datetime.now().strftime("%Y年%m月%d日")
+    
+    # Display the current date and values in the plot
+    
+    ax.text(0.5, 0.8, f"{current_date} \n耳鸣级数：{current_tinnitus_level:.2f}\n双动态均值：{current_double_ma_tinnitus_level:.2f}", 
+        horizontalalignment='center', verticalalignment='center', 
         transform=ax.transAxes, fontsize=12, color="blue")
   
-    ax.scatter(time_steps, double_ma_data, color="blue", label="原始数据")
+    ax.scatter(time_steps, double_ma_data, color="blue", label="原始数据（双动态均值）")
     ax.plot(time_steps, linear_model.predict(time_steps), color="red", label="线性回归")
     ax.plot(time_steps, poly_model.predict(time_steps), color="green", label="多项式回归 (2次)")
     ax.scatter(future_time_steps, linear_future_predictions, color="orange", label=f"线性预测 ({prediction_days} 天)")
     ax.scatter(future_time_steps, poly_future_predictions, color="purple", label=f"多项式预测 ({prediction_days} 天)")
 
     # Add arrow pointing to the last predicted point
+    
+    #add arrow to last point of double_ma_data
+    ax.annotate(
+        f"(双动态均值）",
+        xy=(time_steps[-1], current_double_ma_tinnitus_level),
+        xytext=(time_steps[-1], current_double_ma_tinnitus_level + 0.2),
+        arrowprops=dict(facecolor='blue', shrink=0.05, headwidth=10, width=3),
+        fontsize=10,
+        color="red",
+        ha="center"
+    )
+    
     ax.annotate(
         f"{future_date_str}: {last_linear_prediction:.2f} (线性)",
         xy=(future_time_steps[-1], last_linear_prediction),
         xytext=(future_time_steps[-1], last_linear_prediction + 0.1),
-        arrowprops=dict(facecolor='red', shrink=0.05, headwidth=10, width=2),
+        arrowprops=dict(facecolor='orange', shrink=0.05, headwidth=10, width=2),
         fontsize=10,
-        color="red",
+        color="green",
         ha="center"
     )
 
@@ -248,9 +269,9 @@ if data is not None and data1 is not None and data2 is not None:
         f"{future_date_str}: {last_poly_prediction:.2f} (多项式)",
         xy=(future_time_steps[-1], last_poly_prediction),
         xytext=(future_time_steps[-1], last_poly_prediction + 0.1),
-        arrowprops=dict(facecolor='green', shrink=0.05, headwidth=10, width=2),
+        arrowprops=dict(facecolor='purple', shrink=0.05, headwidth=10, width=2),
         fontsize=10,
-        color="green",
+        color="purple",
         ha="center"
     )
 
@@ -263,23 +284,15 @@ if data is not None and data1 is not None and data2 is not None:
 
     st.pyplot(fig)
 
- 
-    # Add the current date
-    current_tinnitus_level = data[-1]  # Latest value in the tinnitus data
-    current_double_ma_tinnitus_level = double_ma_data[-1]  # Latest value in the double moving average data
-    
-    current_date = datetime.now().strftime("%Y年%m月%d日")
-    st.markdown(f"**当前日期：** {current_date} (耳鸣级数： {current_tinnitus_level:.2f}，双动态均值： {current_double_ma_tinnitus_level:.2f})")
-
     # Display regression results
-    st.write(f"线性回归分析结果:")
+    st.write(f"**线性回归分析结果:**")
 
     st.write(f"- 斜率 (m): {linear_model.coef_[0]:.4f}")
     st.write(f"- 截距 (b): {linear_model.intercept_:.4f}")
     st.write(f"- R²: {linear_model.score(time_steps, double_ma_data):.3f}")
     st.write(f"- {prediction_days}天预测值 ({prediction_days}天后， {future_date_str}): {last_linear_prediction:.2f}")
 
-    st.write(f"多项式回归分析结果:")
+    st.write(f"**多项式回归分析结果:**")
     st.write(f"- R²: {poly_model.score(time_steps, double_ma_data):.3f}")
     st.write(f"- {prediction_days}天预测值 ({prediction_days}天后， {future_date_str}): {last_poly_prediction:.2f}")
 
