@@ -1,3 +1,7 @@
+
+#em2 app 1-17-25
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
@@ -283,6 +287,10 @@ if data is not None and data1 is not None and data2 is not None:
     ax.grid()
 
     st.pyplot(fig)
+
+    #past 5 days of data
+    st.write(f"**最近一周耳鸣级数:**{data[-7], data[-6], data[-5], data[-4], data[-3], data[-2], data[-1]}")
+    #st.markdown("-----------------")
 
     # Display regression results
     st.write(f"**线性回归分析结果:**")
