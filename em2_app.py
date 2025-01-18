@@ -236,8 +236,8 @@ if data is not None and data1 is not None and data2 is not None:
     
     # Display the current date and values in the plot
     
-    ax.text(0.5, 0.8, f"{current_date} \n耳鸣级数：{current_tinnitus_level:.2f}\n双动态均值：{current_double_ma_tinnitus_level:.2f}", 
-        horizontalalignment='center', verticalalignment='center', 
+    ax.text(0.3, 0.9, f"{current_date} \n耳鸣级数：{current_tinnitus_level:.2f}\n双动态均值：{current_double_ma_tinnitus_level:.2f}", 
+        horizontalalignment='left', verticalalignment='center', 
         transform=ax.transAxes, fontsize=12, color="blue")
   
     ax.scatter(time_steps, double_ma_data, color="blue", label="原始数据（双动态均值）")
@@ -279,6 +279,12 @@ if data is not None and data1 is not None and data2 is not None:
         ha="center"
     )
 
+    # Add the last 7 points of data to the plot
+    last_21_days_data = data[-28:]
+    last_21_days_time_steps = np.arange(len(double_ma_data) - 28, len(double_ma_data)).reshape(-1, 1)
+
+    ax.scatter(last_21_days_time_steps, last_21_days_data, color="gray", label="最近4周耳鸣级数", marker=".", s=100)
+
     # Add labels and legend
     ax.set_xlabel("天数")
     ax.set_ylabel("耳鸣级数")
@@ -289,7 +295,7 @@ if data is not None and data1 is not None and data2 is not None:
     st.pyplot(fig)
 
     #past 5 days of data
-    st.write(f"**最近一周耳鸣级数:**{data[-7], data[-6], data[-5], data[-4], data[-3], data[-2], data[-1]}")
+    #st.write(f"**最近一周耳鸣级数:**{data[-7], data[-6], data[-5], data[-4], data[-3], data[-2], data[-1]}")
     #st.markdown("-----------------")
 
     # Display regression results
