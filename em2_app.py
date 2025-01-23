@@ -227,7 +227,16 @@ if data is not None and data1 is not None and data2 is not None:
     fig, ax = plt.subplots(figsize=(10, 5))
     
     # Add the current date as a text label at the top center of the plot
+    # find the number of days from Sept 14, 2024 to today
+    # Define the dates
+    today = datetime.today()
+    past_date = datetime(2024, 9, 14)
 
+    # Calculate the difference in days
+    delta = today - past_date
+    days_difference = delta.days
+    print(days_difference)
+    
     # Add the current date
     current_tinnitus_level = data[-1]  # Latest value in the tinnitus data
     current_double_ma_tinnitus_level = double_ma_data[-1]  # Latest value in the double moving average data
@@ -236,7 +245,7 @@ if data is not None and data1 is not None and data2 is not None:
     
     # Display the current date and values in the plot
     
-    ax.text(0.3, 0.9, f"{current_date} \n耳鸣级数：{current_tinnitus_level:.2f}\n双动态均值：{current_double_ma_tinnitus_level:.2f}", 
+    ax.text(0.3, 0.85, f"慢跑第{days_difference}天\n\n{current_date} \n耳鸣级数：{current_tinnitus_level:.2f}\n双动态均值：{current_double_ma_tinnitus_level:.2f}", 
         horizontalalignment='left', verticalalignment='center', 
         transform=ax.transAxes, fontsize=12, color="blue")
   
