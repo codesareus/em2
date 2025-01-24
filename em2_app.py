@@ -1,5 +1,5 @@
 
-#em2 app 1-17-25
+#em2 app 1-24-25
 
 
 import numpy as np
@@ -11,6 +11,10 @@ from sklearn.pipeline import make_pipeline
 import streamlit as st
 import pandas as pd
 import matplotlib.font_manager as fm
+import pytz  # For timezone handling
+
+# Define your local timezone
+LOCAL_TIMEZONE = pytz.timezone('America/Chicago')  # Replace with your local timezone
 
 # Set matplotlib font to support Chinese characters
 fm.fontManager.addfont('SimHei.ttf')
@@ -217,7 +221,7 @@ if data is not None and data1 is not None and data2 is not None:
     poly_future_predictions = poly_model.predict(future_time_steps)
 
     # Get the date for the future prediction and last predicted value
-    current_date = datetime.now()
+    current_date = datetime.now(LOCAL_TIMEZONE)
     future_date = current_date + timedelta(days=prediction_days)
     future_date_str = future_date.strftime("%b %d, %Y")
     last_linear_prediction = linear_future_predictions[-1]
@@ -229,19 +233,25 @@ if data is not None and data1 is not None and data2 is not None:
     # Add the current date as a text label at the top center of the plot
     # find the number of days from Sept 14, 2024 to today
     # Define the dates
-    today = datetime.today()
-    past_date = datetime(2024, 9, 14)
+########
+    LOCAL_TIMEZONE = pytz.timezone('America/Chicago') 
+    today = datetime.now(LOCAL_TIMEZONE)
+    print(today)
+
+    # Define the past date and make it timezone-aware
+    past_date = LOCAL_TIMEZONE.localize(datetime(2024, 9, 14))
+    print("Past Date:", past_date)
 
     # Calculate the difference in days
     delta = today - past_date
     days_difference = delta.days
-    print(days_difference)
+    print("Days Difference:", days_difference)
     
     # Add the current date
     current_tinnitus_level = data[-1]  # Latest value in the tinnitus data
     current_double_ma_tinnitus_level = double_ma_data[-1]  # Latest value in the double moving average data
     
-    current_date = datetime.now().strftime("%Y年%m月%d日")
+    current_date = datetime.now(LOCAL_TIMEZONE).strftime("%Y年%m月%d日")
     
     # Display the current date and values in the plot
     
