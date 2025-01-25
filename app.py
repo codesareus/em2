@@ -300,7 +300,7 @@ if data is not None and data1 is not None and data2 is not None:
         ha="center"
     )
 
-    # Add the last 7 points of data to the plot
+    # Add the last 28 points of data to the plot
     last_21_days_data = data[-28:]
     last_21_days_time_steps = np.arange(len(double_ma_data) - 28, len(double_ma_data)).reshape(-1, 1)
 
@@ -313,6 +313,20 @@ if data is not None and data1 is not None and data2 is not None:
     ax.legend()
     ax.grid()
 
+    ######
+    # Calculate the R² values
+    r2_linear = linear_model.score(time_steps, double_ma_data)
+    r2_poly = poly_model.score(time_steps, double_ma_data)
+
+# Create the label text
+    label_text = f"- $R^2$ (线性回归): {r2_linear:.3f}\n- $R^2$ (多项式回归): {r2_poly:.3f}"
+
+# Add the label to the bottom left corner of the plot
+    ax.text(0.02, 0.02, label_text, transform=ax.transAxes, fontsize=12,
+        verticalalignment='bottom', bbox=dict(facecolor='white', alpha=0.5))
+
+# Show the plot in Streamlit
+
     st.pyplot(fig)
 
     #past 5 days of data
@@ -320,26 +334,30 @@ if data is not None and data1 is not None and data2 is not None:
     #st.markdown("-----------------")
 
     # Display regression results
-    st.write(f"**线性回归分析结果:**")
+    #st.write(f"**线性回归分析结果:**")
 
-    st.write(f"- 斜率 (m): {linear_model.coef_[0]:.4f}")
-    st.write(f"- 截距 (b): {linear_model.intercept_:.4f}")
-    st.write(f"- R²: {linear_model.score(time_steps, double_ma_data):.3f}")
-    st.write(f"- {prediction_days}天预测值 ({prediction_days}天后， {future_date_str}): {last_linear_prediction:.2f}")
+    #st.write(f"- 斜率 (m): {linear_model.coef_[0]:.4f}")
+    #st.write(f"- 截距 (b): {linear_model.intercept_:.4f}")
+    #st.write(f"- R²: {linear_model.score(time_steps, double_ma_data):.3f}")
+    #st.write(f"- {prediction_days}天预测值 ({prediction_days}天后， {future_date_str}): {last_linear_prediction:.2f}")
 
-    st.write(f"**多项式回归分析结果:**")
-    st.write(f"- R²: {poly_model.score(time_steps, double_ma_data):.3f}")
-    st.write(f"- {prediction_days}天预测值 ({prediction_days}天后， {future_date_str}): {last_poly_prediction:.2f}")
+    #st.write(f"**多项式回归分析结果:**")
+    #st.write(f"- R²: {poly_model.score(time_steps, double_ma_data):.3f}")
+    #st.write(f"- {prediction_days}天预测值 ({prediction_days}天后， {future_date_str}): {last_poly_prediction:.2f}")
 
     # Add some additional insights or explanations if needed
-st.markdown("""
-**解释:**
-- **斜率 (m):** 表示耳鸣级数随时间的变化率。正斜率表示耳鸣级数有上升趋势，负斜率表示下降趋势。
-- **截距 (b):** 表示回归线与y轴的交点，即当时间为0时的耳鸣级数预测值。
-- **R²:** 表示模型的拟合优度，值越接近1表示模型对数据的解释能力越强。
-- **预测值:** 表示根据回归模型预测的未来耳鸣级数值。
-""")
+#st.markdown("""
+#**解释:**
+#- **斜率 (m):** 表示耳鸣级数随时间的变化率。正斜率表示耳鸣级数有上升趋势，负斜率表示下降趋势。
+#- **截距 (b):** 表示回归线与y轴的交点，即当时间为0时的耳鸣级数预测值。
+#- **R²:** 表示模型的拟合优度，值越接近1表示模型对数据的解释能力越强。
+#- **预测值:** 表示根据回归模型预测的未来耳鸣级数值。
+#""")
 
+st.markdown("")
+st.markdown("")
+st.markdown("")
+st.markdown("")
 st.markdown("=============================================")
 
 from sklearn.metrics import r2_score
@@ -363,7 +381,8 @@ user_data2_smooth = double_moving_average(data2, window_size)
 
 # Plot correlation between smoothed data1 and data2
 st.subheader("脾胃和睡眠双动态均值：相关性和趋势分析")
-fig, ax = plt.subplots()
+#fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(10, 5))
 
 # Scatter plot with different colors for data1 and data2
 scatter1 = ax.scatter(range(len(user_data1_smooth)), user_data1_smooth, color='blue')
@@ -460,7 +479,7 @@ ax.annotate(
     xy=(len(user_data1_smooth) + future_days - 1, last_point_data1),
     xytext=(len(user_data1_smooth) + future_days - 1, last_point_data1 ),  # Reduced height
     arrowprops=dict(facecolor='blue', shrink=0.05, width=1, headwidth=5),
-    fontsize=8,  # Smaller font size
+    fontsize=10,  # Smaller font size
     color='blue'
 )
 
@@ -471,7 +490,7 @@ ax.annotate(
     xy=(len(user_data2_smooth) + future_days - 1, last_point_data2),
     xytext=(len(user_data2_smooth) + future_days - 1, last_point_data2 ),  # Reduced height
     arrowprops=dict(facecolor='orange', shrink=0.05, width=1, headwidth=5),
-    fontsize=8,  # Smaller font size
+    fontsize=10,  # Smaller font size
     color='orange'
 )
 
@@ -483,7 +502,7 @@ st.markdown(f"Date: {current_date}")
 st.markdown(f"**脾胃和睡眠相关系数:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
 print(22, f"**Correlation Coefficient:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
 
-ax.set_xlabel("Days")
-ax.set_ylabel("Smoothed Values")
+ax.set_xlabel("天数")
+ax.set_ylabel("双动态均值")
 ax.legend()
 st.pyplot(fig)
