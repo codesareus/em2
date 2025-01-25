@@ -261,7 +261,7 @@ if data is not None and data1 is not None and data2 is not None:
         horizontalalignment='left', verticalalignment='center', 
         transform=ax.transAxes, fontsize=12, color="blue")
   
-    ax.scatter(time_steps, double_ma_data, color="blue", label="双动态均值")
+    ax.scatter(time_steps, double_ma_data, color="blue", label="双动态均值（7日）")
     ax.plot(time_steps, linear_model.predict(time_steps), color="red", label="线性回归")
     ax.plot(time_steps, poly_model.predict(time_steps), color="green", label="多项式回归 (2次)")
     ax.scatter(future_time_steps, linear_future_predictions, color="orange", label=f"线性预测 ({prediction_days} 天)")
@@ -362,12 +362,12 @@ user_data1_smooth = double_moving_average(data1, window_size)
 user_data2_smooth = double_moving_average(data2, window_size)
 
 # Plot correlation between smoothed data1 and data2
-st.subheader("脾胃和睡眠 Correlation and Trend Prediction")
+st.subheader("脾胃和睡眠双动态均值：相关性和趋势分析")
 fig, ax = plt.subplots()
 
 # Scatter plot with different colors for data1 and data2
-scatter1 = ax.scatter(range(len(user_data1_smooth)), user_data1_smooth, color='blue', label="Smoothed Stomach Health (data1)")
-scatter2 = ax.scatter(range(len(user_data2_smooth)), user_data2_smooth, color='orange', label="Smoothed Sleep Quality (data2)")
+scatter1 = ax.scatter(range(len(user_data1_smooth)), user_data1_smooth, color='blue')
+scatter2 = ax.scatter(range(len(user_data2_smooth)), user_data2_smooth, color='orange')
 
 # Add trend lines and calculate R-squared values
 X = np.arange(len(user_data1_smooth)).reshape(-1, 1)
@@ -418,11 +418,11 @@ else:
     model_type_data2 = "Linear"
 
 # Plot trend lines
-ax.plot(X, y_pred_linear_data1, color='blue', linestyle='--', label=f"Linear Trend (data1, R²={r2_linear_data1:.2f})")
-ax.plot(X, y_pred_poly_data1, color='blue', linestyle=':', label=f"Polynomial Trend (data1, R²={r2_poly_data1:.2f})")
+ax.plot(X, y_pred_linear_data1, color='blue', linestyle='--', label=f"线性趋势 (脾胃, $R^2$={r2_linear_data1:.2f})")
+ax.plot(X, y_pred_poly_data1, color='blue', linestyle=':', label=f"多项式趋势 (脾胃, $R^2$={r2_poly_data1:.2f})")
 
-ax.plot(X, y_pred_linear_data2, color='orange', linestyle='--', label=f"Linear Trend (data2, R²={r2_linear_data2:.2f})")
-ax.plot(X, y_pred_poly_data2, color='orange', linestyle=':', label=f"Polynomial Trend (data2, R²={r2_poly_data2:.2f})")
+ax.plot(X, y_pred_linear_data2, color='orange', linestyle='--', label=f"线性趋势 (睡眠, $R^2$={r2_linear_data2:.2f})")
+ax.plot(X, y_pred_poly_data2, color='orange', linestyle=':', label=f"多项式趋势 (睡眠, $R^2$={r2_poly_data2:.2f})")
 
 # Predict trend for the next 30 days
 future_days = 30
@@ -442,8 +442,8 @@ else:
     future_data2 = best_model_data2.predict(future_X)
 
 # Plot predicted trend
-ax.plot(range(len(user_data1_smooth), len(user_data1_smooth) + future_days), future_data1, color='blue', linestyle="-", label=f"Predicted Trend (data1, {model_type_data1})")
-ax.plot(range(len(user_data2_smooth), len(user_data2_smooth) + future_days), future_data2, color='orange', linestyle="-", label=f"Predicted Trend (data2, {model_type_data2})")
+ax.plot(range(len(user_data1_smooth), len(user_data1_smooth) + future_days), future_data1, color='blue', linestyle="-", label=f"预测 (脾胃, {model_type_data1})")
+ax.plot(range(len(user_data2_smooth), len(user_data2_smooth) + future_days), future_data2, color='orange', linestyle="-", label=f"预测 (睡眠, {model_type_data2})")
 
 # Add a legend with a custom font size for all labels
 ax.legend(prop={'size': 5})  # Change '12' to your desired font size
@@ -456,7 +456,7 @@ last_date_str = last_date.strftime("%m_%d")
 # Label and arrow for data1
 last_point_data1 = future_data1[-1]
 ax.annotate(
-    f"{last_date_str}\n{last_point_data1:.2f}",
+    f"脾胃\n{last_date_str}\n{last_point_data1:.2f}",
     xy=(len(user_data1_smooth) + future_days - 1, last_point_data1),
     xytext=(len(user_data1_smooth) + future_days - 1, last_point_data1 ),  # Reduced height
     arrowprops=dict(facecolor='blue', shrink=0.05, width=1, headwidth=5),
@@ -467,7 +467,7 @@ ax.annotate(
 # Label and arrow for data2
 last_point_data2 = future_data2[-1]
 ax.annotate(
-    f"{last_date_str}\n{last_point_data2:.2f}",
+    f"睡眠\n{last_date_str}\n{last_point_data2:.2f}",
     xy=(len(user_data2_smooth) + future_days - 1, last_point_data2),
     xytext=(len(user_data2_smooth) + future_days - 1, last_point_data2 ),  # Reduced height
     arrowprops=dict(facecolor='orange', shrink=0.05, width=1, headwidth=5),
@@ -479,6 +479,9 @@ ax.annotate(
 current_date = datetime.now(chicago_tz).strftime("%Y-%m-%d")
 
 st.markdown(f"Date: {current_date}")
+# Display correlation coefficient below the plot
+st.markdown(f"**脾胃和睡眠相关系数:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
+print(22, f"**Correlation Coefficient:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
 
 ax.set_xlabel("Days")
 ax.set_ylabel("Smoothed Values")
