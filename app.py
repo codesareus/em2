@@ -286,7 +286,7 @@ if data is not None and data1 is not None and data2 is not None:
         xytext=(future_time_steps[-1], last_linear_prediction + 0.1),
         arrowprops=dict(facecolor='orange', shrink=0.05, headwidth=10, width=2),
         fontsize=10,
-        color="green",
+        color="red",
         ha="center"
     )
 
@@ -296,7 +296,7 @@ if data is not None and data1 is not None and data2 is not None:
         xytext=(future_time_steps[-1], last_poly_prediction + 0.1),
         arrowprops=dict(facecolor='purple', shrink=0.05, headwidth=10, width=2),
         fontsize=10,
-        color="purple",
+        color="green",
         ha="center"
     )
 
@@ -318,12 +318,21 @@ if data is not None and data1 is not None and data2 is not None:
     r2_linear = linear_model.score(time_steps, double_ma_data)
     r2_poly = poly_model.score(time_steps, double_ma_data)
 
+    # Add the linear model R² label in blue
+    ax.text(0.02, 0.10, f"- $R^2$ (线性回归): {r2_linear:.3f}", transform=ax.transAxes, fontsize=10,
+        color='red', verticalalignment='bottom', bbox=dict(facecolor='white', alpha=0.5))
+
+    # Add the polynomial model R² label in green
+    ax.text(0.02, 0.02, f"- $R^2$ (多项式回归): {r2_poly:.3f}", transform=ax.transAxes, fontsize=10,
+        color='green', verticalalignment='bottom', bbox=dict(facecolor='white', alpha=0.5))
+
+
 # Create the label text
-    label_text = f"- $R^2$ (线性回归): {r2_linear:.3f}\n- $R^2$ (多项式回归): {r2_poly:.3f}"
+    #label_text = f"- $R^2$ (线性回归): {r2_linear:.3f}\n- $R^2$ (多项式回归): {r2_poly:.3f}"
 
 # Add the label to the bottom left corner of the plot
-    ax.text(0.02, 0.02, label_text, transform=ax.transAxes, fontsize=12,
-        verticalalignment='bottom', bbox=dict(facecolor='white', alpha=0.5))
+    #ax.text(0.02, 0.02, label_text, transform=ax.transAxes, fontsize=12,
+      #  verticalalignment='bottom', bbox=dict(facecolor='white', alpha=0.5))
 
 # Show the plot in Streamlit
 
