@@ -1,4 +1,6 @@
 
+
+
 #em2 app 1-24-25
 
 
@@ -337,3 +339,148 @@ st.markdown("""
 - **R²:** 表示模型的拟合优度，值越接近1表示模型对数据的解释能力越强。
 - **预测值:** 表示根据回归模型预测的未来耳鸣级数值。
 """)
+
+st.markdown("=============================================")
+
+from sklearn.metrics import r2_score
+import os
+from datetime import datetime, timedelta
+import pytz
+
+# Function to calculate double moving average
+def moving_average(data, window_size):
+    return np.convolve(data, np.ones(window_size) / window_size, mode='valid')
+
+def double_moving_average(data, window_size):
+    first_ma = moving_average(data, window_size)
+    second_ma = moving_average(first_ma, window_size)
+    return second_ma
+
+# Smooth user input
+window_size = 7
+user_data1_smooth = double_moving_average(data1, window_size)
+user_data2_smooth = double_moving_average(data2, window_size)
+
+# Plot correlation between smoothed data1 and data2
+st.subheader("脾胃和睡眠 Correlation and Trend Prediction")
+fig, ax = plt.subplots()
+
+# Scatter plot with different colors for data1 and data2
+scatter1 = ax.scatter(range(len(user_data1_smooth)), user_data1_smooth, color='blue', label="Smoothed Stomach Health (data1)")
+scatter2 = ax.scatter(range(len(user_data2_smooth)), user_data2_smooth, color='orange', label="Smoothed Sleep Quality (data2)")
+
+# Add trend lines and calculate R-squared values
+X = np.arange(len(user_data1_smooth)).reshape(-1, 1)
+
+# Linear regression for data1
+linear_model_data1 = LinearRegression()
+linear_model_data1.fit(X, user_data1_smooth)
+y_pred_linear_data1 = linear_model_data1.predict(X)
+r2_linear_data1 = r2_score(user_data1_smooth, y_pred_linear_data1)
+
+# Linear regression for data2
+linear_model_data2 = LinearRegression()
+linear_model_data2.fit(X, user_data2_smooth)
+y_pred_linear_data2 = linear_model_data2.predict(X)
+r2_linear_data2 = r2_score(user_data2_smooth, y_pred_linear_data2)
+
+# Polynomial regression for data1 (degree=2)
+poly_features = PolynomialFeatures(degree=2)
+X_poly = poly_features.fit_transform(X)
+poly_model_data1 = LinearRegression()
+poly_model_data1.fit(X_poly, user_data1_smooth)
+y_pred_poly_data1 = poly_model_data1.predict(X_poly)
+r2_poly_data1 = r2_score(user_data1_smooth, y_pred_poly_data1)
+
+# Polynomial regression for data2 (degree=2)
+poly_model_data2 = LinearRegression()
+poly_model_data2.fit(X_poly, user_data2_smooth)
+y_pred_poly_data2 = poly_model_data2.predict(X_poly)
+r2_poly_data2 = r2_score(user_data2_smooth, y_pred_poly_data2)
+
+# Compare models and choose the better one
+if r2_poly_data1 > r2_linear_data1:
+    best_model_data1 = poly_model_data1
+    best_r2_data1 = r2_poly_data1
+    model_type_data1 = "Polynomial"
+else:
+    best_model_data1 = linear_model_data1
+    best_r2_data1 = r2_linear_data1
+    model_type_data1 = "Linear"
+
+if r2_poly_data2 > r2_linear_data2:
+    best_model_data2 = poly_model_data2
+    best_r2_data2 = r2_poly_data2
+    model_type_data2 = "Polynomial"
+else:
+    best_model_data2 = linear_model_data2
+    best_r2_data2 = r2_linear_data2
+    model_type_data2 = "Linear"
+
+# Plot trend lines
+ax.plot(X, y_pred_linear_data1, color='blue', linestyle='--', label=f"Linear Trend (data1, R²={r2_linear_data1:.2f})")
+ax.plot(X, y_pred_poly_data1, color='blue', linestyle=':', label=f"Polynomial Trend (data1, R²={r2_poly_data1:.2f})")
+
+ax.plot(X, y_pred_linear_data2, color='orange', linestyle='--', label=f"Linear Trend (data2, R²={r2_linear_data2:.2f})")
+ax.plot(X, y_pred_poly_data2, color='orange', linestyle=':', label=f"Polynomial Trend (data2, R²={r2_poly_data2:.2f})")
+
+# Predict trend for the next 30 days
+future_days = 30
+future_X = np.arange(len(user_data1_smooth), len(user_data1_smooth) + future_days).reshape(-1, 1)
+
+# Predict future values using the best model
+if model_type_data1 == "Polynomial":
+    future_X_poly = poly_features.transform(future_X)
+    future_data1 = best_model_data1.predict(future_X_poly)
+else:
+    future_data1 = best_model_data1.predict(future_X)
+
+if model_type_data2 == "Polynomial":
+    future_X_poly = poly_features.transform(future_X)
+    future_data2 = best_model_data2.predict(future_X_poly)
+else:
+    future_data2 = best_model_data2.predict(future_X)
+
+# Plot predicted trend
+ax.plot(range(len(user_data1_smooth), len(user_data1_smooth) + future_days), future_data1, color='blue', linestyle="-", label=f"Predicted Trend (data1, {model_type_data1})")
+ax.plot(range(len(user_data2_smooth), len(user_data2_smooth) + future_days), future_data2, color='orange', linestyle="-", label=f"Predicted Trend (data2, {model_type_data2})")
+
+# Add a legend with a custom font size for all labels
+ax.legend(prop={'size': 5})  # Change '12' to your desired font size
+
+# Add date label and arrow for the last predicted point (30th day)
+chicago_tz = pytz.timezone("America/Chicago")
+last_date = datetime.now(chicago_tz) + timedelta(days=future_days)
+last_date_str = last_date.strftime("%m_%d")
+
+# Label and arrow for data1
+last_point_data1 = future_data1[-1]
+ax.annotate(
+    f"{last_date_str}\n{last_point_data1:.2f}",
+    xy=(len(user_data1_smooth) + future_days - 1, last_point_data1),
+    xytext=(len(user_data1_smooth) + future_days - 1, last_point_data1 ),  # Reduced height
+    arrowprops=dict(facecolor='blue', shrink=0.05, width=1, headwidth=5),
+    fontsize=8,  # Smaller font size
+    color='blue'
+)
+
+# Label and arrow for data2
+last_point_data2 = future_data2[-1]
+ax.annotate(
+    f"{last_date_str}\n{last_point_data2:.2f}",
+    xy=(len(user_data2_smooth) + future_days - 1, last_point_data2),
+    xytext=(len(user_data2_smooth) + future_days - 1, last_point_data2 ),  # Reduced height
+    arrowprops=dict(facecolor='orange', shrink=0.05, width=1, headwidth=5),
+    fontsize=8,  # Smaller font size
+    color='orange'
+)
+
+# Add date label in the bottom-right corner
+current_date = datetime.now(chicago_tz).strftime("%Y-%m-%d")
+
+st.markdown(f"Date: {current_date}")
+
+ax.set_xlabel("Days")
+ax.set_ylabel("Smoothed Values")
+ax.legend()
+st.pyplot(fig)
