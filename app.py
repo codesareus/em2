@@ -537,9 +537,6 @@ START_DATE = datetime(2025, 1, 29)
 START_DAYS = 137
 TIMEZONE = "America/Chicago"  # St. Louis timezone
 
-# User-defined polynomial scale (default = 3, range 1 to 20)
-p = st.sidebar.slider("Polynomial Scale (p)", min_value=1, max_value=20, value=1)
-
 # Calculate updated Days and Distance based on the current date
 current_time = datetime.now(pytz.timezone(TIMEZONE))
 days_elapsed = (current_time.date() - START_DATE.date()).days
@@ -552,12 +549,15 @@ distance = days * DAILY_DISTANCE_INCREMENT  # Distance in km
 
 # Total days needed to reach the Moon (assuming 5 km/day)
 max_days = EARTH_MOON_DISTANCE_KM / DAILY_DISTANCE_INCREMENT
-print(EARTH_MOON_DISTANCE_KM)
+print(max_days)
 
+#days = 18250 #50 years need to multiply by 4.22 to make it to 76880 max_days
 # Calculate runner position with polynomial scaling
-t = (days / max_days) ** p * 100  # Polynomial scaling
+t = (days * 4.22 / max_days)  # 50 years will be 91,250 km, have to make it to the moon == 384,400
 runner_x = int((1 - t) * HOME_POSITION[0] + t * MOON_POSITION[0])
 runner_y = int((1 - t) * HOME_POSITION[1] + t * MOON_POSITION[1])
+
+print(days, 1- t)
 
 # Create an image
 image = Image.new("RGB", (IMAGE_WIDTH, IMAGE_HEIGHT), "white")
@@ -600,16 +600,35 @@ draw.ellipse(
     outline="black",
 )
 
+#################
 # Add label above the runner
+#label_text = f"Date: {current_time.strftime('%Y-%m-%d')}\nDays: {days}\nDistance: {distance} km"
+#draw.text((runner_x - 30, runner_y - 60), label_text, fill="navy")  # Centered above the runner
+
 label_text = f"Date: {current_time.strftime('%Y-%m-%d')}\nDays: {days}\nDistance: {distance} km"
 draw.text((runner_x - 30, runner_y - 60), label_text, fill="navy")  # Centered above the runner
 
+# Add a small arrow pointing down from the label
+arrow_start = (runner_x, runner_y - 20)  # Start of the arrow (just below the label)
+arrow_end = (runner_x, runner_y-10)        # End of the arrow (pointing to the runner)
+draw.line([arrow_start, arrow_end], fill="navy", width=2)  # Draw the arrow line
+
+# Optional: Add arrowhead (a small triangle)
+arrowhead_size = 5
+arrowhead = [
+    (runner_x - arrowhead_size, runner_y - 2* arrowhead_size),  # Left point
+    (runner_x + arrowhead_size, runner_y - 2* arrowhead_size),  # Right point
+    (runner_x, runner_y-arrowhead_size)                                     # Tip of the arrow
+]
+draw.polygon(arrowhead, fill="navy")  # Draw the arrowhead
+############
+
 # Add labels directly above Home and Moon
-draw.text((HOME_POSITION[0] - 10, HOME_POSITION[1] - 25), "Home", fill="black")  # Above Home
+draw.text((HOME_POSITION[0] - 10, HOME_POSITION[1] +10), "Home", fill="black")  # Above Home
 draw.text((MOON_POSITION[0] - 30, MOON_POSITION[1] - 80), "Moon\n384,400km", fill="black")  # Above Moon
 
 # Display the image in Streamlit
 st.title("Earth to Moon Running Visualization")
-st.image(image, caption="A young man running from Home to the Moon", use_container_width=True)
+st.image(image, caption="A young man running from Home to the Moon 2075(2025) will be 91,250 km", use_container_width=True)
 
 
