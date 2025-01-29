@@ -515,3 +515,100 @@ ax.set_xlabel("天数")
 ax.set_ylabel("双动态均值")
 ax.legend()
 st.pyplot(fig)
+
+#####
+
+import streamlit as st
+from PIL import Image, ImageDraw
+from datetime import datetime, timedelta
+import pytz
+
+# Constants
+IMAGE_WIDTH = 800
+IMAGE_HEIGHT = 600
+HOME_RADIUS = 10
+MOON_RADIUS = 50
+MOON_POSITION = (100, 100)  # Upper left corner
+HOME_POSITION = (IMAGE_WIDTH - 150, IMAGE_HEIGHT - 100)  # Lower right corner
+HORIZON_Y = HOME_POSITION[1]  # Align horizon with Home
+EARTH_MOON_DISTANCE_KM = 384400  # Actual distance in kilometers
+DAILY_DISTANCE_INCREMENT = 5  # km per day
+START_DATE = datetime(2025, 1, 29)
+START_DAYS = 137
+TIMEZONE = "America/Chicago"  # St. Louis timezone
+
+# User-defined polynomial scale (default = 3, range 1 to 20)
+p = st.sidebar.slider("Polynomial Scale (p)", min_value=1, max_value=20, value=1)
+
+# Calculate updated Days and Distance based on the current date
+current_time = datetime.now(pytz.timezone(TIMEZONE))
+days_elapsed = (current_time.date() - START_DATE.date()).days
+if current_time.hour >= 6:  # Update only after 6:00 AM St. Louis time
+    days = START_DAYS + days_elapsed
+else:
+    days = START_DAYS + days_elapsed - 1
+
+distance = days * DAILY_DISTANCE_INCREMENT  # Distance in km
+
+# Total days needed to reach the Moon (assuming 5 km/day)
+max_days = EARTH_MOON_DISTANCE_KM / DAILY_DISTANCE_INCREMENT
+
+# Calculate runner position with polynomial scaling
+t = (days / max_days) ** p * 100  # Polynomial scaling
+runner_x = int((1 - t) * HOME_POSITION[0] + t * MOON_POSITION[0])
+runner_y = int((1 - t) * HOME_POSITION[1] + t * MOON_POSITION[1])
+
+# Create an image
+image = Image.new("RGB", (IMAGE_WIDTH, IMAGE_HEIGHT), "white")
+draw = ImageDraw.Draw(image)
+
+# Draw the horizon at Home's level
+draw.line([(0, HORIZON_Y), (IMAGE_WIDTH, HORIZON_Y)], fill="blue", width=2)
+
+# Draw the Moon
+draw.ellipse(
+    [
+        (MOON_POSITION[0] - MOON_RADIUS, MOON_POSITION[1] - MOON_RADIUS),
+        (MOON_POSITION[0] + MOON_RADIUS, MOON_POSITION[1] + MOON_RADIUS),
+    ],
+    fill="blue",
+    outline="yellow",
+)
+
+# Draw Home
+draw.ellipse(
+    [
+        (HOME_POSITION[0] - HOME_RADIUS, HOME_POSITION[1] - HOME_RADIUS),
+        (HOME_POSITION[0] + HOME_RADIUS, HOME_POSITION[1] + HOME_RADIUS),
+    ],
+    fill="red",
+    outline="black",
+)
+
+# Draw a line connecting Home and the Moon
+draw.line([MOON_POSITION, HOME_POSITION], fill="orange", width=2)
+
+# Draw the runner (small circle)
+RUNNER_RADIUS = 8
+draw.ellipse(
+    [
+        (runner_x - RUNNER_RADIUS, runner_y - RUNNER_RADIUS),
+        (runner_x + RUNNER_RADIUS, runner_y + RUNNER_RADIUS),
+    ],
+    fill="green",
+    outline="black",
+)
+
+# Add label above the runner
+label_text = f"Date: {current_time.strftime('%Y-%m-%d')}\nDays: {days}\nDistance: {distance} km"
+draw.text((runner_x - 30, runner_y - 60), label_text, fill="navy")  # Centered above the runner
+
+# Add labels directly above Home and Moon
+draw.text((HOME_POSITION[0] - 10, HOME_POSITION[1] - 25), "Home", fill="black")  # Above Home
+draw.text((MOON_POSITION[0] - 30, MOON_POSITION[1] - 70), "Moon", fill="black")  # Above Moon
+
+# Display the image in Streamlit
+st.title("Earth to Moon Running Visualization")
+st.image(image, caption="A young man running from Home to the Moon", use_container_width=True)
+
+
