@@ -552,6 +552,7 @@ distance = days * DAILY_DISTANCE_INCREMENT  # Distance in km
 
 # Total days needed to reach the Moon (assuming 5 km/day)
 max_days = EARTH_MOON_DISTANCE_KM / DAILY_DISTANCE_INCREMENT
+print(EARTH_MOON_DISTANCE_KM)
 
 # Calculate runner position with polynomial scaling
 t = (days / max_days) ** p * 100  # Polynomial scaling
@@ -605,7 +606,7 @@ draw.text((runner_x - 30, runner_y - 60), label_text, fill="navy")  # Centered a
 
 # Add labels directly above Home and Moon
 draw.text((HOME_POSITION[0] - 10, HOME_POSITION[1] - 25), "Home", fill="black")  # Above Home
-draw.text((MOON_POSITION[0] - 30, MOON_POSITION[1] - 70), "Moon", fill="black")  # Above Moon
+draw.text((MOON_POSITION[0] - 30, MOON_POSITION[1] - 80), "Moon\n384,400km", fill="black")  # Above Moon
 
 # Display the image in Streamlit
 st.title("Earth to Moon Running Visualization")
