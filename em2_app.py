@@ -519,7 +519,7 @@ st.pyplot(fig)
 #####
 
 import streamlit as st
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime, timedelta
 import pytz
 
@@ -605,8 +605,11 @@ draw.ellipse(
 #label_text = f"Date: {current_time.strftime('%Y-%m-%d')}\nDays: {days}\nDistance: {distance} km"
 #draw.text((runner_x - 30, runner_y - 60), label_text, fill="navy")  # Centered above the runner
 
+# Define the font and size
+font = ImageFont.truetype("arial.ttf", 24)  # Adjust size as needed
 label_text = f"Date: {current_time.strftime('%Y-%m-%d')}\nDays: {days}\nDistance: {distance} km"
-draw.text((runner_x - 30, runner_y - 60), label_text, fill="navy")  # Centered above the runner
+draw.text((runner_x - 50, runner_y - 100), label_text, fill="navy", font=font)
+#draw.text((runner_x - 30, runner_y - 60), label_text, fill="navy")  # Centered above the runner
 
 # Add a small arrow pointing down from the label
 arrow_start = (runner_x, runner_y - 20)  # Start of the arrow (just below the label)
