@@ -154,13 +154,7 @@ if st.session_state.show_text_area:
         height=300,  # Moderately tall
         key="file_editor",
     )
-# Display text area with copy button (moderately tall, editable)
-    file_text = st.text_area(
-        "File Content:",
-        value=st.session_state.get("file_content", ""),
-        height=300,  # Adjust height as needed
-        key="file_editor",
-    )
+
 # Displaying the text area ensures Streamlit's built-in copy button appears in the top-right corner.
 
 # Check if data is valid
