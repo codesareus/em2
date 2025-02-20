@@ -129,20 +129,38 @@ def load_file():
     except FileNotFoundError:
         return "Error: File not found."
 
-st.title("Data Viewer")
+# Initialize session state variables
+if "show_text_area" not in st.session_state:
+    st.session_state.show_text_area = False
+if "file_content" not in st.session_state:
+    st.session_state.file_content = ""
 
-# Button to load and display the file content
+# Load file button
 if st.button("Load Data"):
-    file_content = load_file()
-    st.session_state.file_content = file_content
+    st.session_state.file_content = load_file()
+    st.session_state.show_text_area = True  # Show text area when loading
 
+# Toggle visibility button
+if st.session_state.show_text_area:
+    if st.button("Hide Text Area"):
+        st.session_state.show_text_area = False
+        st.rerun()
+
+# Display text area only if show_text_area is True
+if st.session_state.show_text_area:
+    st.text_area(
+        "File Content:",
+        value=st.session_state.file_content,
+        height=300,  # Moderately tall
+        key="file_editor",
+    )
 # Display text area with copy button (moderately tall, editable)
-file_text = st.text_area(
-    "File Content:",
-    value=st.session_state.get("file_content", ""),
-    height=300,  # Adjust height as needed
-    key="file_editor",
-)
+    file_text = st.text_area(
+        "File Content:",
+        value=st.session_state.get("file_content", ""),
+        height=300,  # Adjust height as needed
+        key="file_editor",
+    )
 # Displaying the text area ensures Streamlit's built-in copy button appears in the top-right corner.
 
 # Check if data is valid
