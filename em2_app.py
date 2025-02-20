@@ -120,6 +120,31 @@ st.sidebar.header("耳鸣级数参考方法")
 # Add the image (replace 'path_to_your_image.png' with the actual path to your image)
 st.sidebar.image("erming_jishu.png", caption="耳鸣级数参考图", use_container_width=True)
 
+#add a text field to display data.CSV
+# Function to load and display file content
+def load_file():
+    try:
+        with open("data.csv", "r", encoding="utf-8") as file:
+            return file.read()
+    except FileNotFoundError:
+        return "Error: File not found."
+
+st.title("Data Viewer")
+
+# Button to load and display the file content
+if st.button("Load Data"):
+    file_content = load_file()
+    st.session_state.file_content = file_content
+
+# Display text area with copy button (moderately tall, editable)
+file_text = st.text_area(
+    "File Content:",
+    value=st.session_state.get("file_content", ""),
+    height=300,  # Adjust height as needed
+    key="file_editor",
+)
+# Displaying the text area ensures Streamlit's built-in copy button appears in the top-right corner.
+
 # Check if data is valid
 if data is not None and data1 is not None and data2 is not None:
     # Calculate moving averages
