@@ -96,7 +96,8 @@ moon_text = ("We choose to go to the Moon \n"
              "not because it is easy,  \n"
              "but because it is hard :)")
 
-font_path = "Arial.ttf"
+#font_path = "Arial.ttf"
+font_path = "SimHei.ttf"
 font_size = 24
 font = ImageFont.truetype(font_path, font_size)
 font2 = ImageFont.truetype(font_path, 20)
