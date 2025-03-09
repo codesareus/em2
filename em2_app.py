@@ -622,7 +622,7 @@ font2 = ImageFont.truetype(font_path, 20)
 
 #draw.text((runner_x - 50, runner_y - 100), label_text, fill="navy", font=font)
 #draw.text((runner_x - 300, runner_y - 200), moon_text, fill="navy",font= font)  # Cent
-draw.text((runner_x - 35, runner_y - 65), label_text, fill="navy",font = font2)  # Centered above the runner
+draw.text((runner_x - 35, runner_y - 100), label_text, fill="navy",font = font2)  # Centered above the runner
 
 runa, runb = (runner_x - 300), ( runner_y - 200) # Example position
 
