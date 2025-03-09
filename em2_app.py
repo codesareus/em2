@@ -106,13 +106,13 @@ font2 = ImageFont.truetype(font_path, 20)
 
 #draw.text((runner_x - 50, runner_y - 100), label_text, fill="navy", font=font)
 #draw.text((runner_x - 300, runner_y - 200), moon_text, fill="navy",font= font)  # Cent
-draw.text((runner_x - 25, runner_y - 60), label_text, fill="navy",font = font2)  # Centered above the runner
+draw.text((runner_x - 25, runner_y - 100), label_text, fill="navy",font = font2)  # Centered above the runner
 
 runa, runb = (runner_x - 300), ( runner_y - 200) # Example position
 
 # Simulate bold by drawing multiple times with slight offsets
 for offset in [(0, 0), (1, 0), (0, 1), (1, 1)]:  
-    draw.text(( runa- 10 + offset[0], runb - 10 + offset[1]), 
+    draw.text(( runa- 20 + offset[0], runb - 20 + offset[1]), 
              moon_text, fill="navy", font=font)
 
 ###more bold with the below
