@@ -18,6 +18,8 @@ START_DATE = datetime(2025, 1, 29)
 START_DAYS = 137
 TIMEZONE = "America/Chicago"  # St. Louis timezone
 
+font_path = "Monoco.ttf"
+
 # Calculate updated Days and Distance based on the current date
 current_time = datetime.now(pytz.timezone(TIMEZONE))
 days_elapsed = (current_time.date() - START_DATE.date()).days
@@ -97,7 +99,7 @@ moon_text = ("We choose to go to the Moon \n"
              "but because it is hard :)")
 
 #font_path = "Arial.ttf"
-font_path = "SimHei.ttf"
+
 font_size = 24
 font = ImageFont.truetype(font_path, font_size)
 font2 = ImageFont.truetype(font_path, 20)
