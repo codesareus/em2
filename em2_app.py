@@ -113,7 +113,7 @@ runa, runb = (runner_x - 300), ( runner_y - 200) # Example position
              # moon_text, fill="navy", font=font)
 
 ###more bold with the below
-for offset in [(0, 0), (2, 0), (0, 2), (2, 2)]:  
+for offset in [(0, 0), (1.5, 0), (0, 1.5), (1.5, 1.5)]:  
     draw.text(( runa- 20 + offset[0], runb - 20 + offset[1]), 
               moon_text, fill="navy", font=font)
 # Add a small arrow pointing down from the label
