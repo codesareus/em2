@@ -616,10 +616,10 @@ moon_text = ("We choose to go to the Moon \n"
              "not because it is easy,  \n"
              "but because it is hard :)")
 
-font_path = "Ariel.ttf"
+font_path = "SimHei.ttf"
 font = ImageFont.truetype(font_path, 24)
 #draw.text((runner_x - 50, runner_y - 100), label_text, fill="navy", font=font)
-draw.text((runner_x - 200, runner_y - 200), moon_text, fill="navy")  # Cent
+draw.text((runner_x - 200, runner_y - 200), moon_text, fill="navy",font= font)  # Cent
 # Add a small arrow pointing down from the label
 arrow_start = (runner_x, runner_y - 20)  # Start of the arrow (just below the label)
 arrow_end = (runner_x, runner_y-10)        # End of the arrow (pointing to the runner)
