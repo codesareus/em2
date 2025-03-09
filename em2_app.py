@@ -18,7 +18,7 @@ START_DATE = datetime(2025, 1, 29)
 START_DAYS = 137
 TIMEZONE = "America/Chicago"  # St. Louis timezone
 
-font_path = "monaco.ttf"
+font_path = "Arial.ttf"
 
 # Calculate updated Days and Distance based on the current date
 current_time = datetime.now(pytz.timezone(TIMEZONE))
