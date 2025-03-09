@@ -617,9 +617,19 @@ moon_text = ("We choose to go to the Moon \n"
              "but because it is hard :)")
 
 font_path = "Arial.ttf"
-font = ImageFont.truetype(font_path, 24)
+font_size = 24
+font = ImageFont.truetype(font_path, font_size)
+
 #draw.text((runner_x - 50, runner_y - 100), label_text, fill="navy", font=font)
-draw.text((runner_x - 300, runner_y - 200), moon_text, fill="navy",font= font)  # Cent
+#draw.text((runner_x - 300, runner_y - 200), moon_text, fill="navy",font= font)  # Cent
+
+runa, runb = (runner_x - 300), ( runner_y - 200) # Example position
+
+# Simulate bold by drawing multiple times with slight offsets
+for offset in [(0, 0), (1, 0), (0, 1), (1, 1)]:  
+    draw.text(( runa- 200 + offset[0], runb - 200 + offset[1]), 
+              moon_text, fill="navy", font=font)
+    
 # Add a small arrow pointing down from the label
 arrow_start = (runner_x, runner_y - 20)  # Start of the arrow (just below the label)
 arrow_end = (runner_x, runner_y-10)        # End of the arrow (pointing to the runner)
