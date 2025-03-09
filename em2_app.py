@@ -616,6 +616,7 @@ moon_text = ("We choose to go to the Moon \n"
              "not because it is easy,  \n"
              "but because it is hard :)")
 
+font_path = "Ariel.ttf"
 font = ImageFont.truetype(font_path, 24)
 #draw.text((runner_x - 50, runner_y - 100), label_text, fill="navy", font=font)
 draw.text((runner_x - 200, runner_y - 200), moon_text, fill="navy")  # Cent
