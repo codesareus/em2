@@ -113,7 +113,7 @@ for offset in [(0, 0), (1, 0), (0, 1), (1, 1)]:
               moon_text, fill="navy", font=font)
 
 for offset in [(0, 0), (2, 0), (0, 2), (2, 2)]:  
-    draw.text(( runa- 10 + offset[0], runb - 10 + offset[1]), 
+    draw.text(( runa- 20 + offset[0], runb - 20 + offset[1]), 
               moon_text, fill="navy", font=font)
 # Add a small arrow pointing down from the label
 arrow_start = (runner_x, runner_y - 20)  # Start of the arrow (just below the label)
