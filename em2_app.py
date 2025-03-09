@@ -611,7 +611,7 @@ label_text = f"Date: {current_time.strftime('%Y-%m-%d')}\nDays: {days}\nDistance
 #draw.text((runner_x - 50, runner_y - 100), label_text, fill="navy", font=font)
 draw.text((runner_x - 30, runner_y - 60), label_text, fill="navy")  # Centered above the runner
 
-moon_text = f"We choose to go to the Moon /n in this life time (and more?), /n not because it is easy, /n but because it is hard :)"
+moon_text = f"We choose to go to the Moon \n in this life time (and more?), \n not because it is easy,  \n but because it is hard :)"
 #draw.text((runner_x - 50, runner_y - 100), label_text, fill="navy", font=font)
 draw.text((runner_x - 90, runner_y - 95), moon_text, fill="navy")  # Cent
 # Add a small arrow pointing down from the label
