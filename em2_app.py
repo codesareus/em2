@@ -609,7 +609,7 @@ draw.ellipse(
 #font = ImageFont.truetype("arial.ttf", 18)  # Adjust size as needed
 label_text = f"Date: {current_time.strftime('%Y-%m-%d')}\nDays: {days}\nDistance: {distance} km"
 #draw.text((runner_x - 50, runner_y - 100), label_text, fill="navy", font=font)
-draw.text((runner_x - 30, runner_y - 60), label_text, fill="navy")  # Centered above the runner
+draw.text((runner_x - 30, runner_y - 60), label_text, fill="navy",font = font)  # Centered above the runner
 
 moon_text = ("We choose to go to the Moon \n"
              "in this lifetime (and beyond?), \n"
