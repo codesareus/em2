@@ -1,7 +1,7 @@
 
 
 
-#em2 app 1-24-25
+#em2 app 3-9-25
 
 
 import numpy as np
@@ -612,7 +612,7 @@ label_text = f"Date: {current_time.strftime('%Y-%m-%d')}\nDays: {days}\nDistance
 draw.text((runner_x - 30, runner_y - 60), label_text, fill="navy")  # Centered above the runner
 
 moon_text = ("We choose to go to the Moon \n"
-             "in this lifetime (and more?), \n"
+             "in this lifetime (and beyond?), \n"
              "not because it is easy,  \n"
              "but because it is hard :)")
 
