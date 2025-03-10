@@ -446,7 +446,7 @@ if data is not None and data1 is not None and data2 is not None:
     last_21_days_time_steps = np.arange(len(double_ma_data) - 28, len(double_ma_data)).reshape(-1, 1)
 
     ax.scatter(last_21_days_time_steps, last_21_days_data, color="gray", label="最近4周耳鸣级数", marker=".", s=100)
-
+    ax.set_facecolor(bgcolor)
     # Add labels and legend
     ax.set_xlabel("天数")
     ax.set_ylabel("耳鸣级数")
@@ -613,7 +613,7 @@ else:
 # Plot predicted trend
 ax.plot(range(len(user_data1_smooth), len(user_data1_smooth) + future_days), future_data1, color='blue', linestyle="-", label=f"预测 (脾胃, {model_type_data1})")
 ax.plot(range(len(user_data2_smooth), len(user_data2_smooth) + future_days), future_data2, color='orange', linestyle="-", label=f"预测 (睡眠, {model_type_data2})")
-
+ax.set_facecolor(bgcolor)
 # Add a legend with a custom font size for all labels
 ax.legend(prop={'size': 5})  # Change '12' to your desired font size
 
