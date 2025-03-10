@@ -44,7 +44,7 @@ runner_y = int((1 - t) * HOME_POSITION[1] + t * MOON_POSITION[1])
 print(days, 1- t)
 
 # Create an image
-image = Image.new("RGB", (IMAGE_WIDTH, IMAGE_HEIGHT), " lightblue")
+image = Image.new("RGB", (IMAGE_WIDTH, IMAGE_HEIGHT), "lightblue")
 draw = ImageDraw.Draw(image)
 
 # Draw the horizon at Home's level
