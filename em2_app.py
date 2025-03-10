@@ -56,7 +56,8 @@ draw.ellipse(
         (MOON_POSITION[0] - MOON_RADIUS, MOON_POSITION[1] - MOON_RADIUS),
         (MOON_POSITION[0] + MOON_RADIUS, MOON_POSITION[1] + MOON_RADIUS),
     ],
-    fill="#ADD8E6",
+    #fill="#ADD8E6",
+    fill="navy",
     outline="yellow",
 )
 
