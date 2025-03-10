@@ -303,7 +303,7 @@ if data is not None and data1 is not None and data2 is not None:
         ax.plot(trimmed_data, label="原始数据", color='orange', linestyle='--', alpha=0.7)
         ax.plot(ma_datasets[i], label="7天动态均值", color=colors[i])
         ax.scatter(len(ma_datasets[i]) - 1, ma_datasets[i][-1], color=colors[i])  # Highlight last point
-        
+        ax.set_facecolor(bgColor)
         # Calculate date for the last data point
         last_date = start_date + timedelta(days=len(ma_datasets[i]) - 1)
         ax.text(len(ma_datasets[i]) - 1, ma_datasets[i][-1], 
