@@ -327,11 +327,12 @@ if data is not None and data1 is not None and data2 is not None:
         trimmed_data = datasets[i][:len(ma_datasets[i])]  # Trim original data to match moving average length
     
     # Plot original data
-        ax.plot(trimmed_data, label=f"{labels[i]} 原始数据", color=colors[i], linestyle='--', alpha=0.7)
+        #ax.plot(trimmed_data, label=f"{labels[i]} 原始数据", color=colors[i], linestyle='--', alpha=0.7)
+        ax.plot(trimmed_data, color=colors[i], linestyle='--', alpha=0.7)
     
     # Plot moving average
-        ax.plot(ma_datasets[i], label=f"{labels[i]} 7天动态均值", color=colors[i])
-    
+        #ax.plot(ma_datasets[i], label=f"{labels[i]} 7天动态均值", color=colors[i])
+        ax.plot(ma_datasets[i], color=colors[i])
     # Highlight last point of moving average
         ax.scatter(len(ma_datasets[i]) - 1, ma_datasets[i][-1], color=colors[i])
     
@@ -340,17 +341,21 @@ if data is not None and data1 is not None and data2 is not None:
         ax.text(len(ma_datasets[i]) +15, ma_datasets[i][-1], 
             f'{last_date.strftime("%m-%d")} ({ma_datasets[i][-1]:.2f})', 
             color='black', fontsize=10, ha='right')
-
-    # Highlight last point of moving average
+        
+        ##########. add labels separately
+        ax.text(2, 8.5, 
+            "心率（最高值百分比/10）",
+            color='blue', fontsize=10, ha='right')
+        # Highlight last point of moving average
         ax.scatter(len(ma_datasets[i]) - 1, ma_datasets[i][-1], color=colors[i])
     
-    # Add text annotation for the last point
+      # Add text annotation for the last point
         last_date = start_date + timedelta(days=len(ma_datasets[i]) - 1)
         ax.text(len(ma_datasets[i]) +15, ma_datasets[i][-1], 
             f'{last_date.strftime("%m-%d")} ({ma_datasets[i][-1]:.2f})', 
             color='black', fontsize=10, ha='right')
 
-# Set Y-axis ticks to step 1
+        # Set Y-axis ticks to step 1
         ax.yaxis.set_major_locator(ticker.MultipleLocator(0.5))
 # Second loop: Show y values only in the range 0-3
 
@@ -358,7 +363,7 @@ if data is not None and data1 is not None and data2 is not None:
     ax.set_facecolor(bgColor)
 
 # Add title, labels, legend, and grid
-    ax.set_title("综合动态均值分析")
+    ax.set_title("综合动态均值分析(虚线原始数据）")
     ax.set_xlabel("天数")
     ax.set_ylabel("动态均值")
     ax.legend(loc="upper left", bbox_to_anchor=(1, 1))  # Place legend outside the plot
