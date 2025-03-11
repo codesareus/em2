@@ -156,6 +156,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.font_manager as fm
 import pytz  # For timezone handling
+import textwrap
 
 # Define your local timezone
 LOCAL_TIMEZONE = pytz.timezone('America/Chicago')  # Replace with your local timezone
@@ -369,9 +370,10 @@ if data is not None and data1 is not None and data2 is not None:
     
     #st.sidebar.subheader("marker_message")
     marker_message_input = st.sidebar.text_area("输入分析信息：", value="")
+    wrapped_text = "\n".join(textwrap.wrap(marker_message_input, width=25))
 
     ax.text(v_line_pos, 4,
-        marker_message_input,
+        wrapped_text,
         color='navy', fontsize=16, ha='right') 
 
     # Add lines based on slider values
