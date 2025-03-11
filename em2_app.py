@@ -343,9 +343,9 @@ if data is not None and data1 is not None and data2 is not None:
             color='black', fontsize=10, ha='right')
         
         ##########. add labels separately
-        ax.text(20, 7.5, 
+        ax.text(20, 7.8,
             "心率（最高值百分比/10）",
-            color='blue', fontsize=10, ha='right')
+            color='blue', fontsize=15, ha='right')
         # Highlight last point of moving average
         ax.scatter(len(ma_datasets[i]) - 1, ma_datasets[i][-1], color=colors[i])
     
