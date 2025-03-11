@@ -372,11 +372,11 @@ if data is not None and data1 is not None and data2 is not None:
 
     ax.text(100, 4,
         marker_message_input,
-        color='navy', fontsize=15, ha='right') 
+        color='navy', fontsize=20, ha='right') 
 
     # Add lines based on slider values
-    ax.axhline(y=h_line_pos, color='skyblue', lw=2, linestyle='--')
-    ax.axvline(x=v_line_pos, color='skyblue', lw=2, linestyle='--')
+    ax.axhline(y=h_line_pos, color='navy', lw=2, linestyle='--')
+    ax.axvline(x=v_line_pos, color='navy', lw=2, linestyle='--')
 
 # #### Set background color
     ax.set_facecolor(bgColor)
