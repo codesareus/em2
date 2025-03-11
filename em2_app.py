@@ -183,7 +183,9 @@ def save_data(data, data1, data2, filename="data.csv"):
     df = pd.DataFrame({
         "耳鸣级数": [",".join(map(str, data))],
         "脾胃": [",".join(map(str, data1))],
-        "睡眠质量": [",".join(map(str, data2))]
+        "睡眠质量": [",".join(map(str, data2))],
+        "心率": [",".join(map(str, data3))],
+        "时间分钟": [",".join(map(str, data4))]
     })
     df.to_csv(filename, index=False)
 
@@ -194,15 +196,17 @@ def load_data(filename="data.csv"):
         data = [float(x) for x in df["耳鸣级数"].iloc[0].split(",")]
         data1 = [float(x) for x in df["脾胃"].iloc[0].split(",")]
         data2 = [float(x) for x in df["睡眠质量"].iloc[0].split(",")]
-        return data, data1, data2
+        data3 = [float(x) for x in df["睡眠质量"].iloc[0].split(",")]
+        data4 = [float(x) for x in df["睡眠质量"].iloc[0].split(",")]
+        return data, data1, data2,data3,data4
     except FileNotFoundError:
-        return None, None, None
+        return None, None, None,None,None
 
 # Streamlit App
 st.title("健康数据分析")
 
 # Load saved data (if it exists)
-data, data1, data2 = load_data()
+data, data1, data2, data3, data4 = load_data()
 
 # Data Entry Page
 st.sidebar.header("数据输入")
@@ -225,6 +229,8 @@ sleep_input = st.sidebar.text_area("输入睡眠质量数据（逗号分隔）�
 data = parse_input(er_ming_input)
 data1 = parse_input(pi_wei_input)
 data2 = parse_input(sleep_input)
+data3 = parse_input(xinlv_input)
+data4 = parse_input(shijian_input)
 
 # Add a "key" input box for automatic saving
 st.sidebar.subheader("自动保存设置")
@@ -232,16 +238,16 @@ key_input = st.sidebar.text_input("输入密钥以自动保存数据:", type="pa
 
 # Automatically save data if the key is "zzzzzzzzz"
 if key_input.strip() == "zzzzzzzzz":
-    if data is not None and data1 is not None and data2 is not None:
-        save_data(data, data1, data2)
+    if data is not None and data1 is not None and data2 is not None and data3 is not None and data4 is not None:
+        save_data(data, data1, data2, data3, data4)
         st.sidebar.success("数据已自动保存！")
     else:
         st.sidebar.error("无法保存数据，请检查输入格式。")
 
 # Add a button to download the saved data as a CSV file
 if st.sidebar.button("下载数据为CSV文件"):
-    if data is not None and data1 is not None and data2 is not None:
-        save_data(data, data1, data2, "health_data.csv")
+    if data is not None and data1 is not None and data2 is not None and data3 is not None and data4 is not None:
+        save_data(data, data1, data2, data3, data4, "health_data.csv")
         with open("health_data.csv", "rb") as file:
             st.sidebar.download_button(
                 label="点击下载CSV文件",
@@ -267,19 +273,25 @@ if data is not None and data1 is not None and data2 is not None:
     ma_data = moving_average(data)
     ma_data1 = moving_average(data1)
     ma_data2 = moving_average(data2)
+    ma_data5 = moving_average(data3)##
+    ma_data6 = moving_average(data4)###
 
     # 耳鸣级数动态均值
     data0 = [2.0, 2.0, 2.0, 2.0, 2.0, 2.0] + data
     new_data = data[6:]
-    data4 = moving_average(data0)
-    new_data4 = data4[6:]
-    ma_data4 = moving_average(data4)
+    data10= moving_average(data0)
+    new_data4 = data10[6:]
+    ma_data4 = moving_average(data10)
 
     # 脾胃动态均值
     new_data1 = data1[6:]
 
     # 睡眠质量动态均值
     new_data2 = data2[6:]
+
+    new_data5 = data3[6:]##
+
+    new_data6 = data4[6:]###
 
     # Define the last date and calculate the start date
     # Use the selected start_date from the sidebar
@@ -292,17 +304,17 @@ if data is not None and data1 is not None and data2 is not None:
     plt.rcParams['font.sans-serif'] = ['SimHei']  # Use SimHei or Arial Unicode MS
     plt.rcParams['axes.unicode_minus'] = False
 
-    datasets = [new_data, new_data1, new_data2, new_data4]
-    ma_datasets = [ma_data, ma_data1, ma_data2, ma_data4]
-    titles = ["耳鸣级数动态均值（最高： 6）", "脾胃动态均值（最高：1）", "睡眠质量动态均值（最高：1）"]
-    colors = ['blue', 'green', 'red', 'blue']
+    datasets = [new_data, new_data1, new_data2, new_data5,new_data6 ]
+    ma_datasets = [ma_data, ma_data1, ma_data2, ma_data5,  ma_data6 ]
+    titles = ["耳鸣级数动态均值（最高： 6）", "脾胃动态均值（最高：1）", "睡眠质量动态均值（最高：1）",    "心率动态均值（最高值百分比/10）", "5K慢跑时间动态均值（/10）"  ]
+    colors = ['blue', 'green', 'red', 'blue','green']
 
 # Assuming bgColor, start_date, and other variables are already defined
-    labels = ["耳鸣级数", "脾胃", "睡眠质量"]
+    labels = ["耳鸣级数", "脾胃", "睡眠质量","心率", "5K慢跑时间"]
 
-    fig, ax = plt.subplots(figsize=(12, 9))  # Single figure for combined plot
+    fig, ax = plt.subplots(figsize=(12, 15))  # Single figure for combined plot
 
-    for i in range(3):  # Loop through the first three datasets
+    for i in range(5):  # Loop through the first three datasets
         trimmed_data = datasets[i][:len(ma_datasets[i])]  # Trim original data to match moving average length
     
     # Plot original data
