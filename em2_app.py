@@ -341,7 +341,7 @@ if data is not None and data1 is not None and data2 is not None:
             color='black', fontsize=10, ha='right')
 
     # Place the legend at the middle-right of the plot
-    ax.legend(loc='center right', bbox_to_anchor=(1.05, 0.5), fontsize=10)
+    ax.label(loc='center right', bbox_to_anchor=(1.05, 0.5), fontsize=10)
 # Set background color
     ax.set_facecolor(bgColor)
 
