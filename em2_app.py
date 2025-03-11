@@ -350,7 +350,7 @@ if data is not None and data1 is not None and data2 is not None:
             color='black', fontsize=10, ha='right')
 
 # Set Y-axis ticks to step 1
-    ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
+        ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
 # Second loop: Show y values only in the range 0-3
 
 # Set background color
