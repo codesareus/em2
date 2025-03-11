@@ -236,9 +236,9 @@ data = parse_input(er_ming_input)
 data1 = parse_input(pi_wei_input)
 data2 = parse_input(sleep_input)
 data3 = parse_input(xinlv_input)
-data3= [x /16 for x in data3]
-    
+data3= [x /16 for x in data3] 
 data4 = parse_input(wqshijian_input)
+data4 = [x /10 for x in data4] 
 
 # Add a "key" input box for automatic saving
 st.sidebar.subheader("自动保存设置")
