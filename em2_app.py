@@ -23,7 +23,7 @@ bgColor = "lightblue"
 
 # Calculate updated Days and Distance based on the current date
 current_time = datetime.now(pytz.timezone(TIMEZONE))
-days_elapsed = (current_time.date() - START_DATE.date()).days
+days_elapsed = (current_time.date() - START_DATE.date()).daysk
 if current_time.hour >= 6:  # Update only after 6:00 AM St. Louis time
     days = START_DAYS + days_elapsed
 else:
@@ -322,38 +322,14 @@ if data is not None and data1 is not None and data2 is not None:
 
     fig, ax = plt.subplots(figsize=(12, 15))  # Single figure for combined plot
 
-    #for i in range(0, 2):  # Loop through the first 5 datasets
-        #trimmed_data = datasets[i][:len(ma_datasets[i])]  # Trim original data to match moving average length
-    
-    # Plot original data
-        #ax.plot(trimmed_data, label=f"{labels[i]} 原始数据", color=colors[i], linestyle='--', alpha=0.7)
-    
-    # Plot moving average
-        #ax.plot(ma_datasets[i], label=f"{labels[i]} 7天动态均值", color=colors[i])
-    
-    # Highlight last point of moving average
-       # ax.scatter(len(ma_datasets[i]) - 1, ma_datasets[i][-1], color=colors[i])
-    
-    # Add text annotation for the last point
-       # last_date = start_date + timedelta(days=len(ma_datasets[i]) - 1)
-      #  ax.text(len(ma_datasets[i]) +15, ma_datasets[i][-1], 
-            #f'{last_date.strftime("%m-%d")} ({ma_datasets[i][-1]:.2f})', 
-          #  color='black', fontsize=10, ha='right')
-
-    for i in range(0, 2):  # Loop through the first 5 datasets
+    for i in range(5):  # Loop through the first 5 datasets
         trimmed_data = datasets[i][:len(ma_datasets[i])]  # Trim original data to match moving average length
     
-    # Create a masked version of the data where y values outside [5, 9] are set to NaN
-        masked_y = [y_val if 5 <= y_val <= 9 else np.nan for y_val in trimmed_data]
-        x_values = range(len(trimmed_data))  # Preserve all x values
+    # Plot original data
+        ax.plot(trimmed_data, label=f"{labels[i]} 原始数据", color=colors[i], linestyle='--', alpha=0.7)
     
-    # Plot the masked data
-        ax.plot(x_values, masked_y, label=f"{labels[i]} 原始数据", color=colors[i], linestyle='--', alpha=0.7)
     # Plot moving average
-
-        masked_y = [y_val if 5 <= y_val <= 9 else np.nan for y_val in ma_datasets[i]]
-
-        ax.plot( x_values, masked_y, label=f"{labels[i]} 7天动态均值", color=colors[i])
+        ax.plot(ma_datasets[i], label=f"{labels[i]} 7天动态均值", color=colors[i])
     
     # Highlight last point of moving average
         ax.scatter(len(ma_datasets[i]) - 1, ma_datasets[i][-1], color=colors[i])
@@ -364,22 +340,6 @@ if data is not None and data1 is not None and data2 is not None:
             f'{last_date.strftime("%m-%d")} ({ma_datasets[i][-1]:.2f})', 
             color='black', fontsize=10, ha='right')
 
-    # First loop: Show y values only in the range 5-9
-    for i in range(2, 5):  # Loop through the first two datasets (indices 0 and 1)
-        trimmed_data = datasets[i][:len(ma_datasets[i])]  # Trim original data to match moving average length
-    
-    # Create a masked version of the data where y values outside [5, 9] are set to NaN
-        masked_y = [y_val if 0 <= y_val <= 3 else np.nan for y_val in trimmed_data]
-        x_values = range(len(trimmed_data))  # Preserve all x values
-    
-    # Plot the masked data
-        ax.plot(x_values, masked_y, label=f"{labels[i]} 原始数据", color=colors[i], linestyle='--', alpha=0.7)
-    # Plot moving average
-
-        masked_y = [y_val if 0 <= y_val <= 3 else np.nan for y_val in ma_datasets[i]]
-
-        ax.plot( x_values, masked_y, label=f"{labels[i]} 7天动态均值", color=colors[i])
-    
     # Highlight last point of moving average
         ax.scatter(len(ma_datasets[i]) - 1, ma_datasets[i][-1], color=colors[i])
     
