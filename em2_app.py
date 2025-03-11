@@ -350,13 +350,16 @@ if data is not None and data1 is not None and data2 is not None:
         "心率（最高值百分比/10）",
         color='blue', fontsize=15, ha='left')   
     ax.text(20, 6.2,
-        "心率（最高值百分比/10）",
+        "5K分钟/10",
         color='blue', fontsize=15, ha='left')   
-    ax.text(20, 2.5,
-        "心率（最高值百分比/10）",
+    ax.text(150, 2.2,
+        "耳鸣级数",
         color='blue', fontsize=15, ha='left')   
-    ax.text(20, 0.5,
-        "心率（最高值百分比/10）",
+    ax.text(150, 0.5,
+        "脾胃",
+        color='blue', fontsize=15, ha='left')   
+    ax.text(150, -0.5,
+        "睡眠",
         color='blue', fontsize=15, ha='left')   
 
 # Set background color
