@@ -196,8 +196,8 @@ def load_data(filename="data.csv"):
         data = [float(x) for x in df["耳鸣级数"].iloc[0].split(",")]
         data1 = [float(x) for x in df["脾胃"].iloc[0].split(",")]
         data2 = [float(x) for x in df["睡眠质量"].iloc[0].split(",")]
-        data3 = [float(x) for x in df["睡眠质量"].iloc[0].split(",")]
-        data4 = [float(x) for x in df["睡眠质量"].iloc[0].split(",")]
+        data3 = [float(x) for x in df["心率"].iloc[0].split(",")]
+        data4 = [float(x) for x in df["5K时间"].iloc[0].split(",")]
         return data, data1, data2,data3,data4
     except FileNotFoundError:
         return None, None, None,None,None
@@ -225,12 +225,18 @@ pi_wei_input = st.sidebar.text_area("输入脾胃数据（逗号分隔）：", v
 st.sidebar.subheader("睡眠质量")
 sleep_input = st.sidebar.text_area("输入睡眠质量数据（逗号分隔）：", value=",".join(map(str, data2)) if data2 else "0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -0.5, 0.0, 0.0, 0.5, 0.5, 0.5, 0.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.0, 0.5, 0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.5, 0.5, 0.5, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.2, 0.2, -0.2, 0, 0.5, 0.25, 0.25, 0.5, 0.5, 0.25, 0.25, 0.5, 0.25, 0.25, 0.25, 0.25, 0.25, 0.5, 0.5, 0.25, 0.5, 0.0, 0.25")
 
+st.sidebar.subheader("心率")
+sleep_input = st.sidebar.text_area("输入心率数据（逗号分隔）：", value=",".join(map(str, data3)) if data3 else "0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -0.5, 0.0, 0.0, 0.5, 0.5, 0.5, 0.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.0, 0.5, 0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.5, 0.5, 0.5, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.2, 0.2, -0.2, 0, 0.5, 0.25, 0.25, 0.5, 0.5, 0.25, 0.25, 0.5, 0.25, 0.25, 0.25, 0.25, 0.25, 0.5, 0.5, 0.25, 0.5, 0.0, 0.25")
+
+st.sidebar.subheader("5K时间")
+sleep_input = st.sidebar.text_area("输入5K时间数据（逗号分隔）：", value=",".join(map(str, data4)) if data4 else "0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -0.5, 0.0, 0.0, 0.5, 0.5, 0.5, 0.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.0, 0.5, 0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.5, 0.5, 0.5, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.2, 0.2, -0.2, 0, 0.5, 0.25, 0.25, 0.5, 0.5, 0.25, 0.25, 0.5, 0.25, 0.25, 0.25, 0.25, 0.25, 0.5, 0.5, 0.25, 0.5, 0.0, 0.25")
+
 # Parse input data
 data = parse_input(er_ming_input)
 data1 = parse_input(pi_wei_input)
 data2 = parse_input(sleep_input)
 data3 = parse_input(xinlv_input)
-data4 = parse_input(shijian_input)
+data4 = parse_input(wqshijian_input)
 
 # Add a "key" input box for automatic saving
 st.sidebar.subheader("自动保存设置")
