@@ -349,6 +349,15 @@ if data is not None and data1 is not None and data2 is not None:
     ax.text(20, 7.8,
         "心率（最高值百分比/10）",
         color='blue', fontsize=15, ha='left')   
+    ax.text(20, 6.2,
+        "心率（最高值百分比/10）",
+        color='blue', fontsize=15, ha='left')   
+    ax.text(20, 2.5,
+        "心率（最高值百分比/10）",
+        color='blue', fontsize=15, ha='left')   
+    ax.text(20, 0.5,
+        "心率（最高值百分比/10）",
+        color='blue', fontsize=15, ha='left')   
 
 # Set background color
     ax.set_facecolor(bgColor)
