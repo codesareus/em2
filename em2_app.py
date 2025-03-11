@@ -294,10 +294,10 @@ if data is not None and data1 is not None and data2 is not None:
 
     datasets = [new_data, new_data1, new_data2, new_data4]
     ma_datasets = [ma_data, ma_data1, ma_data2, ma_data4]
-    titles = ["耳鸣级数动态均值（最高： 6）", "脾胃动态均值（最高：1）", "睡眠质量动态均值（最高：1）", "耳鸣级数双动态均值（最高： 6）"]
+    titles = ["耳鸣级数动态均值（最高： 6）", "脾胃动态均值（最高：1）", "睡眠质量动态均值（最高：1）"]
     colors = ['blue', 'green', 'red', 'blue']
 
-    for i in range(4):
+    for i in range(3):
         fig, ax = plt.subplots(figsize=(10, 4))
         trimmed_data = datasets[i][:len(ma_datasets[i])]  # Trim original data to match moving average length
         ax.plot(trimmed_data, label="原始数据", color='orange', linestyle='--', alpha=0.7)
