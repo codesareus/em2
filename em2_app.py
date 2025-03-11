@@ -353,7 +353,7 @@ if data is not None and data1 is not None and data2 is not None:
         "心率（最高值百分比/10）（小米）",
         color='blue', fontsize=15, ha='left')   
     ax.text(20, 6.2,
-        "5K慢跑分钟/10（小米）,
+        "5K慢跑分钟/10（小米）",
         color='green', fontsize=15, ha='left')   
     ax.text(145, 2.0,
         "耳鸣级数",
