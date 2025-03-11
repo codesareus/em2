@@ -23,7 +23,7 @@ bgColor = "lightblue"
 
 # Calculate updated Days and Distance based on the current date
 current_time = datetime.now(pytz.timezone(TIMEZONE))
-days_elapsed = (current_time.date() - START_DATE.date()).daysk
+days_elapsed = (current_time.date() - START_DATE.date()).days
 if current_time.hour >= 6:  # Update only after 6:00 AM St. Louis time
     days = START_DAYS + days_elapsed
 else:
