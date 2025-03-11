@@ -351,16 +351,16 @@ if data is not None and data1 is not None and data2 is not None:
         color='blue', fontsize=15, ha='left')   
     ax.text(20, 6.2,
         "5K分钟/10",
-        color='blue', fontsize=15, ha='left')   
-    ax.text(150, 2.2,
+        color='green', fontsize=15, ha='left')   
+    ax.text(140, 2.0,
         "耳鸣级数",
-        color='blue', fontsize=15, ha='left')   
-    ax.text(150, 0.5,
+        color='red', fontsize=15, ha='right')   
+    ax.text(140, 0.5,
         "脾胃",
-        color='blue', fontsize=15, ha='left')   
-    ax.text(150, -0.5,
+        color='blue', fontsize=15, ha='right')   
+    ax.text(140, -0.5,
         "睡眠",
-        color='blue', fontsize=15, ha='left')   
+        color='green', fontsize=15, ha='right')   
 
 # Set background color
     ax.set_facecolor(bgColor)
