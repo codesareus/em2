@@ -233,7 +233,7 @@ st.sidebar.subheader("5K时间")
 wqshijian_input = st.sidebar.text_area("输入5K时间数据（逗号分隔）：", value=",".join(map(str, data4)) if data4 else "0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -0.5, 0.0, 0.0, 0.5, 0.5, 0.5, 0.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.0, 0.5, 0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.5, 0.5, 0.5, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.2, 0.2, -0.2, 0, 0.5, 0.25, 0.25, 0.5, 0.5, 0.25, 0.25, 0.5, 0.25, 0.25, 0.25, 0.25, 0.25, 0.5, 0.5, 0.25, 0.5, 0.0, 0.25")
 
 st.sidebar.subheader("marker_message")
-marker_message_input = st.sidebar.text_area("输入分析信息：", value=",".join(map(str, data4)) if data4 else "😴")
+marker_message_input = st.sidebar.text_area("输入分析信息：", value=",".join(map(str, data4)) if data4 else "")
 
 # Parse input data
 data = parse_input(er_ming_input)
