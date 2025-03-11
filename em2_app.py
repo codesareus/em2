@@ -370,7 +370,7 @@ if data is not None and data1 is not None and data2 is not None:
     
     #st.sidebar.subheader("marker_message")
     marker_message_input = st.sidebar.text_area("输入分析信息：", value="")
-    wrapped_text = "\n".join(textwrap.wrap(marker_message_input, width=25))
+    wrapped_text = "\n".join(textwrap.wrap(marker_message_input, width=5))
 
     ax.text(v_line_pos, 4,
         wrapped_text,
