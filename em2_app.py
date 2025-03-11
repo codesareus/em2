@@ -348,6 +348,9 @@ if data is not None and data1 is not None and data2 is not None:
         ax.text(len(ma_datasets[i]) +15, ma_datasets[i][-1], 
             f'{last_date.strftime("%m-%d")} ({ma_datasets[i][-1]:.2f})', 
             color='black', fontsize=10, ha='right')
+
+# Set Y-axis ticks to step 1
+    ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
 # Second loop: Show y values only in the range 0-3
 
 # Set background color
