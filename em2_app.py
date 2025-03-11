@@ -232,6 +232,9 @@ xinlv_input = st.sidebar.text_area("输入心率数据（逗号分隔）：", va
 st.sidebar.subheader("5K时间")
 wqshijian_input = st.sidebar.text_area("输入5K时间数据（逗号分隔）：", value=",".join(map(str, data4)) if data4 else "0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0, -0.5, 0.0, 0.0, 0.0, -0.5, -0.5, 0.0, 0.0, 0.5, 0.5, 0.5, 0.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.0, 0.5, 0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.5, 0.5, 0.5, 0.0, 0.0, 0.0, -0.5, 0.0, 0.0, 0.2, 0.2, -0.2, 0, 0.5, 0.25, 0.25, 0.5, 0.5, 0.25, 0.25, 0.5, 0.25, 0.25, 0.25, 0.25, 0.25, 0.5, 0.5, 0.25, 0.5, 0.0, 0.25")
 
+st.sidebar.subheader("marker_message")
+marker_message_input = st.sidebar.text_area("输入分析信息：", value=",".join(map(str, data4)) if data4 else "😴")
+
 # Parse input data
 data = parse_input(er_ming_input)
 data1 = parse_input(pi_wei_input)
@@ -362,7 +365,15 @@ if data is not None and data1 is not None and data2 is not None:
         "睡眠",
         color='green', fontsize=15, ha='right')   
 
-# Set background color
+    # Use Streamlit sliders to adjust line positions
+    h_line_pos = st.sidebar.slider('Horizontal Line Position', -0.5, 9 , 5)
+    v_line_pos = st.sidebar.slider('Vertical Line Position', 5 , 140, 100)
+    ax.text(100, 4,
+        marker_message_input,
+        color='navy', fontsize=15, ha='right') 
+
+
+# #### Set background color
     ax.set_facecolor(bgColor)
 
 # Add title, labels, legend, and grid
