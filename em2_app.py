@@ -297,27 +297,45 @@ if data is not None and data1 is not None and data2 is not None:
     titles = ["耳鸣级数动态均值（最高： 6）", "脾胃动态均值（最高：1）", "睡眠质量动态均值（最高：1）"]
     colors = ['blue', 'green', 'red', 'blue']
 
-    for i in range(3):
-        fig, ax = plt.subplots(figsize=(10, 4))
-        trimmed_data = datasets[i][:len(ma_datasets[i])]  # Trim original data to match moving average length
-        ax.plot(trimmed_data, label="原始数据", color='orange', linestyle='--', alpha=0.7)
-        ax.plot(ma_datasets[i], label="7天动态均值", color=colors[i])
-        ax.scatter(len(ma_datasets[i]) - 1, ma_datasets[i][-1], color=colors[i])  # Highlight last point
-        ax.set_facecolor(bgColor)
-        # Calculate date for the last data point
-        last_date = start_date + timedelta(days=len(ma_datasets[i]) - 1)
-        ax.text(len(ma_datasets[i]) - 1, ma_datasets[i][-1], 
-                f'{last_date.strftime("%m-%d")} ({ma_datasets[i][-1]:.2f})', 
-                color='red', fontsize=10)
-        
-        ax.set_title(titles[i])
-        ax.set_xlabel("天数")
-        ax.set_ylabel(titles[i])
-        ax.legend()
-        ax.grid()
-        
-        st.pyplot(fig)
+# Assuming bgColor, start_date, and other variables are already defined
+datasets = [new_data, new_data1, new_data2, new_data4]
+ma_datasets = [ma_data, ma_data1, ma_data2, ma_data4]
+titles = ["耳鸣级数动态均值（最高： 6）", "脾胃动态均值（最高：1）", "睡眠质量动态均值（最高：1）"]
+colors = ['blue', 'green', 'red', 'blue']
+labels = ["耳鸣级数", "脾胃", "睡眠质量"]
 
+fig, ax = plt.subplots(figsize=(12, 6))  # Single figure for combined plot
+
+for i in range(3):  # Loop through the first three datasets
+    trimmed_data = datasets[i][:len(ma_datasets[i])]  # Trim original data to match moving average length
+    
+    # Plot original data
+    ax.plot(trimmed_data, label=f"{labels[i]} 原始数据", color=colors[i], linestyle='--', alpha=0.7)
+    
+    # Plot moving average
+    ax.plot(ma_datasets[i], label=f"{labels[i]} 7天动态均值", color=colors[i])
+    
+    # Highlight last point of moving average
+    ax.scatter(len(ma_datasets[i]) - 1, ma_datasets[i][-1], color=colors[i])
+    
+    # Add text annotation for the last point
+    last_date = start_date + timedelta(days=len(ma_datasets[i]) - 1)
+    ax.text(len(ma_datasets[i]) - 1, ma_datasets[i][-1], 
+            f'{last_date.strftime("%m-%d")} ({ma_datasets[i][-1]:.2f})', 
+            color='black', fontsize=10, ha='right')
+
+# Set background color
+ax.set_facecolor(bgColor)
+
+# Add title, labels, legend, and grid
+ax.set_title("综合动态均值分析")
+ax.set_xlabel("天数")
+ax.set_ylabel("动态均值")
+ax.legend(loc="upper left", bbox_to_anchor=(1, 1))  # Place legend outside the plot
+ax.grid()
+
+# Display the combined plot
+st.pyplot(fig)
     # Reformat last_date string    
     last_date = new_date.strftime("%b %d, %Y")
     
