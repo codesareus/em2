@@ -342,22 +342,13 @@ if data is not None and data1 is not None and data2 is not None:
             f'{last_date.strftime("%m-%d")} ({ma_datasets[i][-1]:.2f})', 
             color='black', fontsize=10, ha='right')
         
-        ##########. add labels separately
-        ax.text(20, 7.8,
-            "心率（最高值百分比/10）",
-            color='blue', fontsize=15, ha='left')
-        # Highlight last point of moving average
-        ax.scatter(len(ma_datasets[i]) - 1, ma_datasets[i][-1], color=colors[i])
-    
-      # Add text annotation for the last point
-        last_date = start_date + timedelta(days=len(ma_datasets[i]) - 1)
-        ax.text(len(ma_datasets[i]) +15, ma_datasets[i][-1], 
-            f'{last_date.strftime("%m-%d")} ({ma_datasets[i][-1]:.2f})', 
-            color='black', fontsize=10, ha='right')
-
         # Set Y-axis ticks to step 1
         ax.yaxis.set_major_locator(ticker.MultipleLocator(0.5))
-# Second loop: Show y values only in the range 0-3
+
+ ##########. add labels separately
+    ax.text(20, 7.8,
+        "心率（最高值百分比/10）",
+        color='blue', fontsize=15, ha='left')   
 
 # Set background color
     ax.set_facecolor(bgColor)
