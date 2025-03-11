@@ -300,7 +300,7 @@ if data is not None and data1 is not None and data2 is not None:
 # Assuming bgColor, start_date, and other variables are already defined
     labels = ["耳鸣级数", "脾胃", "睡眠质量"]
 
-    fig, ax = plt.subplots(figsize=(12, 12))  # Single figure for combined plot
+    fig, ax = plt.subplots(figsize=(12, 9))  # Single figure for combined plot
 
     for i in range(3):  # Loop through the first three datasets
         trimmed_data = datasets[i][:len(ma_datasets[i])]  # Trim original data to match moving average length
@@ -316,7 +316,7 @@ if data is not None and data1 is not None and data2 is not None:
     
     # Add text annotation for the last point
         last_date = start_date + timedelta(days=len(ma_datasets[i]) - 1)
-        ax.text(len(ma_datasets[i]) +10, ma_datasets[i][-1], 
+        ax.text(len(ma_datasets[i]) +15, ma_datasets[i][-1], 
             f'{last_date.strftime("%m-%d")} ({ma_datasets[i][-1]:.2f})', 
             color='black', fontsize=10, ha='right')
 
