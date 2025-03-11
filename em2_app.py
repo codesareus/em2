@@ -147,6 +147,7 @@ st.image(image, caption="A young man running from Home to the Moon 2075(2025) wi
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 from datetime import datetime, timedelta
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
