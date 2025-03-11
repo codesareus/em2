@@ -370,13 +370,13 @@ if data is not None and data1 is not None and data2 is not None:
     #st.sidebar.subheader("marker_message")
     marker_message_input = st.sidebar.text_area("输入分析信息：", value="")
 
-    ax.text(100, 4,
+    ax.text(v_line_pos, 5,
         marker_message_input,
         color='navy', fontsize=20, ha='right') 
 
     # Add lines based on slider values
-    ax.axhline(y=h_line_pos, color='navy', lw=2, linestyle='--')
-    ax.axvline(x=v_line_pos, color='navy', lw=2, linestyle='--')
+    ax.axhline(y=h_line_pos, color='orange', lw=2, linestyle='--')
+    ax.axvline(x=v_line_pos, color='orange', lw=2, linestyle='--')
 
 # #### Set background color
     ax.set_facecolor(bgColor)
