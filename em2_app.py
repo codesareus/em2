@@ -364,11 +364,11 @@ if data is not None and data1 is not None and data2 is not None:
         color='green', fontsize=15, ha='right')   
 
     # Use Streamlit sliders to adjust line positions
-    h_line_pos = st.sidebar.slider('Horizontal Line Position', - 1, 9, 5)
+    h_line_pos = st.sidebar.slider('Horizontal Line Position', - 1, 9, 4)
     v_line_pos = st.sidebar.slider('Vertical Line Position', 5 , 140, 100)
     
     #st.sidebar.subheader("marker_message")
-    marker_message_input = st.sidebar.text_area("输入分析信息：", value="💤")
+    marker_message_input = st.sidebar.text_area("输入分析信息：", value="")
 
     ax.text(100, 4,
         marker_message_input,
