@@ -370,7 +370,16 @@ if data is not None and data1 is not None and data2 is not None:
     
     #st.sidebar.subheader("marker_message")
     marker_message_input = st.sidebar.text_area("输入分析信息：", value="")
-    wrapped_text = "\n".join(textwrap.wrap(marker_message_input, width=5))
+    # Function to wrap text into lines of a specified width
+    def wrap_text(text, width):
+    """
+    Wraps the given text into lines of the specified width.
+    Returns a single string with newline characters inserted.
+    """
+        return "\n".join(textwrap.wrap(text, width=width))
+
+# Position and content for the text annotation
+    wrapped_text = wrap_text(marker_message_input, 25)  # Wrap text to 25 characters per line
 
     ax.text(v_line_pos, 4,
         wrapped_text,
