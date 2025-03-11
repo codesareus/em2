@@ -312,13 +312,13 @@ if data is not None and data1 is not None and data2 is not None:
     plt.rcParams['font.sans-serif'] = ['SimHei']  # Use SimHei or Arial Unicode MS
     plt.rcParams['axes.unicode_minus'] = False
 
-    datasets = [new_data, new_data1, new_data2, new_data5,new_data6 ]
-    ma_datasets = [ma_data, ma_data1, ma_data2, ma_data5,  ma_data6 ]
-    titles = ["耳鸣级数动态均值（最高： 6）", "脾胃动态均值（最高：1）", "睡眠质量动态均值（最高：1）",    "心率动态均值（最高值百分比/10）", "5K慢跑时间动态均值（/10）"  ]
+    datasets = [new_data5,new_data6, new_data, new_data1, new_data2 ]
+    ma_datasets = [ma_data5,  ma_data6, ma_data, ma_data1, ma_data2 ]
+    titles = ["心率动态均值（最高值百分比/10）", "5K慢跑时间动态均值（/10）" , "耳鸣级数动态均值（最高： 6）", "脾胃动态均值（最高：1）", "睡眠质量动态均值（最高：1）" ]
     colors = ['blue', 'green', 'red', 'blue','green']
 
 # Assuming bgColor, start_date, and other variables are already defined
-    labels = ["耳鸣级数", "脾胃", "睡眠质量","心率", "5K慢跑时间"]
+    labels = ["心率(最高值百分比/10）", "5K慢跑分钟/10", "耳鸣级数", "脾胃", "睡眠质量"]
 
     fig, ax = plt.subplots(figsize=(12, 15))  # Single figure for combined plot
 
@@ -341,7 +341,7 @@ if data is not None and data1 is not None and data2 is not None:
             color='black', fontsize=10, ha='right')
 
     # Place the legend at the middle-right of the plot
-    ax.label(loc='center right', bbox_to_anchor=(1.05, 0.5), fontsize=10)
+    #ax.legend(loc='center right', bbox_to_anchor=(1.05, 0.5), fontsize=10)
 # Set background color
     ax.set_facecolor(bgColor)
 
