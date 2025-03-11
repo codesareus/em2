@@ -236,6 +236,8 @@ data = parse_input(er_ming_input)
 data1 = parse_input(pi_wei_input)
 data2 = parse_input(sleep_input)
 data3 = parse_input(xinlv_input)
+data3= [x /16 for x in data3]
+    
 data4 = parse_input(wqshijian_input)
 
 # Add a "key" input box for automatic saving
