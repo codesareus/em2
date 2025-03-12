@@ -301,7 +301,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     ma_data = moving_average(data)
     ma_data1 = moving_average(data1)
     ma_data2 = moving_average(data2)
-    ma_data5 = moving_average(data3)##
+    ma_data5 = moving_average(data3)##not conflicting with versions of data. original data3 and data4 OK, but deviatives should use different numbers
     ma_data6 = moving_average(data4)###
 
     # 耳鸣级数动态均值
@@ -585,11 +585,11 @@ def double_moving_average(data, window_size):
     second_ma = moving_average(first_ma, window_size)
     return second_ma
 
-def correlation_plot(data1, data2):
+def correlation_plot(dataA, dataB):
     # Smooth user input
     window_size = 7
-    user_data1_smooth = double_moving_average(data1, window_size)
-    user_data2_smooth = double_moving_average(data2, window_size)
+    user_data1_smooth = double_moving_average(dataA, window_size)
+    user_data2_smooth = double_moving_average(dataB, window_size)
     
     # Plot correlation between smoothed data1 and data2
     st.subheader("脾胃和睡眠双动态均值：相关性和趋势分析")
