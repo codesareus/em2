@@ -15,6 +15,7 @@ import textwrap
 from sklearn.metrics import r2_score
 import os
 
+###############.    draw moon and runner
 # Constants
 IMAGE_WIDTH = 800
 IMAGE_HEIGHT = 600
@@ -27,14 +28,16 @@ EARTH_MOON_DISTANCE_KM = 384400  # Actual distance in kilometers
 DAILY_DISTANCE_INCREMENT = 5  # km per day
 START_DATE = datetime(2025, 1, 29)
 START_DAYS = 137
-TIMEZONE = "America/Chicago"  # St. Louis timezone
+
 
 font_path = "Arial.ttf"
 bgColor = "lightblue"
 
 set_message= "看起来，跑得越慢心率越高？或者你跑得慢，是因为心率比较高？有趣，跟想象的正好相反。而且跑得越慢，心率越高，睡眠，脾胃都比较差。3月11日。"
 # Calculate updated Days and Distance based on the current date
-current_time = datetime.now(pytz.timezone(TIMEZONE))
+LOCAL_TIMEZONE = pytz.timezone('America/Chicago')  # Replace with your local timezone
+current_time = datetime.now(LOCAL_TIMEZONE)
+
 days_elapsed = (current_time.date() - START_DATE.date()).days
 if current_time.hour >= 6:  # Update only after 6:00 AM St. Louis time
     days = START_DAYS + days_elapsed
@@ -97,13 +100,6 @@ draw.ellipse(
     outline="black",
 )
 
-#################
-# Add label above the runner
-#label_text = f"Date: {current_time.strftime('%Y-%m-%d')}\nDays: {days}\nDistance: {distance} km"
-#draw.text((runner_x - 30, runner_y - 60), label_text, fill="navy")  # Centered above the runner
-
-# Define the font and size
-#font = ImageFont.truetype("arial.ttf", 18)  # Adjust size as needed
 label_text = f"Date: {current_time.strftime('%Y-%m-%d')}\nDays: {days}\nDistance: {distance} km"
 #draw.text((runner_x - 50, runner_y - 100), label_text, fill="navy", font=font)
 
@@ -129,10 +125,6 @@ for offset in [(0, 0), (1, 0), (0, 1), (1, 1)]:
     draw.text(( runa- 20 + offset[0], runb - 20 + offset[1]), 
              moon_text, fill="navy", font=font)
 
-###more bold with the below
-#for offset in [(0, 0), (1.5, 0), (0, 1.5), (1.5, 1.5)]:  
-    #draw.text(( runa- 50 + offset[0], runb - 50 + offset[1]), 
-              #moon_text, fill="navy", font=font)
 # Add a small arrow pointing down from the label
 arrow_start = (runner_x, runner_y - 20)  # Start of the arrow (just below the label)
 arrow_end = (runner_x, runner_y-10)        # End of the arrow (pointing to the runner)
@@ -147,7 +139,6 @@ arrowhead = [
 ]
 draw.polygon(arrowhead, fill="navy")  # Draw the arrowhead
 ############
-
 # Add labels directly above Home and Moon
 draw.text((HOME_POSITION[0] - 10, HOME_POSITION[1] +10), "Home", fill="black")  # Above Home
 draw.text((MOON_POSITION[0] - 30, MOON_POSITION[1] - 80), "Moon\n384,400km", fill="black")  # Above Moon
@@ -156,11 +147,8 @@ draw.text((MOON_POSITION[0] - 30, MOON_POSITION[1] - 80), "Moon\n384,400km", fil
 st.title("Earth to Moon Running Visualization")
 st.image(image, caption="A young man running from Home to the Moon 2075(2025) will be 91,250 km", use_container_width=True)
 
-#sssss#############。 耳鸣分析。
-
-# Define your local timezone
-LOCAL_TIMEZONE = pytz.timezone('America/Chicago')  # Replace with your local timezone
-
+##############。 耳鸣分析。
+##############。 耳鸣分析
 # Set matplotlib font to support Chinese characters
 fm.fontManager.addfont('SimHei.ttf')
 plt.rcParams['font.sans-serif'] = ['SimHei']  # Use SimHei or Arial Unicode MS
