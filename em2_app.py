@@ -722,7 +722,7 @@ def correlation_plot(dataA, dataB):
     st.markdown(f"Date: {current_date}")
     # Display correlation coefficient below the plot
     st.markdown(f"**{nameA}和{nameB}相关系数:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
-    print(22, f"**Correlation Coefficient:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
+    #print(22, f"**Correlation Coefficient:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
     
     ax.set_xlabel("天数")
     ax.set_ylabel("双动态均值")
@@ -734,6 +734,6 @@ correlation_plot(data, data2)
 correlation_plot(data, data3)
 correlation_plot(data, data4)
 correlation_plot(data1, data2)
-correlation_plot(data3, data4)
 correlation_plot(data1, data3)
+correlation_plot(data3, data4)
 
