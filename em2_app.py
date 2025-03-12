@@ -742,7 +742,7 @@ def single_correlation(dataA, dataB):
     data_pairs = [(data, data1),(data, data2),(data1, data2),(data4, data3),(data, data3),(data, data4),(data1, data3),(data2, data3)]
     
     for i, (dataA, dataB) in enumerate(data_pairs):
-        single_correlation(dataA, dataB):
+        single_correlation(dataA, dataB)
     
     st.pyplot(fig)
 
