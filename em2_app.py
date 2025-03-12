@@ -592,7 +592,7 @@ def correlation_plot(dataA, dataB, smooth = "double"):
     user_data1_smooth = double_moving_average(dataA, window_size) if smooth == "double" else moving_average(dataA, window_size)
     user_data2_smooth = double_moving_average(dataB, window_size) if smooth == "double" else moving_average(dataB, window_size)
 
-    dataNames = ["耳鸣","脾胃","睡眠","心率","5K时间"]
+    dataNames = ["耳鸣","脾胃","睡眠","慢跑心率","5K时间"]
     data_list = [data, data1, data2, data3, data4]
     nameA = ""
     nameB = ""
