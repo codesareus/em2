@@ -603,8 +603,6 @@ def correlation_plot(dataA, dataB, smooth = "double"):
             nameB = dataNames[i]
         
     # Plot correlation between smoothed data1 and data2
-    st.subheader(f"{nameA}和{nameB}双动态均值：相关性和趋势分析" if smooth == "double" else f"{nameA}和{nameB}单动态均值：相关性和趋势分析")
-    #fig, ax = plt.subplots()
     fig, ax = plt.subplots(figsize=(10, 5))
     
     # Scatter plot with different colors for data1 and data2
@@ -720,13 +718,15 @@ def correlation_plot(dataA, dataB, smooth = "double"):
     # Add date label in the bottom-right corner
     current_date = datetime.now(chicago_tz).strftime("%Y-%m-%d")
     
-    st.markdown(f"Date: {current_date}")
+   # st.markdown(f"Date: {current_date}")
     # Display correlation coefficient below the plot
-    st.markdown(f"**{nameA}和{nameB}相关系数:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
+    title = f"{nameA}和{nameB}双动态均值：相关性和趋势分析" if smooth == "double" else f"{nameA}和{nameB}单动态均值：相关性和趋势分析"
+    correlation_coeff = f"__相关系数:{np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}"
     #print(22, f"**Correlation Coefficient:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
     
     ax.set_xlabel("天数")
     ax.set_ylabel("双动态均值")
+    ax.set_title(title + correlation_coeff)
     ax.legend()
     st.pyplot(fig)
 
