@@ -15,6 +15,28 @@ import textwrap
 from sklearn.metrics import r2_score
 import os
 
+
+# Define the path to your image
+image_url = "mycloud.jpg"  # Replace with your image URL or local path
+
+# Custom CSS to set the background image
+custom_css = f"""
+<style>
+body {{
+    background-image: url('{image_url}');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}}
+</style>
+"""
+
+# Inject the CSS into the Streamlit app
+st.markdown(custom_css, unsafe_allow_html=True)
+
+# Add some content to your app
+st.title("My Streamlit App with a Background Image")
+st.write("This is an example of a Streamlit app with a custom background image.")
 ###############.    draw moon and runner
 # Constants
 IMAGE_WIDTH = 800
