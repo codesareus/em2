@@ -41,7 +41,7 @@ st.markdown(custom_css, unsafe_allow_html=True)
 st.image(image_url, caption="This is a local image", width=300)
 
 #video
-local_video_path = "taiji.mp4"  # Replace with your local video file name
+local_video_path = "taiji.mov"  # Replace with your local video file name
 
 # Option 2: Using an online video URL
 #online_video_url = "https://example.com/your_video.mp4"  # Replace with your video URL
