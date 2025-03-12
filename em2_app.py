@@ -663,11 +663,11 @@ def single_correlation(dataA, dataB, num=0):
         model_type_data2 = "Linear"
     
     # Plot trend lines
-    ax[num].plot(X, y_pred_linear_data1, color='blue', linestyle='--', label=f"线性趋势 ({nameA}, $R^2$={r2_linear_data1:.2f})")
-    ax[num].plot(X, y_pred_poly_data1, color='blue', linestyle=':', label=f"多项式趋势 ({nameA}, $R^2$={r2_poly_data1:.2f})")
+    axes[num].plot(X, y_pred_linear_data1, color='blue', linestyle='--', label=f"线性趋势 ({nameA}, $R^2$={r2_linear_data1:.2f})")
+    axes[num].plot(X, y_pred_poly_data1, color='blue', linestyle=':', label=f"多项式趋势 ({nameA}, $R^2$={r2_poly_data1:.2f})")
     
-    ax[num].plot(X, y_pred_linear_data2, color='orange', linestyle='--', label=f"线性趋势 ({nameB}, $R^2$={r2_linear_data2:.2f})")
-    ax[num].plot(X, y_pred_poly_data2, color='orange', linestyle=':', label=f"多项式趋势 ({nameB}, $R^2$={r2_poly_data2:.2f})")
+    axes[num].plot(X, y_pred_linear_data2, color='orange', linestyle='--', label=f"线性趋势 ({nameB}, $R^2$={r2_linear_data2:.2f})")
+    axes[num].plot(X, y_pred_poly_data2, color='orange', linestyle=':', label=f"多项式趋势 ({nameB}, $R^2$={r2_poly_data2:.2f})")
     
     # Predict trend for the next 30 days
     future_days = 30
@@ -687,12 +687,12 @@ def single_correlation(dataA, dataB, num=0):
         future_data2 = best_model_data2.predict(future_X)
     
     # Plot predicted trend
-    ax[num].plot(range(len(user_data1_smooth), len(user_data1_smooth) + future_days), future_data1, color='blue', linestyle="-", label=f"预测 ({nameA}, {model_type_data1})")
-    ax[num].plot(range(len(user_data2_smooth), len(user_data2_smooth) + future_days), future_data2, color='orange', linestyle="-", label=f"预测 ({nameB}, {model_type_data2})")
-    ax[num].set_facecolor(bgColor)
+    axes[num].plot(range(len(user_data1_smooth), len(user_data1_smooth) + future_days), future_data1, color='blue', linestyle="-", label=f"预测 ({nameA}, {model_type_data1})")
+    axes[num].plot(range(len(user_data2_smooth), len(user_data2_smooth) + future_days), future_data2, color='orange', linestyle="-", label=f"预测 ({nameB}, {model_type_data2})")
+    axes[num].set_facecolor(bgColor)
     # Add a legend with a custom font size for all labels
-    ax[num].legend(prop={'size': 5})  # Change '12' to your desired font size{num}
-    ax[num].grid()
+    axes[num].legend(prop={'size': 5})  # Change '12' to your desired font size{num}
+    axes[num].grid()
     # {num}Add date label and arrow for the last predicted point (30th day)
     chicago_tz = pytz.timezone("America/Chicago")
     last_date = datetime.now(chicago_tz) + timedelta(days=future_days)
@@ -700,7 +700,7 @@ def single_correlation(dataA, dataB, num=0):
     
     # Label and arrow for data1
     last_point_data1 = future_data1[-1]
-    ax[num].annotate(
+    axes[num].annotate(
         f"{nameA}\n{last_date_str}\n{last_point_data1:.2f}",
         xy=(len(user_data1_smooth) + future_days - 1, last_point_data1),
         xytext=(len(user_data1_smooth) + future_days - 1, last_point_data1 ),  # Reduced height
@@ -711,7 +711,7 @@ def single_correlation(dataA, dataB, num=0):
     
     # Label and arrow for data2
     last_point_data2 = future_data2[-1]
-    ax[num].annotate(
+    axes[num].annotate(
         f"{nameB}\n{last_date_str}\n{last_point_data2:.2f}",
         xy=(len(user_data2_smooth) + future_days - 1, last_point_data2),
         xytext=(len(user_data2_smooth) + future_days - 1, last_point_data2 ),  # Reduced height
@@ -729,10 +729,10 @@ def single_correlation(dataA, dataB, num=0):
     correlation_coeff = f"__相关系数:{np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}"
     #print(22, f"**Correlation Coefficient:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
     
-    ax[num].set_xlabel("天数")
-    ax[num].set_ylabel("双动态均值")
-    ax[num].set_title(title + correlation_coeff)
-    ax[num].legend()
+    axes[num].set_xlabel("天数")
+    axes[num].set_ylabel("双动态均值")
+    axes[num].set_title(title + correlation_coeff)
+    axes[num].legend()
 
 
 #############-$# Plot correlation between smoothed data1 and data2
