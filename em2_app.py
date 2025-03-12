@@ -246,8 +246,8 @@ datab = parse_input(wqshijian_input)
 data4 = [round(x /10, 1) for x in datab] 
 
 # Convert lists to comma-separated strings without brackets
-formatted_string = f"'{','.join(map(str, data))}','{','.join(map(str, data1))}','{','.join(map(str, data2))}','{','.join(map(str, dataa))}','{','.join(map(str, datab))}'"
-
+# Convert lists to comma-separated strings without brackets
+formatted_string = f"'{','.join(map(str, data))}','{','.join(map(str, data1))}','{','.join(map(str, data2))}','{','.join(map(str, data3))}','{','.join(map(str, data4))}'"
 # Display the formatted string in a read-only text box
 st.sidebar.subheader("所有输入数据")
 st.sidebar.text_area("复制以下格式化字符串：", value=formatted_string, height=100, key="formatted_output")
