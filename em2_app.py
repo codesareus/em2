@@ -742,10 +742,12 @@ data_pairs = [(data, data1),(data, data2),(data1, data2),(data4, data3),(data, d
 fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(10, 12))  # 8 rows, 1 column
 for i, (dataA, dataB) in enumerate(data_pairs[:3]):
     single_correlation(dataA, dataB, i)
+plt.tight_layout()
 st.pyplot(fig)
 
 fig, axes = plt.subplots(nrows=5, ncols=1, figsize=(10, 24))  # 8 rows, 1 column
 for i, (dataA, dataB) in enumerate(data_pairs[3:]):
     single_correlation(dataA, dataB, i)
+plt.tight_layout()
 st.pyplot(fig)
 
