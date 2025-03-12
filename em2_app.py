@@ -369,7 +369,7 @@ if data is not None and data1 is not None and data2 is not None:
     v_line_pos = st.sidebar.slider('Vertical Line Position', 5 , 140, 140)
     
     #st.sidebar.subheader("marker_message")
-    marker_message_input = st.sidebar.text_area("输入分析信息：", value="看起来，跑得越快心率越低？或者你能跑得快，是因为心率比较低？有趣，跟想象的正好相反。3月11日。")
+    marker_message_input = st.sidebar.text_area("输入分析信息：", value="看起来，跑得越慢心率越高？或者你跑得慢，是因为心率比较高？有趣，跟想象的正好相反。而且跑得越慢，心率越高，睡眠，脾胃都比较差。3月11日。")
     # Function to wrap text into lines of a specified width
     def wrap_text(text, width):
         return "\n".join(textwrap.wrap(text, width=width))
@@ -377,7 +377,7 @@ if data is not None and data1 is not None and data2 is not None:
 # Position and content for the text annotation
     wrapped_text = wrap_text(marker_message_input, 12)  # Wrap text to 25 characters per line
 
-    ax.text(v_line_pos, 4,
+    ax.text(v_line_pos, 3.5,
         wrapped_text,
         color='navy', fontsize=16, ha='right') 
 
