@@ -188,7 +188,7 @@ def save_data(data, data1, data2, data3, data4, filename="data.csv"):
         "脾胃": [",".join(map(str, data1))],
         "睡眠质量": [",".join(map(str, data2))],
         "心率": [",".join(map(str, data3))],
-        "时间分钟": [",".join(map(str, data4))]
+        "五千米时间": [",".join(map(str, data4))]
     })
     df.to_csv(filename, index=False)
 
@@ -200,7 +200,7 @@ def load_data(filename="data.csv"):
         data1 = [float(x) for x in df["脾胃"].iloc[0].split(",")]
         data2 = [float(x) for x in df["睡眠质量"].iloc[0].split(",")]
         data3 = [float(x) for x in df["心率"].iloc[0].split(",")]
-        data4 = [float(x) for x in df["时间分钟"].iloc[0].split(",")]
+        data4 = [float(x) for x in df["五千米时间"].iloc[0].split(",")]
         return data, data1, data2,data3,data4
     except FileNotFoundError:
         return None, None, None,None,None
@@ -216,7 +216,8 @@ st.sidebar.header("数据输入")
 st.sidebar.write("请在下方输入或上传数据集。")
 
 # Add a date input widget in the sidebar for selecting the start date
-start_date = st.sidebar.date_input("选择开始日期", datetime(2024, 10, 22))
+start_date = datetime(2024, 10, 22)
+#start_date = st.sidebar.date_input("选择开始日期", datetime(2024, 10, 22))
 
 # Input fields for datasets
 st.sidebar.subheader("耳鸣级数")
