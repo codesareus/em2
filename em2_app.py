@@ -736,6 +736,4 @@ correlation_plot(data, data3)
 correlation_plot(data, data4)
 correlation_plot(data1, data2)
 correlation_plot(data1, data3)
-correlation_plot(data3, data4)
-correlation_plot(data3, data4, "mono")
 
