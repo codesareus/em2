@@ -375,7 +375,7 @@ if data is not None and data1 is not None and data2 is not None:
         return "\n".join(textwrap.wrap(text, width=width))
 
 # Position and content for the text annotation
-    wrapped_text = wrap_text(marker_message_input, 25)  # Wrap text to 25 characters per line
+    wrapped_text = wrap_text(marker_message_input, 12)  # Wrap text to 25 characters per line
 
     ax.text(v_line_pos, 4,
         wrapped_text,
