@@ -265,12 +265,12 @@ if key_input.strip() == "zzzzzzzzz":
         st.sidebar.error("无法保存数据，请检查输入格式。")
 
 # Add a download button for the formatted string
-st.sidebar.download_button(
-    label="下载为文本文件",
-    data=formatted_string,
-    file_name="健康数据.txt",
-    mime="text/plain"
-)
+    st.sidebar.download_button(
+        label="下载为文本文件",
+        data=formatted_string,
+        file_name="健康数据.txt",
+        mime="text/plain"
+    )
 
 # Add a button to download the saved data as a CSV file
 #if st.sidebar.button("下载数据为CSV文件"):
