@@ -240,10 +240,10 @@ wqshijian_input = st.sidebar.text_area("输入5K时间数据（逗号分隔）�
 data = parse_input(er_ming_input)
 data1 = parse_input(pi_wei_input)
 data2 = parse_input(sleep_input)
-data3 = parse_input(xinlv_input)
-data3= [x /16 for x in data3] 
-data4 = parse_input(wqshijian_input)
-data4 = [x /10 for x in data4] 
+dataa = parse_input(xinlv_input)
+data3= [round(x /16, 1) for x in dataa] 
+datab = parse_input(wqshijian_input)
+data4 = [round(x /10, 1) for x in datab] 
 
 # Add a "key" input box for automatic saving
 st.sidebar.subheader("自动保存设置")
@@ -281,7 +281,7 @@ st.sidebar.header("耳鸣级数参考方法")
 st.sidebar.image("erming_jishu.png", caption="耳鸣级数参考图", use_container_width=True)
 
 # Check if data is valid
-if data is not None and data1 is not None and data2 is not None:
+if data is not None and data1 is not None and data2 is not None and data3 is not None and data4 is not None:
     # Calculate moving averages
     ma_data = moving_average(data)
     ma_data1 = moving_average(data1)
