@@ -601,7 +601,10 @@ def correlation_plot(dataA, dataB, smooth = "double"):
             nameA = dataNames[i]
         if dataB == data_list[i]:
             nameB = dataNames[i]
-        
+
+    if dataA in (data3, data4) or dataB in (data3, data4) :
+        user_data1_smooth = user_data1_smooth[-60:]
+        user_data2_smooth = user_data2_smooth[-60:]
     # Plot correlation between smoothed data1 and data2
     fig, ax = plt.subplots(figsize=(10, 5))
     
