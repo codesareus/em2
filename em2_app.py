@@ -603,7 +603,7 @@ def correlation_plot(dataA, dataB, smooth = "double"):
             nameB = dataNames[i]
         
     # Plot correlation between smoothed data1 and data2
-    st.subheader(f"{nameA}和{nameB}双动态均值：相关性和趋势分析")
+    st.subheader(f"{nameA}和{nameB}双动态均值：相关性和趋势分析" if smooth == "double" else st.subheader(f"{nameA}和{nameB}单动态均值：相关性和趋势分析")
     #fig, ax = plt.subplots()
     fig, ax = plt.subplots(figsize=(10, 5))
     
@@ -737,5 +737,5 @@ correlation_plot(data, data4)
 correlation_plot(data1, data2)
 correlation_plot(data1, data3)
 correlation_plot(data3, data4)
-correlation_plot(data3, data4, mono)
+correlation_plot(data3, data4, "mono")
 
