@@ -735,9 +735,16 @@ def correlation_plot(dataA, dataB, smooth = "double"):
 
 correlation_plot(data, data1)
 correlation_plot(data, data2)
+correlation_plot(data1, data2)
+correlation_plot(data4, data3)
+
+# change data3/4 to be closer to others
+
+data3= [x-3 for x in data3] 
+data4 = [x-3 for x in data4] 
+
 correlation_plot(data, data3)
 correlation_plot(data, data4)
-correlation_plot(data1, data2)
 correlation_plot(data1, data3)
-correlation_plot(data4, data3)
+correlation_plot(data2，data3)
 
