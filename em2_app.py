@@ -252,7 +252,7 @@ key_input = st.sidebar.text_input("输入密钥以自动保存数据:", type="pa
 # Automatically save data if the key is "zzzzzzzzz"
 if key_input.strip() == "zzzzzzzzz":
     if data is not None and data1 is not None and data2 is not None and data3 is not None and data4 is not None:
-        save_data(data, data1, data2, data3, data4)
+        save_data(data, data1, data2, dataa, datab)
         st.sidebar.success("数据已自动保存！")
     else:
         st.sidebar.error("无法保存数据，请检查输入格式。")
