@@ -182,7 +182,7 @@ def parse_input(input_data):
         return None
 
 # Function to save data to a CSV file
-def save_data(data, data1, data2, filename="data.csv"):
+def save_data(data, data1, data2, data3, data4, filename="data.csv"):
     df = pd.DataFrame({
         "耳鸣级数": [",".join(map(str, data))],
         "脾胃": [",".join(map(str, data1))],
