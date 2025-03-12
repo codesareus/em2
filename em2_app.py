@@ -608,7 +608,7 @@ def process_data (dataA, dataB):
 
     return user_data1_smooth, user_data2_smooth, nameA, nameB
 
-def single_correlation(dataA, dataB):
+def single_correlation(dataA, dataB, num=0):
     user_data1_smooth, user_data2_smooth, nameA, nameB = process_data (dataA, dataB)
     # Scatter plot with different colors for data1 and data2
     scatter1 = ax.scatter(range(len(user_data1_smooth)), user_data1_smooth, color='blue')
@@ -663,11 +663,11 @@ def single_correlation(dataA, dataB):
         model_type_data2 = "Linear"
     
     # Plot trend lines
-    ax.plot(X, y_pred_linear_data1, color='blue', linestyle='--', label=f"线性趋势 ({nameA}, $R^2$={r2_linear_data1:.2f})")
-    ax.plot(X, y_pred_poly_data1, color='blue', linestyle=':', label=f"多项式趋势 ({nameA}, $R^2$={r2_poly_data1:.2f})")
+    ax[num].plot(X, y_pred_linear_data1, color='blue', linestyle='--', label=f"线性趋势 ({nameA}, $R^2$={r2_linear_data1:.2f})")
+    ax[num].plot(X, y_pred_poly_data1, color='blue', linestyle=':', label=f"多项式趋势 ({nameA}, $R^2$={r2_poly_data1:.2f})")
     
-    ax.plot(X, y_pred_linear_data2, color='orange', linestyle='--', label=f"线性趋势 ({nameB}, $R^2$={r2_linear_data2:.2f})")
-    ax.plot(X, y_pred_poly_data2, color='orange', linestyle=':', label=f"多项式趋势 ({nameB}, $R^2$={r2_poly_data2:.2f})")
+    ax[num].plot(X, y_pred_linear_data2, color='orange', linestyle='--', label=f"线性趋势 ({nameB}, $R^2$={r2_linear_data2:.2f})")
+    ax[num].plot(X, y_pred_poly_data2, color='orange', linestyle=':', label=f"多项式趋势 ({nameB}, $R^2$={r2_poly_data2:.2f})")
     
     # Predict trend for the next 30 days
     future_days = 30
@@ -687,20 +687,20 @@ def single_correlation(dataA, dataB):
         future_data2 = best_model_data2.predict(future_X)
     
     # Plot predicted trend
-    ax.plot(range(len(user_data1_smooth), len(user_data1_smooth) + future_days), future_data1, color='blue', linestyle="-", label=f"预测 ({nameA}, {model_type_data1})")
-    ax.plot(range(len(user_data2_smooth), len(user_data2_smooth) + future_days), future_data2, color='orange', linestyle="-", label=f"预测 ({nameB}, {model_type_data2})")
-    ax.set_facecolor(bgColor)
+    ax[num].plot(range(len(user_data1_smooth), len(user_data1_smooth) + future_days), future_data1, color='blue', linestyle="-", label=f"预测 ({nameA}, {model_type_data1})")
+    ax[num].plot(range(len(user_data2_smooth), len(user_data2_smooth) + future_days), future_data2, color='orange', linestyle="-", label=f"预测 ({nameB}, {model_type_data2})")
+    ax[num].set_facecolor(bgColor)
     # Add a legend with a custom font size for all labels
-    ax.legend(prop={'size': 5})  # Change '12' to your desired font size
-    ax.grid()
-    # Add date label and arrow for the last predicted point (30th day)
+    ax[num].legend(prop={'size': 5})  # Change '12' to your desired font size{num}
+    ax[num].grid()
+    # {num}Add date label and arrow for the last predicted point (30th day)
     chicago_tz = pytz.timezone("America/Chicago")
     last_date = datetime.now(chicago_tz) + timedelta(days=future_days)
     last_date_str = last_date.strftime("%m_%d")
     
     # Label and arrow for data1
     last_point_data1 = future_data1[-1]
-    ax.annotate(
+    ax[num].annotate(
         f"{nameA}\n{last_date_str}\n{last_point_data1:.2f}",
         xy=(len(user_data1_smooth) + future_days - 1, last_point_data1),
         xytext=(len(user_data1_smooth) + future_days - 1, last_point_data1 ),  # Reduced height
@@ -711,7 +711,7 @@ def single_correlation(dataA, dataB):
     
     # Label and arrow for data2
     last_point_data2 = future_data2[-1]
-    ax.annotate(
+    ax[num].annotate(
         f"{nameB}\n{last_date_str}\n{last_point_data2:.2f}",
         xy=(len(user_data2_smooth) + future_days - 1, last_point_data2),
         xytext=(len(user_data2_smooth) + future_days - 1, last_point_data2 ),  # Reduced height
@@ -729,20 +729,21 @@ def single_correlation(dataA, dataB):
     correlation_coeff = f"__相关系数:{np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}"
     #print(22, f"**Correlation Coefficient:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
     
-    ax.set_xlabel("天数")
-    ax.set_ylabel("双动态均值")
-    ax.set_title(title + correlation_coeff)
-    ax.legend()
+    ax[num].set_xlabel("天数")
+    ax[num].set_ylabel("双动态均值")
+    ax[num].set_title(title + correlation_coeff)
+    ax[num].legend()
 
 
 #############-$# Plot correlation between smoothed data1 and data2
-    fig, ax = plt.subplots(figsize=(10, 40))
+
+fig, axes = plt.subplots(nrows=8, ncols=1, figsize=(10, 40))  # 8 rows, 1 column
+
+data_list = [data, data1, data2, data3, data4]
+data_pairs = [(data, data1),(data, data2),(data1, data2),(data4, data3),(data, data3),(data, data4),(data1, data3),(data2, data3)]
     
-    data_list = [data, data1, data2, data3, data4]
-    data_pairs = [(data, data1),(data, data2),(data1, data2),(data4, data3),(data, data3),(data, data4),(data1, data3),(data2, data3)]
+for i, (dataA, dataB) in enumerate(data_pairs):
+    single_correlation(dataA, dataB, i)
     
-    for i, (dataA, dataB) in enumerate(data_pairs):
-        single_correlation(dataA, dataB)
-    
-    st.pyplot(fig)
+st.pyplot(fig)
 
