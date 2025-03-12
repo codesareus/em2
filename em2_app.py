@@ -260,7 +260,7 @@ if key_input.strip() == "zzzzzzzzz":
 # Add a button to download the saved data as a CSV file
 if st.sidebar.button("下载数据为CSV文件"):
     if data is not None and data1 is not None and data2 is not None and data3 is not None and data4 is not None:
-        #save_data(data, data1, data2, data3, data4, "health_data.csv")
+        save_data(data, data1, data2, dataa, datab, "health_data.csv")
         with open("health_data.csv", "rb") as file:
             st.sidebar.download_button(
                 label="点击下载CSV文件",
