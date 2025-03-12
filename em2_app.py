@@ -683,8 +683,8 @@ def correlation_plot(dataA, dataB):
         future_data2 = best_model_data2.predict(future_X)
     
     # Plot predicted trend
-    ax.plot(range(len(user_data1_smooth), len(user_data1_smooth) + future_days), future_data1, color='blue', linestyle="-", label=f"预测 (脾胃, {model_type_data1})")
-    ax.plot(range(len(user_data2_smooth), len(user_data2_smooth) + future_days), future_data2, color='orange', linestyle="-", label=f"预测 (睡眠, {model_type_data2})")
+    ax.plot(range(len(user_data1_smooth), len(user_data1_smooth) + future_days), future_data1, color='blue', linestyle="-", label=f"预测 ({nameA}, {model_type_data1})")
+    ax.plot(range(len(user_data2_smooth), len(user_data2_smooth) + future_days), future_data2, color='orange', linestyle="-", label=f"预测 ({nameB}, {model_type_data2})")
     ax.set_facecolor(bgColor)
     # Add a legend with a custom font size for all labels
     ax.legend(prop={'size': 5})  # Change '12' to your desired font size
@@ -729,5 +729,11 @@ def correlation_plot(dataA, dataB):
     ax.legend()
     st.pyplot(fig)
 
-correlation_plot(data1, data4)
+correlation_plot(data, data1)
+correlation_plot(data, data2)
+correlation_plot(data, data3)
+correlation_plot(data, data4)
+correlation_plot(data1, data2)
+correlation_plot(data3, data4)
+correlation_plot(data1, data3)
 
