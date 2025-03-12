@@ -585,12 +585,12 @@ def double_moving_average(data, window_size):
     second_ma = moving_average(first_ma, window_size)
     return second_ma
 
-def correlation_plot(dataA, dataB, smooth = "double"):
+def process_data (dataA, dataB):
     # Smooth user input
     window_size = 7
 
-    user_data1_smooth = double_moving_average(dataA, window_size) if smooth == "double" else moving_average(dataA, window_size)
-    user_data2_smooth = double_moving_average(dataB, window_size) if smooth == "double" else moving_average(dataB, window_size)
+    user_data1_smooth = double_moving_average(dataA, window_size) 
+    user_data2_smooth = double_moving_average(dataB, window_size) 
 
     dataNames = ["耳鸣","脾胃","睡眠","慢跑心率(最高值百分比/10)","慢跑5K时间(分钟/10)"]
     data_list = [data, data1, data2, data3, data4]
@@ -605,9 +605,11 @@ def correlation_plot(dataA, dataB, smooth = "double"):
     if dataA in (data3, data4) or dataB in (data3, data4) :
         user_data1_smooth = user_data1_smooth[-60:]
         user_data2_smooth = user_data2_smooth[-60:]
-    # Plot correlation between smoothed data1 and data2
-    fig, ax = plt.subplots(figsize=(10, 5))
-    
+
+    return user_data1_smooth, user_data2_smooth, nameA, nameB
+
+def single_correlation(dataA, dataB):
+    user_data1_smooth, user_data2_smooth, nameA, nameB = process_data (dataA, dataB)
     # Scatter plot with different colors for data1 and data2
     scatter1 = ax.scatter(range(len(user_data1_smooth)), user_data1_smooth, color='blue')
     scatter2 = ax.scatter(range(len(user_data2_smooth)), user_data2_smooth, color='orange')
@@ -731,20 +733,16 @@ def correlation_plot(dataA, dataB, smooth = "double"):
     ax.set_ylabel("双动态均值")
     ax.set_title(title + correlation_coeff)
     ax.legend()
+
+
+#############-$# Plot correlation between smoothed data1 and data2
+    fig, ax = plt.subplots(figsize=(10, 40))
+    
+    data_list = [data, data1, data2, data3, data4]
+    data_pairs = [(data, data1),(data, data2),(data1, data2),(data4, data3),(data, data3),(data, data4),(data1, data3),(data2, data3)]
+    
+    for i, (dataA, dataB) in enumerate(data_pairs):
+        single_correlation(dataA, dataB):
+    
     st.pyplot(fig)
-
-correlation_plot(data, data1)
-correlation_plot(data, data2)
-correlation_plot(data1, data2)
-correlation_plot(data4, data3)
-
-# change data3/4 to be closer to others
-
-#data3= [x-6 for x in data3] 
-#data4 = [x-6 for x in data4] 
-
-correlation_plot(data, data3)
-correlation_plot(data, data4)
-correlation_plot(data1, data3)
-correlation_plot(data2, data3)
 
