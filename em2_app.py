@@ -393,7 +393,7 @@ if data is not None and data1 is not None and data2 is not None:
     ax.set_title("综合动态均值分析(虚线原始数据）")
     ax.set_xlabel("天数")
     ax.set_ylabel("动态均值（7天均值）")
-ax.legend(loc="upper left", bbox_to_anchor=(1, 1))  # Place legend outside the plot
+    ax.legend(loc="upper left", bbox_to_anchor=(1, 1))  # Place legend outside the plot
     ax.grid()
 
 # Display the combined plot
