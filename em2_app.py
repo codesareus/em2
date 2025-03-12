@@ -590,9 +590,19 @@ def correlation_plot(dataA, dataB):
     window_size = 7
     user_data1_smooth = double_moving_average(dataA, window_size)
     user_data2_smooth = double_moving_average(dataB, window_size)
-    
+
+    dataNames = ["耳鸣","脾胃","睡眠","心率","5K时间"]
+    data_list = [data, data1, data2, data3, data4]
+    nameA = ""
+    nameB = ""
+    for i in range(5):
+        if dataA = data_list[i]:
+            nameA = dataNames[i]
+        if dataB = data_list[i]
+            nameB = dataNames[i]
+        
     # Plot correlation between smoothed data1 and data2
-    st.subheader("脾胃和睡眠双动态均值：相关性和趋势分析")
+    st.subheader(f"{nameA}和{nameB}双动态均值：相关性和趋势分析")
     #fig, ax = plt.subplots()
     fig, ax = plt.subplots(figsize=(10, 5))
     
@@ -649,11 +659,11 @@ def correlation_plot(dataA, dataB):
         model_type_data2 = "Linear"
     
     # Plot trend lines
-    ax.plot(X, y_pred_linear_data1, color='blue', linestyle='--', label=f"线性趋势 (脾胃, $R^2$={r2_linear_data1:.2f})")
-    ax.plot(X, y_pred_poly_data1, color='blue', linestyle=':', label=f"多项式趋势 (脾胃, $R^2$={r2_poly_data1:.2f})")
+    ax.plot(X, y_pred_linear_data1, color='blue', linestyle='--', label=f"线性趋势 ({nameA}, $R^2$={r2_linear_data1:.2f})")
+    ax.plot(X, y_pred_poly_data1, color='blue', linestyle=':', label=f"多项式趋势 ({nameA}, $R^2$={r2_poly_data1:.2f})")
     
-    ax.plot(X, y_pred_linear_data2, color='orange', linestyle='--', label=f"线性趋势 (睡眠, $R^2$={r2_linear_data2:.2f})")
-    ax.plot(X, y_pred_poly_data2, color='orange', linestyle=':', label=f"多项式趋势 (睡眠, $R^2$={r2_poly_data2:.2f})")
+    ax.plot(X, y_pred_linear_data2, color='orange', linestyle='--', label=f"线性趋势 ({nameB}, $R^2$={r2_linear_data2:.2f})")
+    ax.plot(X, y_pred_poly_data2, color='orange', linestyle=':', label=f"多项式趋势 ({nameB}, $R^2$={r2_poly_data2:.2f})")
     
     # Predict trend for the next 30 days
     future_days = 30
@@ -687,7 +697,7 @@ def correlation_plot(dataA, dataB):
     # Label and arrow for data1
     last_point_data1 = future_data1[-1]
     ax.annotate(
-        f"脾胃\n{last_date_str}\n{last_point_data1:.2f}",
+        f"{nameA}\n{last_date_str}\n{last_point_data1:.2f}",
         xy=(len(user_data1_smooth) + future_days - 1, last_point_data1),
         xytext=(len(user_data1_smooth) + future_days - 1, last_point_data1 ),  # Reduced height
         arrowprops=dict(facecolor='blue', shrink=0.05, width=1, headwidth=5),
@@ -698,7 +708,7 @@ def correlation_plot(dataA, dataB):
     # Label and arrow for data2
     last_point_data2 = future_data2[-1]
     ax.annotate(
-        f"睡眠\n{last_date_str}\n{last_point_data2:.2f}",
+        f"{nameB}\n{last_date_str}\n{last_point_data2:.2f}",
         xy=(len(user_data2_smooth) + future_days - 1, last_point_data2),
         xytext=(len(user_data2_smooth) + future_days - 1, last_point_data2 ),  # Reduced height
         arrowprops=dict(facecolor='orange', shrink=0.05, width=1, headwidth=5),
@@ -711,7 +721,7 @@ def correlation_plot(dataA, dataB):
     
     st.markdown(f"Date: {current_date}")
     # Display correlation coefficient below the plot
-    st.markdown(f"**脾胃和睡眠相关系数:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
+    st.markdown(f"**{nameA}和{nameB}相关系数:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
     print(22, f"**Correlation Coefficient:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
     
     ax.set_xlabel("天数")
