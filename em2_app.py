@@ -677,7 +677,7 @@ ax.plot(range(len(user_data2_smooth), len(user_data2_smooth) + future_days), fut
 ax.set_facecolor(bgColor)
 # Add a legend with a custom font size for all labels
 ax.legend(prop={'size': 5})  # Change '12' to your desired font size
-
+ax.grid()
 # Add date label and arrow for the last predicted point (30th day)
 chicago_tz = pytz.timezone("America/Chicago")
 last_date = datetime.now(chicago_tz) + timedelta(days=future_days)
