@@ -200,7 +200,7 @@ def load_data(filename="data.csv"):
         data1 = [float(x) for x in df["脾胃"].iloc[0].split(",")]
         data2 = [float(x) for x in df["睡眠质量"].iloc[0].split(",")]
         data3 = [float(x) for x in df["心率"].iloc[0].split(",")]
-        data4 = [float(x) for x in df["五千米时间"].iloc[0].split(",")]
+        data4 = [float(x) for x in df["时间分钟"].iloc[0].split(",")]
         return data, data1, data2,data3,data4
     except FileNotFoundError:
         return None, None, None,None,None
