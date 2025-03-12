@@ -740,8 +740,8 @@ correlation_plot(data4, data3)
 
 # change data3/4 to be closer to others
 
-data3= [x-3 for x in data3] 
-data4 = [x-3 for x in data4] 
+data3= [x-6 for x in data3] 
+data4 = [x-6 for x in data4] 
 
 correlation_plot(data, data3)
 correlation_plot(data, data4)
