@@ -17,23 +17,13 @@ import os
 
 # Option 1: Using a local image file
 # Place the image in the same directory as your script or provide the correct path
-local_image_path = "mycloud.jpeg"  # Replace with your local image file name
+image_url = "mycloud.jpeg"  # Replace with your local image file name
 
 # Option 2: Using an online image URL
 #online_image_url = "https://example.com/your_image.jpg"  # Replace with your image URL
 
-# Add some content above the image
-st.title("My Streamlit App")
-st.write("This is an example of displaying an image in a specific location.")
-
 # Display the image
-st.subheader("Local Image")
-st.image(local_image_path, caption="This is a local image", width=300)
-
-
-# Define the path to your image
-image_url = "mycloud.jpg"  # Replace with your image URL or local path
-
+#st.image(image_url, caption="This is a local image", width=300)
 # Custom CSS to set the background image
 custom_css = f"""
 <style>
