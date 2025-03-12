@@ -38,10 +38,8 @@ body {{
 
 # Inject the CSS into the Streamlit app
 st.markdown(custom_css, unsafe_allow_html=True)
+st.image(image_url, caption="This is a local image", width=300)
 
-# Add some content to your app
-st.title("My Streamlit App with a Background Image")
-st.write("This is an example of a Streamlit app with a custom background image.")
 ###############.    draw moon and runner
 # Constants
 IMAGE_WIDTH = 800
