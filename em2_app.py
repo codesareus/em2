@@ -598,7 +598,7 @@ def correlation_plot(dataA, dataB):
     for i in range(5):
         if dataA == data_list[i]:
             nameA = dataNames[i]
-        if dataB == data_list[i]
+        if dataB == data_list[i]:
             nameB = dataNames[i]
         
     # Plot correlation between smoothed data1 and data2
