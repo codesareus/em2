@@ -585,12 +585,12 @@ def double_moving_average(data, window_size):
     second_ma = moving_average(first_ma, window_size)
     return second_ma
 
-def correlation_plot(dataA, dataB, smooth = True):
+def correlation_plot(dataA, dataB, smooth = "double"):
     # Smooth user input
     window_size = 7
 
-    user_data1_smooth = double_moving_average(dataA, window_size) if smooth else dataA
-    user_data2_smooth = double_moving_average(dataB, window_size) if smooth else dataB
+    user_data1_smooth = double_moving_average(dataA, window_size) if smooth == "double" else moving_average(dataA, window_size)
+    user_data2_smooth = double_moving_average(dataB, window_size) if smooth == "double" else moving_average(dataB, window_size)
 
     dataNames = ["耳鸣","脾胃","睡眠","心率","5K时间"]
     data_list = [data, data1, data2, data3, data4]
@@ -737,5 +737,5 @@ correlation_plot(data, data4)
 correlation_plot(data1, data2)
 correlation_plot(data1, data3)
 correlation_plot(data3, data4)
-correlation_plot(data3, data4, False)
+correlation_plot(data3, data4, mono)
 
