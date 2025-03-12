@@ -611,8 +611,8 @@ def process_data (dataA, dataB):
 def single_correlation(dataA, dataB, num=0):
     user_data1_smooth, user_data2_smooth, nameA, nameB = process_data (dataA, dataB)
     # Scatter plot with different colors for data1 and data2
-    scatter1 = ax.scatter(range(len(user_data1_smooth)), user_data1_smooth, color='blue')
-    scatter2 = ax.scatter(range(len(user_data2_smooth)), user_data2_smooth, color='orange')
+    scatter1 = axes[num].scatter(range(len(user_data1_smooth)), user_data1_smooth, color='blue')
+    scatter2 = axes[num].scatter(range(len(user_data2_smooth)), user_data2_smooth, color='orange')
     
     # Add trend lines and calculate R-squared values
     X = np.arange(len(user_data1_smooth)).reshape(-1, 1)
