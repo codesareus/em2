@@ -40,6 +40,17 @@ body {{
 st.markdown(custom_css, unsafe_allow_html=True)
 st.image(image_url, caption="This is a local image", width=300)
 
+#video
+local_video_path = "your_video.mp4"  # Replace with your local video file name
+
+# Option 2: Using an online video URL
+#online_video_url = "https://example.com/your_video.mp4"  # Replace with your video URL
+
+# Display the video
+st.subheader("Local Video")
+st.video(local_video_path)
+
+
 ###############.    draw moon and runner
 # Constants
 IMAGE_WIDTH = 800
