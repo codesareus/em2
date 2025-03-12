@@ -3,6 +3,17 @@ import streamlit as st
 from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime, timedelta
 import pytz
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
+import pandas as pd
+import matplotlib.font_manager as fm
+import textwrap
+from sklearn.metrics import r2_score
+import os
 
 # Constants
 IMAGE_WIDTH = 800
@@ -144,20 +155,8 @@ draw.text((MOON_POSITION[0] - 30, MOON_POSITION[1] - 80), "Moon\n384,400km", fil
 # Display the image in Streamlit
 st.title("Earth to Moon Running Visualization")
 st.image(image, caption="A young man running from Home to the Moon 2075(2025) will be 91,250 km", use_container_width=True)
-#sssss##############
 
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
-from datetime import datetime, timedelta
-from sklearn.linear_model import LinearRegression
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.pipeline import make_pipeline
-import streamlit as st
-import pandas as pd
-import matplotlib.font_manager as fm
-import pytz  # For timezone handling
-import textwrap
+#sssss#############。 耳鸣分析。
 
 # Define your local timezone
 LOCAL_TIMEZONE = pytz.timezone('America/Chicago')  # Replace with your local timezone
@@ -564,17 +563,10 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
 
     st.pyplot(fig)
 
-
-st.markdown("")
-st.markdown("")
-st.markdown("")
 st.markdown("")
 st.markdown("=============================================")
 
-from sklearn.metrics import r2_score
-import os
-from datetime import datetime, timedelta
-import pytz
+##关联性分析
 
 # Function to calculate double moving average
 def moving_average(data, window_size):
