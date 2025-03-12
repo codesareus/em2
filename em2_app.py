@@ -21,6 +21,7 @@ TIMEZONE = "America/Chicago"  # St. Louis timezone
 font_path = "Arial.ttf"
 bgColor = "lightblue"
 
+set_message= "看起来，跑得越慢心率越高？或者你跑得慢，是因为心率比较高？有趣，跟想象的正好相反。而且跑得越慢，心率越高，睡眠，脾胃都比较差。3月11日。"
 # Calculate updated Days and Distance based on the current date
 current_time = datetime.now(pytz.timezone(TIMEZONE))
 days_elapsed = (current_time.date() - START_DATE.date()).days
@@ -369,7 +370,7 @@ if data is not None and data1 is not None and data2 is not None:
     v_line_pos = st.sidebar.slider('Vertical Line Position', 5 , 140, 140)
     
     #st.sidebar.subheader("marker_message")
-    marker_message_input = st.sidebar.text_area("输入分析信息：", value="看起来，跑得越慢心率越高？或者你跑得慢，是因为心率比较高？有趣，跟想象的正好相反。而且跑得越慢，心率越高，睡眠，脾胃都比较差。3月11日。")
+    marker_message_input = st.sidebar.text_area("输入分析信息：", value=set_message)
     # Function to wrap text into lines of a specified width
     def wrap_text(text, width):
         return "\n".join(textwrap.wrap(text, width=width))
@@ -391,8 +392,8 @@ if data is not None and data1 is not None and data2 is not None:
 # Add title, labels, legend, and grid
     ax.set_title("综合动态均值分析(虚线原始数据）")
     ax.set_xlabel("天数")
-    ax.set_ylabel("动态均值")
-    ax.legend(loc="upper left", bbox_to_anchor=(1, 1))  # Place legend outside the plot
+    ax.set_ylabel("动态均值（7天均值）")
+ax.legend(loc="upper left", bbox_to_anchor=(1, 1))  # Place legend outside the plot
     ax.grid()
 
 # Display the combined plot
