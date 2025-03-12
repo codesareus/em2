@@ -38,7 +38,7 @@ body {{
 
 # Inject the CSS into the Streamlit app
 st.markdown(custom_css, unsafe_allow_html=True)
-st.image(image_url, caption="This is a local image", width=600)
+st.image(image_url, caption="This is a local image", width=750)
 
 #video
 local_video_path = "taiji.mp4"  # Replace with your local video file name
