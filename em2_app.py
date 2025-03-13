@@ -749,24 +749,31 @@ selected_option = st.selectbox("Choose one correlation analysis:", options)
 fig, axes = plt.subplots(2, 1, figsize=(12,9), gridspec_kw={'height_ratios': [9, 1 ]})
 # Perform actions based on the selected option
 if selected_option == options[0]:
-    st.write("ok")
+    dataaa, databb = data_pairs[0]
+    single_correlation(dataaa, databb, 0)
 elif selected_option == options[1]:
-    show_random_numbers()
+    dataaa, databb = data_pairs[1]
+    single_correlation(dataaa, databb, 0)
 elif selected_option == options[2]:
-    plot_sine_wave()
+    dataaa, databb = data_pairs[2]
+    single_correlation(dataaa, databb, 0)
 elif selected_option == options[3]:
     #fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 8))  # 8 rows, 1 column
-    dataaa, databb = data_pairs[4]
+    dataaa, databb = data_pairs[3]
     single_correlation(dataaa, databb, 0)
     
 elif selected_option == options[4]:
-    display_image()
+    dataaa, databb = data_pairs[4]
+    single_correlation(dataaa, databb, 0)
 elif selected_option == options[5]:
-    show_data_table()
+    dataaa, databb = data_pairs[5]
+    single_correlation(dataaa, databb, 0)
 elif selected_option == options[6]:
-    plot_histogram()
+    dataaa, databb = data_pairs[6]
+    single_correlation(dataaa, databb, 0)
 elif selected_option == options[7]:
-    display_markdown_text()
+    dataaa, databb = data_pairs[7]
+    single_correlation(dataaa, databb, 0)
     
 st.pyplot(fig)
 
