@@ -744,7 +744,7 @@ options = [
 ]
 
 # Create a dropdown menu
-st.markdown("相关度分析：单图")
+st.header("相关度分析：单图")
             
 selected_option = st.selectbox("Choose one correlation analysis:", options)
 
@@ -758,7 +758,7 @@ for i in range(8):
 single_correlation(dataaa, databb, 0)
 st.pyplot(fig)
 
-st.markdown("相关度分析：多图一组")
+st.header("相关度分析：多图一组")
 
 ####### 3 & 5 plots together
 fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(10, 12))  # 8 rows, 1 column
