@@ -678,8 +678,8 @@ def single_correlation(dataA, dataB, num=0):
         future_data2 = best_model_data2.predict(future_X)
     
     # Plot predicted trend
-    axes[num].plot(range(len(user_data1_smooth), len(user_data1_smooth) + future_days), future_data1, color='blue', linestyle="-", label=f"预测 ({nameA}, {model_type_data1})")
-    axes[num].plot(range(len(user_data2_smooth), len(user_data2_smooth) + future_days), future_data2, color='orange', linestyle="-", label=f"预测 ({nameB}, {model_type_data2})")
+    axes[num].plot(range(len(user_data1_smooth), len(user_data1_smooth) + future_days), future_data1, color='blue', linestyle="-",  {model_type_data1})")
+    axes[num].plot(range(len(user_data2_smooth), len(user_data2_smooth) + future_days), future_data2, color='orange', linestyle="-",  {model_type_data2})")
     axes[num].set_facecolor(bgColor)
     # Add a legend with a custom font size for all labels
     axes[num].legend(prop={'size': 5})  # Change '12' to your desired font size{num}
