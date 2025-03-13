@@ -726,9 +726,8 @@ def single_correlation(dataA, dataB, num=0):
     axes[num].legend()
 
 def plot_onePerPanel(num=0):
-    fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(10, 8))  # , 1 column
-    for i, (dataA, dataB) in enumerate(data_pairs[num]):
-        single_correlation(dataA, dataB, i)
+    fig, ax = plt.subplots(figsize=(12, 8)) 
+    single_correlation(*data_pairs[num])
     st.pyplot(fig)
     
 #############
