@@ -18,38 +18,7 @@ import os
 # Option 1: Using a local image file
 # Place the image in the same directory as your script or provide the correct path
 image_url = "mycloud.jpeg"  # Replace with your local image file name
-
-# Option 2: Using an online image URL
-#online_image_url = "https://example.com/your_image.jpg"  # Replace with your image URL
-
-# Display the image
-#st.image(image_url, caption="This is a local image", width=300)
-# Custom CSS to set the background image
-custom_css = f"""
-<style>
-body {{
-    background-image: url('{image_url}');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}}
-</style>
-"""
-
-# Inject the CSS into the Streamlit app
-st.markdown(custom_css, unsafe_allow_html=True)
 st.image(image_url, caption="This is a local image", width=750)
-
-#video
-local_video_path = "taiji.mp4"  # Replace with your local video file name
-
-# Option 2: Using an online video URL
-#online_video_url = "https://example.com/your_video.mp4"  # Replace with your video URL
-
-# Display the video
-st.subheader("Local Video")
-st.video(local_video_path)
-
 
 ###############.    draw moon and runner
 # Constants
@@ -767,3 +736,8 @@ for i, (dataA, dataB) in enumerate(data_pairs[3:]):
 plt.tight_layout()
 st.pyplot(fig)
 
+#######################
+#video
+local_video_path = "taiji.mp4"  # Replace with your local video file name
+# Display the video
+st.video(local_video_path)
