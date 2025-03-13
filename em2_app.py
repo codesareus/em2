@@ -744,7 +744,8 @@ options = [
 ]
 
 st.markdown("")
-st.markdown("=============================================")
+imageName = "cherry.jpeg"
+st.image(imageName,width=710)
 # Create a dropdown menu
 st.header("相关度分析：单图")
             
