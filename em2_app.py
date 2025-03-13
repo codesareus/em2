@@ -730,6 +730,41 @@ def single_correlation(dataA, dataB, num=0):
 data_list = [data, data1, data2, data3, data4]
 data_pairs = [(data, data1),(data, data2),(data1, data2),(data4, data3),(data, data3),(data, data4),(data1, data3),(data2, data3)]
 
+##single corr plots
+# Dropdown menu options
+options = [
+    "耳鸣 脾胃",
+    "耳鸣 睡眠",
+    "脾胃 睡眠",
+    "慢跑心率 慢跑时长",
+    "耳鸣 慢跑心率",
+    "耳鸣 慢跑时长",
+    "脾胃 慢跑心率",
+    "睡眠 慢跑心率"
+]
+
+# Create a dropdown menu
+selected_option = st.selectbox("Choose an option:", options)
+
+# Perform actions based on the selected option
+if selected_option == options[0]
+    st.write("ok")
+elif selected_option == "Show Random Numbers":
+    show_random_numbers()
+elif selected_option == "Plot Sine Wave":
+    plot_sine_wave()
+elif selected_option == "Calculate Factorial":
+    calculate_factorial()
+elif selected_option == "Display Image":
+    display_image()
+elif selected_option == "Show Data Table":
+    show_data_table()
+elif selected_option == "Plot Histogram":
+    plot_histogram()
+elif selected_option == "Display Markdown Text":
+    display_markdown_text()
+
+
 fig, axes = plt.subplots(2, 1, figsize=(12,9), gridspec_kw={'height_ratios': [9, 1 ]})
 #fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 8))  # 8 rows, 1 column
 dataaa, databb = data_pairs[3]
