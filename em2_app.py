@@ -603,7 +603,7 @@ def single_correlation(dataA, dataB, num=0):
 
     last_21_days_data2 = dataB[-30:] ### borrowed variable name
     #last_21_days_time_steps = np.arange(len(user_data1_smooth) -60, len(user_data1_smooth)).reshape(-1, 1)
-    axes[num].scatter(last_21_days_time_steps, last_21_days_data2, color="gray", s=100)
+    axes[num].scatter(last_21_days_time_steps, last_21_days_data2, color="gray", marker=".", s=70)
     
     # Add trend lines and calculate R-squared values
     X = np.arange(len(user_data1_smooth)).reshape(-1, 1)
