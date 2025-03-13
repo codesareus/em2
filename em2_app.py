@@ -15,6 +15,9 @@ import textwrap
 from sklearn.metrics import r2_score
 import os
 
+
+#divider image
+imageName = "cherry.jpeg"
 ###############.    draw moon and runner
 # Constants
 IMAGE_WIDTH = 800
@@ -147,7 +150,7 @@ draw.text((MOON_POSITION[0] - 30, MOON_POSITION[1] - 80), "Moon\n384,400km", fil
 st.title("Earth to Moon Running Visualization")
 st.image(image, caption="A young man running from Home to the Moon 2075(2025) will be 91,250 km", use_container_width=True)
 
-##############。 耳鸣分析。
+st.image(imageName,width=710)
 ##############。 耳鸣分析
 # Set matplotlib font to support Chinese characters
 fm.fontManager.addfont('SimHei.ttf')
@@ -552,7 +555,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     st.pyplot(fig)
 
 st.markdown("")
-st.markdown("=============================================")
+
 
 ##关联性分析
 
@@ -743,8 +746,7 @@ options = [
     "睡眠 慢跑心率"
 ]
 
-st.markdown("")
-imageName = "cherry.jpeg"
+
 st.image(imageName,width=710)
 # Create a dropdown menu
 st.header("相关度分析：单图")
@@ -763,7 +765,7 @@ st.pyplot(fig)
 
 
 st.markdown("")
-st.markdown("=============================================")
+st.image(imageName,width=710)
 st.header("相关度分析：多图一组")
 
 ####### 3 & 5 plots together
