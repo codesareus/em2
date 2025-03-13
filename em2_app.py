@@ -744,30 +744,31 @@ options = [
 ]
 
 # Create a dropdown menu
-selected_option = st.selectbox("Choose an option:", options)
+selected_option = st.selectbox("Choose one correlation analysis:", options)
 
+fig, axes = plt.subplots(2, 1, figsize=(12,9), gridspec_kw={'height_ratios': [9, 1 ]})
 # Perform actions based on the selected option
 if selected_option == options[0]:
     st.write("ok")
-elif selected_option == "Show Random Numbers":
+elif selected_option == options[1]:
     show_random_numbers()
-elif selected_option == "Plot Sine Wave":
+elif selected_option == options[2]:
     plot_sine_wave()
 elif selected_option == options[3]:
-    fig, axes = plt.subplots(2, 1, figsize=(12,9), gridspec_kw={'height_ratios': [9, 1 ]})
-#fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 8))  # 8 rows, 1 column
-    dataaa, databb = data_pairs[3]
+    #fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 8))  # 8 rows, 1 column
+    dataaa, databb = data_pairs[4]
     single_correlation(dataaa, databb, 0)
-    st.pyplot(fig)
-elif selected_option == "Display Image":
+    
+elif selected_option == options[4]:
     display_image()
-elif selected_option == "Show Data Table":
+elif selected_option == options[5]:
     show_data_table()
-elif selected_option == "Plot Histogram":
+elif selected_option == options[6]:
     plot_histogram()
-elif selected_option == "Display Markdown Text":
+elif selected_option == options[7]:
     display_markdown_text()
-
+    
+st.pyplot(fig)
 
 fig, axes = plt.subplots(2, 1, figsize=(12,9), gridspec_kw={'height_ratios': [9, 1 ]})
 #fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 8))  # 8 rows, 1 column
