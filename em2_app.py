@@ -735,7 +735,7 @@ def plot_onePerPanel(num=0):
 data_list = [data, data1, data2, data3, data4]
 data_pairs = [(data, data1),(data, data2),(data1, data2),(data4, data3),(data, data3),(data, data4),(data1, data3),(data2, data3)]
 
-plot_onePerPanel(0)
+#plot_onePerPanel(0)
 
 fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(10, 12))  # 8 rows, 1 column
 for i, (dataA, dataB) in enumerate(data_pairs[:3]):
