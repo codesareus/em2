@@ -750,7 +750,7 @@ st.header("相关度分析：单图")
             
 selected_option = st.selectbox("Choose one correlation analysis:", options)
 
-fig, axes = plt.subplots(2, 1, figsize=(12,9), gridspec_kw={'height_ratios': [9, 0.5]})
+fig, axes = plt.subplots(2, 1, figsize=(12,9), gridspec_kw={'height_ratios': [9, 0.25]})
 # Perform actions based on the selected option
 dataaa, databb = data_pairs[0]
 for i in range(8):
