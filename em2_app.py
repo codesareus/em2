@@ -747,14 +747,18 @@ options = [
 selected_option = st.selectbox("Choose an option:", options)
 
 # Perform actions based on the selected option
-if selected_option == options[0]
+if selected_option == options[0]:
     st.write("ok")
 elif selected_option == "Show Random Numbers":
     show_random_numbers()
 elif selected_option == "Plot Sine Wave":
     plot_sine_wave()
-elif selected_option == "Calculate Factorial":
-    calculate_factorial()
+elif selected_option == options[3]:
+    fig, axes = plt.subplots(2, 1, figsize=(12,9), gridspec_kw={'height_ratios': [9, 1 ]})
+#fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 8))  # 8 rows, 1 column
+    dataaa, databb = data_pairs[3]
+    single_correlation(dataaa, databb, 0)
+    st.pyplot(fig)
 elif selected_option == "Display Image":
     display_image()
 elif selected_option == "Show Data Table":
