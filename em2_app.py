@@ -792,20 +792,4 @@ st.image(image_url, caption="This is a local image", width=710)
 #video
 local_video_path = "taiji.mp4"  # Replace with your local video file name
 # Display the 
-
-video_html = f"""
-<div style="position:relative; width:900px">
-  <video id="myVideo" controls style="width:100%">
-    <source src="{local_video_path}" type="video/mp4">
-  </video>
-</div>
-
-<script>
-// Add error listeners
-const video = document.querySelector('#myVideo');
-video.addEventListener('error', (e) => {{
-  console.error('Video error:', video.error);
-}});
-</script>
-"""
-st.markdown(video_html, unsafe_allow_html=True)
+st.video(local_video_path)
