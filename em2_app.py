@@ -599,11 +599,11 @@ def single_correlation(dataA, dataB, num=0):
     ### original data last 30 days
     last_21_days_data1 = dataA[-30:] ### borrowed variable name
     last_21_days_time_steps = np.arange(len(user_data1_smooth) -30, len(user_data1_smooth)).reshape(-1, 1)
-    ax.scatter(last_21_days_time_steps, last_21_days_data1, color="gray", label=f"{nameA}最近30天原始数据", marker=".", s=100)
+    axes[num].scatter(last_21_days_time_steps, last_21_days_data1, color="gray", label=f"{nameA}最近30天原始数据", marker=".", s=100)
 
     last_21_days_data2 = dataB[-30:] ### borrowed variable name
     #last_21_days_time_steps = np.arange(len(user_data1_smooth) -60, len(user_data1_smooth)).reshape(-1, 1)
-    ax.scatter(last_21_days_time_steps, last_21_days_data2, color="gray", label=f"{nameA}最近30天原始数据", marker=".", s=100)
+    axes[num].scatter(last_21_days_time_steps, last_21_days_data2, color="gray", label=f"{nameA}最近30天原始数据", marker=".", s=100)
     
     # Add trend lines and calculate R-squared values
     X = np.arange(len(user_data1_smooth)).reshape(-1, 1)
