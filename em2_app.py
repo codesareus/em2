@@ -242,6 +242,7 @@ formatted_string = f'"{",".join(map(str, data))}","{",".join(map(str, data1))}",
 st.sidebar.subheader("所有输入数据")
 #st.sidebar.text_area("复制以下格式化字符串：", value=formatted_string, height=100, key="formatted_output")
 st.sidebar.code(formatted_string, language="plaintext")
+st.sidebar.code(formatted_string[-5:], language="plaintext")
 
 # Add a "key" input box for automatic saving
 st.sidebar.subheader("自动保存设置")
