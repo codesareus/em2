@@ -582,9 +582,11 @@ def process_data (dataA, dataB):
         if dataB == data_list[i]:
             nameB = dataNames[i]
 
+    xiaimi_data_num = days_difference - 110 #(70 on 180 days of running)
+
     if dataA in (data3, data4) or dataB in (data3, data4) :
-        user_data1_smooth = user_data1_smooth[-60:]
-        user_data2_smooth = user_data2_smooth[-60:]
+        user_data1_smooth = user_data1_smooth[-xiaimi_data_num:]
+        user_data2_smooth = user_data2_smooth[-xiaimi_data_num:]
 
     return user_data1_smooth, user_data2_smooth, nameA, nameB
 
