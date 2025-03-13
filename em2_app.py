@@ -748,10 +748,10 @@ selected_option = st.selectbox("Choose one correlation analysis:", options)
 
 fig, axes = plt.subplots(2, 1, figsize=(12,9), gridspec_kw={'height_ratios': [9, 1 ]})
 # Perform actions based on the selected option
-daraaa, databb = data_pairs[0]
+dataaa, databb = data_pairs[0]
 for i in range(8):
     if selected_option == options[i]:
-        daraaa, databb = data_pairs[i]
+        dataaa, databb = data_pairs[i]
         
 single_correlation(dataaa, databb, 0)
 st.pyplot(fig)
