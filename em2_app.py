@@ -18,7 +18,7 @@ import os
 
 #divider image
 imageName = "cherry.jpeg"
-st.image(imageName,width=710)
+st.image(imageName,width=705)
 ###############.    draw moon and runner
 # Constants
 IMAGE_WIDTH = 800
@@ -748,7 +748,7 @@ options = [
 ]
 
 
-st.image(imageName,width=710)
+st.image(imageName,width=705)
 # Create a dropdown menu
 st.header("相关度分析：单图")
             
@@ -766,7 +766,7 @@ st.pyplot(fig)
 
 
 st.markdown("")
-st.image(imageName,width=710)
+st.image(imageName,width=705)
 st.header("相关度分析：多图一组")
 
 ####### 3 & 5 plots together
@@ -787,7 +787,7 @@ st.pyplot(fig)
 # Option 1: Using a local image file
 # Place the image in the same directory as your script or provide the correct path
 image_url = "mycloud.jpeg"  # Replace with your local image file name
-st.image(image_url, caption="This is a local image", width=710)
+st.image(image_url, caption="This is a local image", width=705)
 
 #video
 local_video_path = "taiji.mp4"  # Replace with your local video file name
