@@ -748,41 +748,13 @@ selected_option = st.selectbox("Choose one correlation analysis:", options)
 
 fig, axes = plt.subplots(2, 1, figsize=(12,9), gridspec_kw={'height_ratios': [9, 1 ]})
 # Perform actions based on the selected option
-if selected_option == options[0]:
-    dataaa, databb = data_pairs[0]
-    single_correlation(dataaa, databb, 0)
-elif selected_option == options[1]:
-    dataaa, databb = data_pairs[1]
-    single_correlation(dataaa, databb, 0)
-elif selected_option == options[2]:
-    dataaa, databb = data_pairs[2]
-    single_correlation(dataaa, databb, 0)
-elif selected_option == options[3]:
-    #fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 8))  # 8 rows, 1 column
-    dataaa, databb = data_pairs[3]
-    single_correlation(dataaa, databb, 0)
-    
-elif selected_option == options[4]:
-    dataaa, databb = data_pairs[4]
-    single_correlation(dataaa, databb, 0)
-elif selected_option == options[5]:
-    dataaa, databb = data_pairs[5]
-    single_correlation(dataaa, databb, 0)
-elif selected_option == options[6]:
-    dataaa, databb = data_pairs[6]
-    single_correlation(dataaa, databb, 0)
-elif selected_option == options[7]:
-    dataaa, databb = data_pairs[7]
-    single_correlation(dataaa, databb, 0)
-    
-st.pyplot(fig)
-
-fig, axes = plt.subplots(2, 1, figsize=(12,9), gridspec_kw={'height_ratios': [9, 1 ]})
-#fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 8))  # 8 rows, 1 column
-dataaa, databb = data_pairs[3]
+for i in range(8):
+    if selected_option == options[i]:
+         daraaa, databb = data_pairs[i]
 single_correlation(dataaa, databb, 0)
 st.pyplot(fig)
 
+####### 3 & 5 plots together
 fig, axes = plt.subplots(nrows=3, ncols=1, figsize=(10, 12))  # 8 rows, 1 column
 for i, (dataA, dataB) in enumerate(data_pairs[:3]):
     single_correlation(dataA, dataB, i)
@@ -806,5 +778,6 @@ st.image(image_url, caption="This is a local image", width=700)
 local_video_path = "taiji.mp4"  # Replace with your local video file name
 # Display the video
 st.video(local_video_path)
+
 
 
