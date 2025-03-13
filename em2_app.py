@@ -794,10 +794,11 @@ local_video_path = "taiji.mp4"  # Replace with your local video file name
 # Display the 
 
 video_html = """
-<video width="710" controls>
-  <source src="{}" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<div style="width: 80%; margin: 0 auto;">
+  <video controls style="width: 100%;">
+    <source src="{}" type="video/mp4">
+  </video>
+</div>
 """.format(local_video_path)
 
 st.markdown(video_html, unsafe_allow_html=True)
