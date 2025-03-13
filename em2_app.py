@@ -603,7 +603,7 @@ def single_correlation(dataA, dataB, num=0):
     ### original data last 30 days
     last_21_days_data1 = dataA[-30:] ### borrowed variable name
     last_21_days_time_steps = np.arange(len(user_data1_smooth) -30, len(user_data1_smooth)).reshape(-1, 1)
-    axes[num].scatter(last_21_days_time_steps, last_21_days_data1, color="lightbrown", label=f"最近30天原始数据", marker=".", s=60)
+    axes[num].scatter(last_21_days_time_steps, last_21_days_data1, color="#738FA7", label=f"最近30天原始数据", marker=".", s=60)
 
     last_21_days_data2 = dataB[-30:] ### borrowed variable name
     #last_21_days_time_steps = np.arange(len(user_data1_smooth) -60, len(user_data1_smooth)).reshape(-1, 1)
