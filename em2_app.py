@@ -799,7 +799,7 @@ video_html = f"""
   Your browser does not support the video tag.
 </video>
 """
-
+st.write(f"Video Path: {local_video_path}")
 # Render the video using st.markdown
 st.markdown(video_html, unsafe_allow_html=True)
 
