@@ -18,6 +18,7 @@ import os
 
 #divider image
 imageName = "cherry.jpeg"
+st.image(imageName,width=710)
 ###############.    draw moon and runner
 # Constants
 IMAGE_WIDTH = 800
@@ -786,7 +787,7 @@ st.pyplot(fig)
 # Option 1: Using a local image file
 # Place the image in the same directory as your script or provide the correct path
 image_url = "mycloud.jpeg"  # Replace with your local image file name
-st.image(image_url, caption="This is a local image", width=700)
+st.image(image_url, caption="This is a local image", width=710)
 
 #video
 local_video_path = "taiji.mp4"  # Replace with your local video file name
