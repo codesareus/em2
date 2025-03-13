@@ -743,6 +743,8 @@ options = [
     "睡眠 慢跑心率"
 ]
 
+st.markdown("")
+st.markdown("=============================================")
 # Create a dropdown menu
 st.header("相关度分析：单图")
             
@@ -758,6 +760,9 @@ for i in range(8):
 single_correlation(dataaa, databb, 0)
 st.pyplot(fig)
 
+
+st.markdown("")
+st.markdown("=============================================")
 st.header("相关度分析：多图一组")
 
 ####### 3 & 5 plots together
