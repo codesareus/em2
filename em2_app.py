@@ -791,6 +791,13 @@ st.image(image_url, caption="This is a local image", width=710)
 
 #video
 local_video_path = "taiji.mp4"  # Replace with your local video file name
-# Display the video
-# Embedding the video with custom width using HTML
-st.video(local_video_path, format="video/mp4", start_time=0, width=710)
+# Display the 
+
+video_html = """
+<video width="710" controls>
+  <source src="{}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+""".format(local_video_path)
+
+st.markdown(video_html, unsafe_allow_html=True)
