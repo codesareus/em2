@@ -727,7 +727,7 @@ def single_correlation(dataA, dataB, num=0):
 
 #############
 def onePlot_corr(num = 0):
-    fig, axes = plt.subplots(2, 1, figsize=(12,9), gridspec_kw={'height_ratios': [50, 1 ]})
+    fig, axes = plt.subplots(2, 1, figsize=(12,9), gridspec_kw={'height_ratios': [9, 1 ]})
 #fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 8))  # 8 rows, 1 column
     dataaa, databb = data_pairs[num]
     single_correlation(dataaa, databb, 0)
