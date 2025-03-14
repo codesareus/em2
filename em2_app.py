@@ -373,9 +373,23 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
         "睡眠",
         color='green', fontsize=15, ha='right')   
 
+########## time matters
+    LOCAL_TIMEZONE = pytz.timezone('America/Chicago') 
+    today = datetime.now(LOCAL_TIMEZONE)
+    print(today)
+
+    # Define the past date and make it timezone-aware
+    past_date = LOCAL_TIMEZONE.localize(datetime(2024, 9, 14))
+    print("Past Date:", past_date)
+
+    # Calculate the difference in days
+    delta = today - past_date
+    days_difference = delta.days
+    print("Days Difference:", days_difference)
+    
     # Use Streamlit sliders to adjust line positions
     h_line_pos = st.sidebar.slider('Horizontal Line Position', - 1, 9, 1)
-    v_line_pos = st.sidebar.slider('Vertical Line Position', 5 , 180, 141)
+    v_line_pos = st.sidebar.slider('Vertical Line Position', 5 , 180, days_difference -39)
     
     #st.sidebar.subheader("marker_message")
     marker_message_input = st.sidebar.text_area("输入分析信息：", value=set_message)
@@ -461,19 +475,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     # Plot the trend analysis
     fig, ax = plt.subplots(figsize=(10, 5))
     
-########
-    LOCAL_TIMEZONE = pytz.timezone('America/Chicago') 
-    today = datetime.now(LOCAL_TIMEZONE)
-    print(today)
-
-    # Define the past date and make it timezone-aware
-    past_date = LOCAL_TIMEZONE.localize(datetime(2024, 9, 14))
-    print("Past Date:", past_date)
-
-    # Calculate the difference in days
-    delta = today - past_date
-    days_difference = delta.days
-    print("Days Difference:", days_difference)
+#######
     
     # Add the current date
     current_tinnitus_level = data[-1]  # Latest value in the tinnitus data
