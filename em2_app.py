@@ -799,5 +799,5 @@ st.video(local_video_path)
 
 
 ###############
-imageName = "goodwork.jpeg"
+imageName = "goodwork.gif"
 st.image(imageName,width=705)
