@@ -15,7 +15,8 @@ import textwrap
 from sklearn.metrics import r2_score
 import os
 
-
+mygif= IMG_3839.gif
+st.image(mygif,width=705)
 #divider image
 imageName = "cherry.jpeg"
 st.image(imageName,width=705)
@@ -799,5 +800,3 @@ st.video(local_video_path)
 
 
 ###############
-imageName = "goodwork.gif"
-st.image(imageName,width=705)
