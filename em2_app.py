@@ -398,9 +398,9 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
         return "\n".join(textwrap.wrap(text, width=width))
 
 # Position and content for the text annotation
-    
+    current_date = datetime.now(LOCAL_TIMEZONE).strftime("%Y年%m月%d日")
     wrapped_input = wrap_text(marker_message_input, 12)  # Wrap text to 25 characters per line
-    dayData = f"慢跑第{days_difference}天, {today}: 耳鸣：{data[-1]}, 脾胃：{data1[-1]}, 睡眠：{data2[-1]},慢跑心率：{data3[-1] *16}, 时长：{data4[-1]},"
+    dayData = f"慢跑第{days_difference}天, {current_date}: \n耳鸣：{data[-1]}, 脾胃：{data1[-1]}, 睡眠：{data2[-1]},慢跑心率：{data3[-1] *16}, 时长：{data4[-1]},"
     
     ax.text(v_line_pos, 3.5,
         set_message +  "\n"+ dayData +"\n"+ wrapped_input,
@@ -482,8 +482,6 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     # Add the current date
     current_tinnitus_level = data[-1]  # Latest value in the tinnitus data
     current_double_ma_tinnitus_level = double_ma_data[-1]  # Latest value in the double moving average data
-    
-    current_date = datetime.now(LOCAL_TIMEZONE).strftime("%Y年%m月%d日")
     
     # Display the current date and values in the plot
     
