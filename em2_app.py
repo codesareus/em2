@@ -37,7 +37,7 @@ START_DAYS = 137
 font_path = "Arial.ttf"
 bgColor = "lightblue"
 
-set_message= "看起来，跑得越慢心率越高？或者你跑得慢，是因为心率比较高？有趣，跟想象的正好相反。而且跑得越慢，心率越高，睡眠，脾胃都比较差。3月11日。"
+set_message="健康第一，做有意义的事，不懈怠，不贪不嗔不痴"
 # Calculate updated Days and Distance based on the current date
 LOCAL_TIMEZONE = pytz.timezone('America/Chicago')  # Replace with your local timezone
 current_time = datetime.now(LOCAL_TIMEZONE)
@@ -392,16 +392,18 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     v_line_pos = st.sidebar.slider('Vertical Line Position', 5 , days_difference, days_difference -39)
     
     #st.sidebar.subheader("marker_message")
-    marker_message_input = st.sidebar.text_area("输入分析信息：", value=set_message)
+    marker_message_input = st.sidebar.text_area("输入分析信息：", value="")
     # Function to wrap text into lines of a specified width
     def wrap_text(text, width):
         return "\n".join(textwrap.wrap(text, width=width))
 
 # Position and content for the text annotation
-    wrapped_text = wrap_text(marker_message_input, 12)  # Wrap text to 25 characters per line
-
+    
+    wrapped_input = wrap_text(marker_message_input, 12)  # Wrap text to 25 characters per line
+    dayData = f"慢跑第{days_difference}天, {current_date}: 耳鸣：{current_tinnitus_level:.2f}, 脾胃：{data1[-1]}, 睡眠：{data2[-1]},慢跑心率：{data3[-1]}, 时长：{data4[-1]},"
+    
     ax.text(v_line_pos, 3.5,
-        wrapped_text,
+        set_message +  "\n"+ dayData +"\n"+ wrapped_input,
         color='navy', fontsize=16, ha='right') 
 
     # Add lines based on slider values
