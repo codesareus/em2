@@ -389,7 +389,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     
     # Use Streamlit sliders to adjust line positions
     h_line_pos = st.sidebar.slider('Horizontal Line Position', - 1, 9, 1)
-    v_line_pos = st.sidebar.slider('Vertical Line Position', 5 , days_difference, days_difference -39)
+    v_line_pos = st.sidebar.slider('Vertical Line Position', 5 , days_difference, days_difference -38)
     
     #st.sidebar.subheader("marker_message")
     marker_message_input = st.sidebar.text_area("输入分析信息：", value="")
