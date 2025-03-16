@@ -400,7 +400,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
 # Position and content for the text annotation
     
     wrapped_input = wrap_text(marker_message_input, 12)  # Wrap text to 25 characters per line
-    dayData = f"慢跑第{days_difference}天, {last_date}: 耳鸣：{current_tinnitus_level:.2f}, 脾胃：{data1[-1]}, 睡眠：{data2[-1]},慢跑心率：{data3[-1]}, 时长：{data4[-1]},"
+    dayData = f"慢跑第{days_difference}天, {last_date}: 耳鸣：{data[-1]}, 脾胃：{data1[-1]}, 睡眠：{data2[-1]},慢跑心率：{data3[-1]}, 时长：{data4[-1]},"
     
     ax.text(v_line_pos, 3.5,
         set_message +  "\n"+ dayData +"\n"+ wrapped_input,
