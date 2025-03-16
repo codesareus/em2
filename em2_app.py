@@ -37,7 +37,7 @@ START_DAYS = 137
 font_path = "Arial.ttf"
 bgColor = "lightblue"
 
-set_message="健康第一，做有意义的事，不懈怠，不贪不嗔不痴"
+set_message="健康第一，做有意义的事，不懈怠，不贪不嗔不痴，无证据不假定"
 # Calculate updated Days and Distance based on the current date
 LOCAL_TIMEZONE = pytz.timezone('America/Chicago')  # Replace with your local timezone
 current_time = datetime.now(LOCAL_TIMEZONE)
