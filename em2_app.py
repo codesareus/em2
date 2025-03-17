@@ -810,7 +810,7 @@ import tempfile
 import os
 
 # Set up the Streamlit app title
-st.title("Fireworks Animation")
+st.title( Celebration of life, growth, and enlightenment")
 
 # Define the shapes of letters and numbers with improved coordinates
 def get_letter_shapes():
