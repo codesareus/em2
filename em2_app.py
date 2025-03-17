@@ -405,7 +405,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     dayData = f"耳鸣：{data[-1]}, 脾胃：{data1[-1]}, 睡眠：{data2[-1]},慢跑心率（最高值百分比）：{data3[-1] *10}, 时长：{data4[-1]*10},"
     
     ax.text(v_line_pos, 3.5,
-        message1 +set_message  + "\n"+ dayData + "\n"+ wrapped_input,
+        message1 +set_message   + "\n"+ wrapped_input + "\n"+ dayData,
         color='navy', fontsize=16, ha='right') 
 
     # Add lines based on slider values
