@@ -241,8 +241,11 @@ data4 = [round(x /10, 1) for x in datab]
 formatted_string = f'"{",".join(map(str, data))}","{",".join(map(str, data1))}","{",".join(map(str, data2))}","{",".join(map(str, dataa))}","{",".join(map(str, datab))}"'# Display the formatted string in a read-only text box
 st.sidebar.subheader("所有输入数据")
 #st.sidebar.text_area("复制以下格式化字符串：", value=formatted_string, height=100, key="formatted_output")
+with open('rebootdate.txt', "r") as file:
+        reboot = file.read()
+
 st.sidebar.code(formatted_string, language="plaintext")
-st.sidebar.code(formatted_string[-15:] + " last 15 char",language="plaintext")
+st.sidebar.code(reboot,language="plaintext")
 
 # Add a "key" input box for automatic saving
 st.sidebar.subheader("自动保存设置")
