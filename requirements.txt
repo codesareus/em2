@@ -8,6 +8,5 @@ pandas
 pytz
 pillow
 textblob
-pydub
 re
 gtts
