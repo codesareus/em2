@@ -8,5 +8,5 @@ pandas
 pytz
 pillow
 textblob
-re
+#re
 gtts
