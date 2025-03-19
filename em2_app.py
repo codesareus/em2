@@ -819,7 +819,7 @@ def init_session_state():
             "Predicted Mood", "Mood Score", "Emoji"
         ])
 
-st.set_page_config(page_title="Mood Diary", page_icon="📔")
+#st.set_page_config(page_title="Mood Diary", page_icon="📔")
 st.title("📔 Daily Mood Diary")
 st.write("Document your daily mood with two sentences!")
 
