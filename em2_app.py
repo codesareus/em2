@@ -1,21 +1,12 @@
-#em2 app 3-12-25
+#em2 app 3-19-25
 import streamlit as st
-from PIL import Image, ImageDraw, ImageFont
-from datetime import datetime, timedelta
-import pytz
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
-from sklearn.linear_model import LinearRegression
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.pipeline import make_pipeline
-import pandas as pd
-import matplotlib.font_manager as fm
-import textwrap
-from sklearn.metrics import r2_score
-import os
-
 from textblob import TextBlob
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+from datetime import datetime
+import pytz
+
 CSV_FILE = "mood_history.csv"
 MOOD_EMOJIS = {
     'Happy': '😊', 
@@ -27,23 +18,27 @@ MOOD_EMOJIS = {
     'Neutral': '😐'
 }
 
-def init_session_state():
-    if "mood_history" not in st.session_state:
-        st.session_state.mood_history = pd.DataFrame(columns=[
-            "Date", "Sentence 1", "Sentence 2", 
-            "Predicted Mood", "Mood Score", "Emoji"
-        ])
-
 st.set_page_config(page_title="Mood Diary", page_icon="📔")
 st.title("📔 Daily Mood Diary")
 st.write("Document your daily mood with two sentences!")
 
-# Allow user to upload a CSV file
-uploaded_file = st.file_uploader("Upload your mood history CSV", type=["csv"])
+# Collapsible upload block
+show_upload = st.checkbox("Upload custom mood history")
+uploaded_file = None
+if show_upload:
+    uploaded_file = st.file_uploader("Upload your mood history CSV", type=["csv"])
+
+# Initialize or load data
 if uploaded_file is not None:
     st.session_state.mood_history = pd.read_csv(uploaded_file, parse_dates=["Date"])
-
-init_session_state()
+else:
+    if os.path.exists(CSV_FILE):
+        st.session_state.mood_history = pd.read_csv(CSV_FILE, parse_dates=["Date"])
+    else:
+        st.session_state.mood_history = pd.DataFrame(columns=[
+            "Date", "Sentence 1", "Sentence 2", 
+            "Predicted Mood", "Mood Score", "Emoji"
+        ])
 
 st.write("## Daily Entry")
 
@@ -91,7 +86,7 @@ if submitted and sentence1.strip() and sentence2.strip():
     st.session_state.mood_history = pd.concat([st.session_state.mood_history, new_entry_df], ignore_index=True)
     
     # Save to server CSV only if no file was uploaded
-    if uploaded_file is None:
+    if not show_upload:
         new_entry_df.to_csv(CSV_FILE, mode='a', header=not os.path.exists(CSV_FILE), index=False)
     
     st.success("Entry saved successfully!")
@@ -152,6 +147,22 @@ if not st.session_state.mood_history.empty:
 
 st.markdown("---")
 st.caption("Your personal mood diary - Reflect, remember, and grow.")
+
+import streamlit as st
+from PIL import Image, ImageDraw, ImageFont
+from datetime import datetime, timedelta
+import pytz
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
+import pandas as pd
+import matplotlib.font_manager as fm
+import textwrap
+from sklearn.metrics import r2_score
+import os
 
 ##################################
 
