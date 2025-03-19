@@ -382,7 +382,7 @@ st.sidebar.subheader("所有输入数据")
 
 ## let user upload health data
 # Let user upload health data through the sidebar
-uploadFile = "no upload"
+upload_content = "no upload"
 with st.sidebar:
     #st.header("Data Upload")
     # Add checkbox to toggle upload visibility
@@ -392,9 +392,7 @@ with st.sidebar:
         uploaded_file = st.file_uploader("Choose txt file", type=["txt"])
         
         if uploaded_file is not None:
-
-            with open(uploaded_file, "r") as file:
-                uploadFile = file.read()
+            upload_content = uploaded_file.read().decode('utf-8')
                 
 #st.sidebar.text_area("复制以下格式化字符串：", value=formatted_string, height=100, key="formatted_output")
 with open('rebootdate.txt', "r") as file:
@@ -402,7 +400,7 @@ with open('rebootdate.txt', "r") as file:
 
 st.sidebar.code(formatted_string, language="plaintext")
 st.sidebar.code(reboot,language="plaintext")
-st.sidebar.code(uploadFile)
+st.sidebar.code(upload_content)
 
 # Add a "key" input box for automatic saving
 st.sidebar.subheader("自动保存设置")
