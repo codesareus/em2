@@ -735,7 +735,7 @@ def single_correlation(dataA, dataB, num=0):
     axes[num].set_xlabel("天数")
     axes[num].set_ylabel("双动态均值")
     axes[num].set_title(title + correlation_coeff)
-    axes[num].legend()
+    axes[num].legend(loc='center left')
 
 #############
 #############-$# Plot correlation between smoothed data1 and data2
