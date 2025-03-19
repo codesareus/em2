@@ -346,17 +346,30 @@ st.sidebar.write("请在下方输入或上传数据集。")
 # Let user upload health data through the sidebar
 with st.sidebar:
     #st.header("Data Upload")
-    uploaded_file = st.file_uploader("Upload health data CSV", type=["csv"])
+    # Add checkbox to toggle upload visibility
+    show_upload = st.checkbox("Upload local health data?", value=False)
     
-    if uploaded_file is not None:
-        # Read and display file content
-        file_content = pd.read_csv(uploaded_file)
-        #st.subheader("File Preview")
-        st.code(file_content.tail(20).to_string())
+    if show_upload:
+        uploaded_file = st.file_uploader("Choose CSV file", type=["csv"])
         
-        # Save to server as data.csv
-        file_content.to_csv("data.csv", index=False)
-        st.success("File successfully updated on server!")
+        if uploaded_file is not None:
+            try:
+                # Read and validate CSV
+                new_data = pd.read_csv(uploaded_file)
+                
+                # Show preview (last 20 rows)
+                st.subheader("Preview of New Data")
+                st.dataframe(new_data.tail(20))
+                
+                # Save to server
+                new_data.to_csv("data.csv", index=False)
+                st.success("Data successfully updated!")
+                
+                # Optional: Reset checkbox after upload
+                st.session_state.show_upload = False
+                
+            except Exception as e:
+                st.error(f"Invalid file format: {str(e)}")
 
 # Load saved data (if it exists)
 data, data1, data2, data3, data4 = load_data()
