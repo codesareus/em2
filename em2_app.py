@@ -342,35 +342,6 @@ st.title("健康数据分析")
 st.sidebar.header("数据输入")
 st.sidebar.write("请在下方输入或上传数据集。")
 
-## let user upload health data
-# Let user upload health data through the sidebar
-with st.sidebar:
-    #st.header("Data Upload")
-    # Add checkbox to toggle upload visibility
-    show_upload = st.checkbox("Upload local health data?", value=False)
-    
-    if show_upload:
-        uploaded_file = st.file_uploader("Choose CSV file", type=["csv"])
-        
-        if uploaded_file is not None:
-            try:
-                # Read and validate CSV
-                new_data = pd.read_csv(uploaded_file)
-                
-                # Show preview (last 20 rows)
-                st.subheader("Preview of New Data")
-                st.dataframe(new_data.tail(20))
-                
-                # Save to server
-                new_data.to_csv("data.csv", index=False)
-                st.success("Data successfully updated!")
-                
-                # Optional: Reset checkbox after upload
-                st.session_state.show_upload = False
-                
-            except Exception as e:
-                st.error(f"Invalid file format: {str(e)}")
-
 # Load saved data (if it exists)
 data, data1, data2, data3, data4 = load_data()
 
@@ -408,9 +379,26 @@ data4 = [round(x /10, 1) for x in datab]
 # Convert lists to comma-separated strings without brackets
 formatted_string = f'"{",".join(map(str, data))}","{",".join(map(str, data1))}","{",".join(map(str, data2))}","{",".join(map(str, dataa))}","{",".join(map(str, datab))}"'# Display the formatted string in a read-only text box
 st.sidebar.subheader("所有输入数据")
+
+## let user upload health data
+# Let user upload health data through the sidebar
+with st.sidebar:
+    #st.header("Data Upload")
+    # Add checkbox to toggle upload visibility
+    show_upload = st.checkbox("Upload local health data?", value=False)
+    
+    if show_upload:
+        uploaded_file = st.file_uploader("Choose txt file", type=["txt"])
+        
+        if uploaded_file is not None:
+
+            with open(uploaded_file, "r") as file:
+                uploadFile = file.read()
+                st.sidebar.code(uploadFile)
+                
 #st.sidebar.text_area("复制以下格式化字符串：", value=formatted_string, height=100, key="formatted_output")
 with open('rebootdate.txt', "r") as file:
-        reboot = file.read()
+    reboot = file.read()
 
 st.sidebar.code(formatted_string, language="plaintext")
 st.sidebar.code(reboot,language="plaintext")
