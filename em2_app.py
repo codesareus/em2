@@ -6,7 +6,7 @@ import pytz
 import re  # Import regex
 import os
 
-
+import matplotlib.pyplot as plt
         
 from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime, timedelta
