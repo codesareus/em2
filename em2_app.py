@@ -500,7 +500,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     # Get the date for the future prediction and last predicted value
     current_date = datetime.now(LOCAL_TIMEZONE)
     future_date = current_date + timedelta(days=prediction_days)
-    future_date_str = future_date.strftime(" %Y-%b-%d")
+    future_date_str = future_date.strftime("%Y-%m-%d")
     last_linear_prediction = linear_future_predictions[-1]
     last_poly_prediction = poly_future_predictions[-1]
     
@@ -514,7 +514,8 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     current_double_ma_tinnitus_level = double_ma_data[-1]  # Latest value in the double moving average data
     
     # Display the current date and values in the plot
-    today_date = current_date.strftime("%b %d, %Y")
+    today_date = current_date.strftime("%Y-%m-%d")
+        
     ax.text(0.3, 0.85, f"慢跑第{days_difference}天\n\n{today_date} \n耳鸣级数：{current_tinnitus_level:.2f}\n双动态均值：{current_double_ma_tinnitus_level:.2f}", 
         horizontalalignment='left', verticalalignment='center', 
         transform=ax.transAxes, fontsize=12, color="blue")
