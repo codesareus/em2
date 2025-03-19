@@ -97,7 +97,7 @@ if submitted and sentence1.strip() and sentence2.strip():
     
     # Save to server CSV only if no file was uploaded
     if st.session_state.mood_history is not None:
-        new_entry_df.to_csv(CSV_FILE, mode='a', header=not os.path.exists(CSV_FILE), index=False)
+        new_entry_df.to_csv(CSV_FILE, mode='a', header= os.path.exists(CSV_FILE), index=False)
     
     st.success("Entry saved successfully!")
     st.balloons()
