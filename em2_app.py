@@ -514,7 +514,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     current_double_ma_tinnitus_level = double_ma_data[-1]  # Latest value in the double moving average data
     
     # Display the current date and values in the plot
-    today_date = current_date[:9]
+    today_date = current_date.strftime("%b %d, %Y")
     ax.text(0.3, 0.85, f"慢跑第{days_difference}天\n\n{today_date} \n耳鸣级数：{current_tinnitus_level:.2f}\n双动态均值：{current_double_ma_tinnitus_level:.2f}", 
         horizontalalignment='left', verticalalignment='center', 
         transform=ax.transAxes, fontsize=12, color="blue")
