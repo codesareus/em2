@@ -41,7 +41,7 @@ st.write("Document your daily mood with two sentences!")
 
 st.session_state.mood_history = pd.read_csv("mood_history.csv", parse_dates=["Date"])
 # Allow user to upload a CSV file
-upload = st.checkbox(("upload local file")
+upload = st.checkbox("upload local file")
 if upload:            
     uploaded_file = st.file_uploader("Upload your mood history CSV", type=["csv"])
     if uploaded_file is not None:
