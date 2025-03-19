@@ -500,7 +500,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     # Get the date for the future prediction and last predicted value
     current_date = datetime.now(LOCAL_TIMEZONE)
     future_date = current_date + timedelta(days=prediction_days)
-    future_date_str = future_date.strftime("%b %d, %Y")
+    future_date_str = future_date.strftime(" %Y-%b-%d")
     last_linear_prediction = linear_future_predictions[-1]
     last_poly_prediction = poly_future_predictions[-1]
     
