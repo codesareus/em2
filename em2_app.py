@@ -46,7 +46,8 @@ if upload:
     uploaded_file = st.file_uploader("Upload your mood history CSV", type=["csv"])
     if uploaded_file is not None:
         st.session_state.mood_history = pd.read_csv(uploaded_file, parse_dates=["Date"])
-
+        # Save to CSV correctly using pandas
+        st.session_state.mood_history.to_csv("mood_history.csv", index=False)
 init_session_state()
 
 st.write("## Daily Entry")
@@ -95,7 +96,7 @@ if submitted and sentence1.strip() and sentence2.strip():
     st.session_state.mood_history = pd.concat([st.session_state.mood_history, new_entry_df], ignore_index=True)
     
     # Save to server CSV only if no file was uploaded
-    if uploaded_file is None:
+    if st.session_state.mood_history is not None:
         new_entry_df.to_csv(CSV_FILE, mode='a', header=not os.path.exists(CSV_FILE), index=False)
     
     st.success("Entry saved successfully!")
