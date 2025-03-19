@@ -343,13 +343,12 @@ st.sidebar.header("数据输入")
 st.sidebar.write("请在下方输入或上传数据集。")
 
 ## let user upload health data
-uploadData = st.sidebar_selectbox("upload health data.csv")
-if uploadData:
-    # Allow user to upload a CSV file
-    uploaded_file = st.sidebar_file_uploader("Upload your health data CSV", type=["csv"])
-    if uploaded_file is not None:
-        file_content = pd.read_csv(uploaded_file)
-        st.code(file_content[-20:])
+
+# Allow user to upload a CSV file
+uploaded_file = st.sidebar_file_uploader("Upload your health data CSV", type=["csv"])
+if uploaded_file is not None:
+    file_content = pd.read_csv(uploaded_file)
+    st.code(file_content[-20:])
 
 # Load saved data (if it exists)
 data, data1, data2, data3, data4 = load_data()
