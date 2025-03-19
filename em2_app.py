@@ -39,10 +39,13 @@ def init_session_state():
 st.title("📔 Daily Mood Diary")
 st.write("Document your daily mood with two sentences!")
 
+st.session_state.mood_history = pd.read_csv("mood_history.csv", parse_dates=["Date"])
 # Allow user to upload a CSV file
-uploaded_file = st.file_uploader("Upload your mood history CSV", type=["csv"])
-if uploaded_file is not None:
-    st.session_state.mood_history = pd.read_csv(uploaded_file, parse_dates=["Date"])
+upload = st.checkbox(("upload local file")
+if upload:            
+    uploaded_file = st.file_uploader("Upload your mood history CSV", type=["csv"])
+    if uploaded_file is not None:
+        st.session_state.mood_history = pd.read_csv(uploaded_file, parse_dates=["Date"])
 
 init_session_state()
 
