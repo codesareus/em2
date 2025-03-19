@@ -461,13 +461,9 @@ if __name__ == "__main__":
 
 ########################. mood predict
 
-import streamlit as st
 from textblob import TextBlob
 import pandas as pd
 import matplotlib.pyplot as plt
-import os
-from datetime import datetime
-import pytz
 
 CSV_FILE = "mood_history.csv"
 MOOD_EMOJIS = {
@@ -610,12 +606,10 @@ if not st.session_state.mood_history.empty:
 st.markdown("---")
 st.caption("Your personal mood diary - Reflect, remember, and grow.")
 
-import streamlit as st
 from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime, timedelta
 import pytz
 import numpy as np
-import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
@@ -624,7 +618,6 @@ import pandas as pd
 import matplotlib.font_manager as fm
 import textwrap
 from sklearn.metrics import r2_score
-import os
 
 ##################################
 
@@ -1433,12 +1426,8 @@ st.video(local_video_path)
 
 ###############
 import time
-import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import tempfile
-import os
 
 # Set up the Streamlit app title
 st.title( "Celebration of life, growth, and enlightenment")
