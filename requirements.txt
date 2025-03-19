@@ -10,3 +10,4 @@ pillow
 textblob
 pydub
 re
+gtts
