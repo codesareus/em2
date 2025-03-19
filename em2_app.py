@@ -338,12 +338,21 @@ def load_data(filename="data.csv"):
 # Streamlit App
 st.title("健康数据分析")
 
-# Load saved data (if it exists)
-data, data1, data2, data3, data4 = load_data()
-
 # Data Entry Page
 st.sidebar.header("数据输入")
 st.sidebar.write("请在下方输入或上传数据集。")
+
+## let user upload health data
+uploadData = st.selectbox("upload health data.csv")
+if uploadData:
+    # Allow user to upload a CSV file
+    uploaded_file = st.file_uploader("Upload your health data CSV", type=["csv"])
+    if uploaded_file is not None:
+        file_content = pd.read_csv(uploaded_file)
+        st.code(file_content[-20:])
+
+# Load saved data (if it exists)
+data, data1, data2, data3, data4 = load_data()
 
 # Add a date input widget in the sidebar for selecting the start date
 start_date = datetime(2024, 10, 22)
