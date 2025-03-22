@@ -758,6 +758,7 @@ def single_correlation(dataA, dataB, num=0):
     correlation_coeff = f"__相关系数:{np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}"
     #print(22, f"**Correlation Coefficient:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
     axes[num].text(0.3, 0.9, f"慢跑第{days_difference}天\n{today_date}", 
+        horizontalalignment='right', verticalalignment='top', 
         fontsize=12, color="blue")
     axes[num].set_xlabel("天数")
     axes[num].set_ylabel("双动态均值")
