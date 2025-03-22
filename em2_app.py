@@ -750,13 +750,12 @@ def single_correlation(dataA, dataB, num=0):
     )
         
     current_date = datetime.now(chicago_tz).strftime("%Y-%m-%d")
-    if dataA == data and dataB== data1:          
-        axes[num].annotate(
+    if dataA == dataaa and dataB== databb,          
+        axes[num].text(50, -0.5,
             f"{current_date}-{days_difference}天：",
-            xy=(50, -0.5),
-            xytext="",  # Reduced height
             fontsize=18,  # Smaller font size
-            color='navy'
+            color='navy',
+            ha='left'
         )
     # Add date label in the bottom-right corner
    # st.markdown(f"Date: {current_date}")
