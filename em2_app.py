@@ -750,7 +750,7 @@ def single_correlation(dataA, dataB, num=0):
     )
         
     current_date = datetime.now(chicago_tz).strftime("%Y-%m-%d")
-    if dataA == dataaa and dataB== databb,          
+    if dataA == dataaa and dataB== databb:       
         axes[num].text(50, -0.5,
             f"{current_date}-{days_difference}天：",
             fontsize=18,  # Smaller font size
