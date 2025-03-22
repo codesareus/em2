@@ -748,7 +748,8 @@ def single_correlation(dataA, dataB, num=0):
         fontsize=10,  # Smaller font size
         color='orange'
     )
-
+        
+    current_date = datetime.now(chicago_tz).strftime("%Y-%m-%d")
     if dataA == data and dataB== data1:          
         axes[num].annotate(
             f"{current_date}-{days_difference}天：",
@@ -758,8 +759,6 @@ def single_correlation(dataA, dataB, num=0):
             color='navy'
         )
     # Add date label in the bottom-right corner
-    current_date = datetime.now(chicago_tz).strftime("%Y-%m-%d")
-    
    # st.markdown(f"Date: {current_date}")
     # Display correlation coefficient below the plot
     title = f"{current_date}慢跑第{days_difference}天,{nameA}和{nameB}双动态均值：相关性和趋势分析" 
