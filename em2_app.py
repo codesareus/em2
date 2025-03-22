@@ -309,6 +309,9 @@ if key_input.strip() == "zzzzzzzzz":
 # Add a divider before the new section
 st.sidebar.markdown("---")
 
+st.sidebar.subheader("daily thoughts")
+thought_input = st.sidebar.text_area("daily thoughts:", value="")
+
 # Add the title for the new section
 st.sidebar.header("耳鸣级数参考方法")
 
@@ -752,7 +755,7 @@ def single_correlation(dataA, dataB, num=0):
     current_date = datetime.now(chicago_tz).strftime("%Y-%m-%d")
     if dataA == dataaa and dataB== databb:       
         axes[num].text(50, -0.5,
-            f"{current_date}-{days_difference}天：",
+            f"{current_date}-{days_difference}天：{thought_input}",
             fontsize=18,  # Smaller font size
             color='navy',
             ha='left'
