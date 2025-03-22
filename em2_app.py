@@ -310,7 +310,7 @@ if key_input.strip() == "zzzzzzzzz":
 st.sidebar.markdown("---")
 
 st.sidebar.subheader("daily thoughts")
-thought_input = st.sidebar.text_area("daily thoughts:", value="")
+thought_input = st.sidebar.text_area("", value="")
 
 # Add the title for the new section
 st.sidebar.header("耳鸣级数参考方法")
