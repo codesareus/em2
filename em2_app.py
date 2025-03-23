@@ -823,23 +823,23 @@ for i, (dataA, dataB) in enumerate(data_pairs[:3]):
 plt.tight_layout()
 st.pyplot(fig)
 
-fig, axes = plt.subplots(nrows=5, ncols=1, figsize=(10, 24))  # 8 rows, 1 column
-for i, (dataA, dataB) in enumerate(data_pairs[3:]):
-    single_correlation(dataA, dataB, i)
-plt.tight_layout()
-st.pyplot(fig)
+#fig, axes = plt.subplots(nrows=5, ncols=1, figsize=(10, 24))  # 8 rows, 1 column
+#for i, (dataA, dataB) in enumerate(data_pairs[3:]):
+    #single_correlation(dataA, dataB, i)
+#plt.tight_layout()
+#st.pyplot(fig)
 
 #######################
 
 # Option 1: Using a local image file
 # Place the image in the same directory as your script or provide the correct path
-image_url = "mycloud.jpeg"  # Replace with your local image file name
-st.image(image_url, caption="This is a local image", width=705)
+#image_url = "mycloud.jpeg"  # Replace with your local image file name
+#st.image(image_url, caption="This is a local image", width=705)
 
 #video
-local_video_path = "taiji.mp4"  # Replace with your local video file name
+#local_video_path = "taiji.mp4"  # Replace with your local video file name
 # Display the 
-st.video(local_video_path)
+#st.video(local_video_path)
 
 
 ###############
