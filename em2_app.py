@@ -25,7 +25,7 @@ from sklearn.metrics import r2_score
 
 #divider image
 imageName = "cherry.jpeg"
-st.image(imageName,width=705)
+st.image("cherry.jpeg",width=705)
 ###############.    draw moon and runner
 # Constants
 IMAGE_WIDTH = 800
@@ -158,7 +158,7 @@ draw.text((MOON_POSITION[0] - 30, MOON_POSITION[1] - 80), "Moon\n384,400km", fil
 st.title("Earth to Moon Running Visualization")
 st.image(image, caption="A young man running from Home to the Moon 2075(2025) will be 91,250 km", use_container_width=True)
 
-st.image(imageName,width=710)
+st.image("cherry.jpeg",width=710)
 
 
 ##############。 耳鸣分析
