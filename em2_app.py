@@ -22,7 +22,7 @@ import textwrap
 from sklearn.metrics import r2_score
 
 ##################################
-prdegree = 4
+prdegree = 5
 #divider image
 imageName = "cherry.jpeg"
 st.image("cherry.jpeg",width=705)
