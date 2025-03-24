@@ -824,6 +824,7 @@ for i, (dataA, dataB) in enumerate(data_pairs[:3]):
 plt.tight_layout()
 st.pyplot(fig)
 
+st.image("lotus.jpg")
 #fig, axes = plt.subplots(nrows=5, ncols=1, figsize=(10, 24))  # 8 rows, 1 column
 #for i, (dataA, dataB) in enumerate(data_pairs[3:]):
     #single_correlation(dataA, dataB, i)
