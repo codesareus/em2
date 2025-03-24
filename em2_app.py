@@ -827,10 +827,11 @@ st.pyplot(fig)
 
 
 def getImage(num=0):
-    images=["lotus.jpg", "cherry.jpg"]
+    images=["lotus.jpg", "cherry.jpeg"]
     return images[num]
     
 st.image(getImage(0))
+st.image(getImage(1))
 #fig, axes = plt.subplots(nrows=5, ncols=1, figsize=(10, 24))  # 8 rows, 1 column
 #for i, (dataA, dataB) in enumerate(data_pairs[3:]):
     #single_correlation(dataA, dataB, i)
