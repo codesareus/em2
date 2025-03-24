@@ -667,7 +667,7 @@ def single_correlation(dataA, dataB, num=0):
     r2_linear_data2 = r2_score(user_data2_smooth, y_pred_linear_data2)
     
     # Polynomial regression for data1 (degree=2)
-    poly_features = PolynomialFeatures(degree=2)
+    poly_features = PolynomialFeatures(degree=prdegree)
     X_poly = poly_features.fit_transform(X)
     poly_model_data1 = LinearRegression()
     poly_model_data1.fit(X_poly, user_data1_smooth)
@@ -701,10 +701,10 @@ def single_correlation(dataA, dataB, num=0):
     
     # Plot trend lines
     axes[num].plot(X, y_pred_linear_data1, color='blue', linestyle='--', label=f"线性趋势 ({nameA}, $R^2$={r2_linear_data1:.2f})")
-    axes[num].plot(X, y_pred_poly_data1, color='blue', linestyle=':', label=f"多项式趋势 ({nameA}, $R^2$={r2_poly_data1:.2f})")
+    axes[num].plot(X, y_pred_poly_data1, color='blue', linestyle=':', label=f"多项式趋势 ({nameA},{prdegree}次 $R^2$={r2_poly_data1:.2f})")
     
     axes[num].plot(X, y_pred_linear_data2, color='orange', linestyle='--', label=f"线性趋势 ({nameB}, $R^2$={r2_linear_data2:.2f})")
-    axes[num].plot(X, y_pred_poly_data2, color='orange', linestyle=':', label=f"多项式趋势 ({nameB}, $R^2$={r2_poly_data2:.2f})")
+    axes[num].plot(X, y_pred_poly_data2, color='orange', linestyle=':', label=f"多项式趋势 ({nameB},{prdegree}次 $R^2$={r2_poly_data2:.2f})")
     
     # Predict trend for the next 30 days
     future_days = 30
