@@ -22,7 +22,7 @@ import textwrap
 from sklearn.metrics import r2_score
 
 ##################################
-
+prdegree = 3
 #divider image
 imageName = "cherry.jpeg"
 st.image("cherry.jpeg",width=705)
@@ -495,7 +495,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     linear_model.fit(time_steps, double_ma_data)
 
     # Fit the polynomial regression model (degree=2 for quadratic)
-    poly_model = make_pipeline(PolynomialFeatures(degree=2), LinearRegression())
+    poly_model = make_pipeline(PolynomialFeatures(degree=prdegree), LinearRegression())
     poly_model.fit(time_steps, double_ma_data)
 
     # Create time steps for the future based on user selection
