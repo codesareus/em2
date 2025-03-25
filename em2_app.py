@@ -772,7 +772,7 @@ def single_correlation(dataA, dataB, num=0):
     #print(22, f"**Correlation Coefficient:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
     axes[num].set_xlabel("天数")
     axes[num].set_ylabel("双动态均值")
-    axes[num].set_title(title + correlation_coeff)
+    axes[num].set_title(title + correlation_coeff， fontsize = 15)
     axes[num].legend(loc='center left')
 
 #############
