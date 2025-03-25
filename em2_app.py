@@ -315,7 +315,7 @@ if key_input.strip() == "zzzzzzzzz":
 st.sidebar.markdown("---")
 
 st.sidebar.subheader("daily thoughts")
-thought_input = st.sidebar.text_area("", value="")
+thought_input = st.sidebar.text_area("", value="避免伤脾四大要素，膻中为心，五脏平衡是本源")
 
 # Add the title for the new section
 st.sidebar.header("耳鸣级数参考方法")
