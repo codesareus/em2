@@ -761,7 +761,7 @@ def single_correlation(dataA, dataB, num=0):
     km = days_difference * 5
     if dataA == dataaa and dataB== databb:       
         axes[num].text(3, -0.1,
-            f"{current_date},{days_difference}天,{km}K：\n{dayData}\n{thought_input}",
+            f"{current_date},第{days_difference}天,共{km}K：\n{dayData}\n{thought_input}",
             fontsize=15,  # Smaller font size
             color='navy',
             ha='left',
