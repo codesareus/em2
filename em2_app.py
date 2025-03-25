@@ -760,11 +760,12 @@ def single_correlation(dataA, dataB, num=0):
     current_date = datetime.now(chicago_tz).strftime("%Y-%m-%d")
     km = days_difference * 5
     if dataA == dataaa and dataB== databb:       
-        axes[num].text(50, -0.2,
-            f"{current_date}-{days_difference}天-{km}K：{thought_input}",
-            fontsize=18,  # Smaller font size
+        axes[num].text(10, -0.2,
+            f"{current_date}-{days_difference}天-{km}K：\n{dayData}\n{thought_input}",
+            fontsize=14,  # Smaller font size
             color='navy',
-            ha='left'
+            ha='left',
+            va="top"
         )
     # Add date label in the bottom-right corner
    # st.markdown(f"Date: {current_date}")
