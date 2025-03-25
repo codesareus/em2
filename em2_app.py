@@ -598,7 +598,6 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
 
 st.markdown("")
 
-
 ##关联性分析
 
 # Function to calculate double moving average
