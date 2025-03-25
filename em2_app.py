@@ -208,6 +208,8 @@ def load_data(filename="data.csv"):
 # Streamlit App
 st.title("健康数据分析")
 
+st.sidebar.subheader("每日观察")
+thought_input = st.sidebar.text_area("", value="避免伤脾四大要素，膻中为心，五脏平衡是本源")
 # Data Entry Page
 st.sidebar.header("数据输入")
 st.sidebar.write("请在下方输入或上传数据集。")
@@ -313,9 +315,6 @@ if key_input.strip() == "zzzzzzzzz":
 
 # Add a divider before the new section
 st.sidebar.markdown("---") #day
-
-st.sidebar.subheader("daily thoughts")
-thought_input = st.sidebar.text_area("", value="避免伤脾四大要素，膻中为心，五脏平衡是本源")
 
 # Add the title for the new section
 st.sidebar.header("耳鸣级数参考方法")
