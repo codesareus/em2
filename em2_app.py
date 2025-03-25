@@ -764,8 +764,7 @@ def single_correlation(dataA, dataB, num=0):
             f"{current_date},第{days_difference}天,共{km}K：\n{dayData}\n{thought_input}",
             fontsize=15,  # Smaller font size
             color='navy',
-            ha='left',
-            va="top"
+            ha='left'
         )
     # Add date label in the bottom-right corner
    # st.markdown(f"Date: {current_date}")
