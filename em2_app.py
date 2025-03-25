@@ -312,7 +312,7 @@ if key_input.strip() == "zzzzzzzzz":
        # st.sidebar.error("没有可下载的数据，请先输入数据并保存。")
 
 # Add a divider before the new section
-st.sidebar.markdown("---")
+st.sidebar.markdown("---") #day
 
 st.sidebar.subheader("daily thoughts")
 thought_input = st.sidebar.text_area("", value="避免伤脾四大要素，膻中为心，五脏平衡是本源")
@@ -438,7 +438,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     current_date = datetime.now(LOCAL_TIMEZONE).strftime("%Y年%m月%d日")
     message1 = f"慢跑第{days_difference}天, {current_date}: \n"
     wrapped_input = wrap_text(marker_message_input, 25)  # Wrap text to 25 characters per line
-    dayData = f"耳鸣：{data[-1]}, 脾胃：{data1[-1]}, 睡眠：{data2[-1]},慢跑心率（最高值百分比）：{data3[-1] *10}, 时长：{data4[-1]*10},"
+    dayData = f"耳鸣：{data[-1]}, 脾胃：{data1[-1]}, 睡眠：{data2[-1]},慢跑心率（最高值百分比）：{data3[-1] *10}, 时长：{data4[-1]*10}分"
     
     ax.text(v_line_pos, 3.5,
         message1 +set_message   + "\n"+ wrapped_input + "\n"+ dayData,
