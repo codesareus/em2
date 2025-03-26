@@ -22,7 +22,7 @@ import textwrap
 from sklearn.metrics import r2_score
 
 ##################################
-prdegree = 3
+
 #divider image
 imageName = "cherry.jpeg"
 st.image("cherry.jpeg",width=705)
@@ -470,9 +470,19 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
 
     # Page break
     st.markdown("---")
-    
+    if "prdegree" not in st.session_state:
+        st.session_state.prdegree = 3
     # Trend Analysis: Double Moving Averages and Linear Regression
-    st.header("耳鸣级数双动态均值趋势分析")
+    col1, col2= st.columns(2)
+    with col1:
+        st.header("耳鸣级数双动态均值趋势分析")
+    with col2:
+        if st.button("deg2 now" if st.session_state.prdegree == 2 else "deg3 now"):
+            if st.session_state.prdegree == 3 :
+                st.session_state.prdegree = 2
+            else:
+                st.session_state.prdegree = 3
+            st.rerun()
 
     # Add a sidebar widget to select prediction days
     st.sidebar.subheader("选择预测天数")
