@@ -675,7 +675,7 @@ def single_correlation(dataA, dataB, num=0):
     r2_linear_data2 = r2_score(user_data2_smooth, y_pred_linear_data2)
     
     # Polynomial regression for data1 (degree=2)
-    poly_features = PolynomialFeatures(degree=prdegree)
+    poly_features = PolynomialFeatures(degree=st.session_state.prdegree)
     X_poly = poly_features.fit_transform(X)
     poly_model_data1 = LinearRegression()
     poly_model_data1.fit(X_poly, user_data1_smooth)
