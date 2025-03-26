@@ -478,7 +478,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     #with col1:
     st.header("耳鸣级数双动态均值趋势分析")
     #with col2:
-    deg3 = st.checkbox("deg3")
+    deg3 = st.checkbox("deg3",value=False)
 
     #if st.button("deg2 now" if st.session_state.prdegree == 2 else "deg3 now"):
     if deg3:
