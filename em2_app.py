@@ -485,7 +485,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
         st.session_state.prdegree == 3      
     else:
         st.session_state.prdegree == 2
-    st.rerun()
+    #st.rerun()
             
 
     # Add a sidebar widget to select prediction days
