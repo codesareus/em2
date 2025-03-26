@@ -482,7 +482,11 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
 
     #if st.button("deg2 now" if st.session_state.prdegree == 2 else "deg3 now"):
     if deg3:
-        st.session_state.prdegree == 3        
+        st.session_state.prdegree == 3      
+    else:
+        st.session_state.prdegree == 2
+    st.rerun()
+            
 
     # Add a sidebar widget to select prediction days
     st.sidebar.subheader("选择预测天数")
