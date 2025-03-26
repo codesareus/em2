@@ -539,7 +539,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
   
     ax.scatter(time_steps, double_ma_data, color="blue", label="双动态均值（7日）")
     ax.plot(time_steps, linear_model.predict(time_steps), color="red", label="线性回归")
-    ax.plot(time_steps, poly_model.predict(time_steps), color="green", label=f"多项式回归 ({prdegree}次)")
+    ax.plot(time_steps, poly_model.predict(time_steps), color="green", label=f"多项式回归 ({st.session_state.prdegree}次)")
     ax.scatter(future_time_steps, linear_future_predictions, color="orange", label=f"线性预测 ({prediction_days} 天)")
     ax.scatter(future_time_steps, poly_future_predictions, color="purple", label=f"多项式预测 ({prediction_days} 天)")
 
