@@ -480,7 +480,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
         if st.button( "future"):
             st.write("ok")
     with col2:
-        if st.button( "deg3 now" if st.session_state.prdegree ==3 else "deg2 now")
+        if st.button( "deg3 now" if st.session_state.prdegree ==3 else "deg2 now"):
             if st.session_state.prdegree == 2:
                 st.session_state.prdegree = 3
             else:
