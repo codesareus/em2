@@ -469,25 +469,23 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     ###################### Trend analysis #############
 
     # Page break
-st.markdown("---")
-        
-if "prdegree" not in st.session_state:
-    st.session_state.prdegree = 2
+    st.markdown("---")
+    st.header("耳鸣级数双动态均值趋势分析")
+
+    if "prdegree" not in st.session_state:
+        st.session_state.prdegree = 2
     # Trend Analysis: Double Moving Averages and Linear Regression
-    #col1, col2= st.columns(2)
-    #with col1:
-st.header("耳鸣级数双动态均值趋势分析")
-    #with col2:
-deg3 = st.checkbox("deg3",value=False)
-
-    #if st.button("deg2 now" if st.session_state.prdegree == 2 else "deg3 now"):
-if deg3:
-    st.session_state.prdegree == 3      
-else:
-    st.session_state.prdegree == 2
-    #st.rerun()
+    col1, col2= st.columns(2)
+    with col1:
+        if st.button( "future")
+    with col2:
+        if st.button( "deg3 now" if st.session_state.prdegree ==3 else "deg2 now")
+            if st.session_state.prdegree == 2:
+                st.session_state.prdegree = 3
+            else:
+                st.session_state.prdegree = 2
+            st.rerun()
             
-
     # Add a sidebar widget to select prediction days
     st.sidebar.subheader("选择预测天数")
     prediction_option = st.sidebar.radio("选择预测选项:", ["30天", "60天", "90天", "自定义天数"])
