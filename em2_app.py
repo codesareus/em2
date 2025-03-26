@@ -470,8 +470,9 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
 
     # Page break
     st.markdown("---")
+        
     if "prdegree" not in st.session_state:
-        st.session_state.prdegree = 3
+        st.session_state.prdegree = 2
     # Trend Analysis: Double Moving Averages and Linear Regression
     #col1, col2= st.columns(2)
     #with col1:
@@ -481,11 +482,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
 
     #if st.button("deg2 now" if st.session_state.prdegree == 2 else "deg3 now"):
     if deg3:
-        if st.session_state.prdegree == 3 :
-            st.session_state.prdegree = 2
-        else:
-            st.session_state.prdegree = 3
-        st.rerun()
+        st.session_state.prdegree == 3        
 
     # Add a sidebar widget to select prediction days
     st.sidebar.subheader("选择预测天数")
