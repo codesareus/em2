@@ -709,7 +709,7 @@ def single_correlation(dataA, dataB, num=0):
     
     # Plot trend lines
     axes[num].plot(X, y_pred_linear_data1, color='blue', linestyle='--', label=f"线性趋势 ({nameA}, $R^2$={r2_linear_data1:.2f})")
-    axes[num].plot(X, y_pred_poly_data1, color='blue', linestyle=':', label=f"多项式趋势 ({nameA},{prdegree}次 $R^2$={r2_poly_data1:.2f})")
+    axes[num].plot(X, y_pred_poly_data1, color='blue', linestyle=':', label=f"多项式趋势 ({nameA},{st.session_state.prdegree}次 $R^2$={r2_poly_data1:.2f})")
     
     axes[num].plot(X, y_pred_linear_data2, color='orange', linestyle='--', label=f"线性趋势 ({nameB}, $R^2$={r2_linear_data2:.2f})")
     axes[num].plot(X, y_pred_poly_data2, color='orange', linestyle=':', label=f"多项式趋势 ({nameB},{prdegree}次 $R^2$={r2_poly_data2:.2f})")
