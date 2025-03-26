@@ -477,7 +477,8 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     # Trend Analysis: Double Moving Averages and Linear Regression
     col1, col2= st.columns(2)
     with col1:
-        if st.button( "future")
+        if st.button( "future"):
+            st.write("ok")
     with col2:
         if st.button( "deg3 now" if st.session_state.prdegree ==3 else "deg2 now")
             if st.session_state.prdegree == 2:
