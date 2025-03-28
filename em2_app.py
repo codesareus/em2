@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 import pytz
 import re  # Import regex
 import os
+import csv
 
 import matplotlib.pyplot as plt
         
@@ -266,21 +267,28 @@ with st.sidebar:
         if uploaded_file is not None:
             upload_content = uploaded_file.read().decode('utf-8')
             # Split the content by commas to separate the series
-            series_list = upload_content.split(',')
+
+# Parse the content using csv.reader to handle quoted strings
+            reader = csv.reader([upload_content], quotechar='"')
+            parsed = next(reader)  # Extracts the two string parts
+
+# Convert each part into a list of floats
+            result = []
+            for part in parsed:
+                numbers = [float(num.strip()) for num in part.split(',')]
+                result.append(numbers)
+
             # Remove the quotation marks from each series and store in dataSet
-            dataSet = [series.strip('"') for series in series_list]
+            #dataSet = [series.strip('"') for series in series_list]
 
             # Process dataSet3 (index 2) by multiplying each data point with 16
-            original_list = parse_input(dataSet[3])  # Assume this returns [5, 10, 15]
-            processed_ds3 = [x * 16 for x in original_list]  # Result: [80, 160, 240]
             
             st.write("len")
             st.write(len(upload_content))
             st.write(upload_content[:50])
-            st.write(len(series_list))
-            st.write(series_list)
-            st.write(len(dataSet))
-            st.write(len(processed_ds3))
+            st.write(len(result))
+            st.write(result[4])
+        
             
 # Process dataSet4 (index 3) by multiplying each data point with 10
             #original_list2 = parse_input(dataSet[4])  
@@ -880,7 +888,3 @@ st.image(getImage(1))
 #local_video_path = "taiji.mp4"  # Replace with your local video file name
 # Display the 
 #st.video(local_video_path)
-
-st.write(len(series_list))
-st.write(series_list)
-
