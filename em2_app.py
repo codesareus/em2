@@ -275,7 +275,7 @@ with st.sidebar:
 # Process dataSet4 (index 3) by multiplying each data point with 10
             processed_ds4 = ','.join([str(float(x.strip()) * 10) for x in dataSet[4].split(',')])
             save_data(dataSet[0], dataSet[1], dataSet[2],processed_ds3, processed_ds4)
-            st.rerun
+            st.rerun()
 
             #save_data(dataSet[0], dataSet[1], dataSet[2], dataSet[3], dataSet[4])
                 
