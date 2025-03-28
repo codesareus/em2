@@ -288,6 +288,7 @@ with st.sidebar:
             st.write(len(result))
             st.write(result[4])
             save_data(result[0], result[1], result[2], result[3], result[4])
+            st.rerun()
             
 # Process dataSet4 (index 3) by multiplying each data point with 10
             #original_list2 = parse_input(dataSet[4])  
