@@ -267,36 +267,17 @@ with st.sidebar:
         if uploaded_file is not None:
             upload_content = uploaded_file.read().decode('utf-8')
             # Split the content by commas to separate the series
-
-# Parse the content using csv.reader to handle quoted strings
+            # Parse the content using csv.reader to handle quoted strings
             reader = csv.reader([upload_content], quotechar='"')
             parsed = next(reader)  # Extracts the two string parts
 
-# Convert each part into a list of floats
+            # Convert each part into a list of floats
             result = []
             for part in parsed:
                 numbers = [float(num.strip()) for num in part.split(',')]
                 result.append(numbers)
-
-            # Remove the quotation marks from each series and store in dataSet
-            #dataSet = [series.strip('"') for series in series_list]
-
-            # Process dataSet3 (index 2) by multiplying each data point with 16
-            #result[3] = [ x * 16 for x in result[3]]
-            #result[4] = [ x * 10 for x in result[4]]
-    
-            st.write(len(result))
-            st.write(result[4])
+            #save the uploaded data back to data.csv file
             save_data(result[0], result[1], result[2], result[3], result[4])
-            
-            
-# Process dataSet4 (index 3) by multiplying each data point with 10
-            #original_list2 = parse_input(dataSet[4])  
-           # processed_ds4 = [x * 16 for x in original_list2] 
-           # save_data(dataSet[0], dataSet[1], dataSet[2],processed_ds3, processed_ds4)
-           # st.rerun()
-
-            #save_data(dataSet[0], dataSet[1], dataSet[2], dataSet[3], dataSet[4])
                 
 #st.sidebar.text_area("复制以下格式化字符串：", value=formatted_string, height=100, key="formatted_output")
 with open('rebootdate.txt', "r") as file:
