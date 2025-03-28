@@ -880,10 +880,6 @@ st.image(getImage(1))
 # Display the 
 #st.video(local_video_path)
 
-st.write("len")
-st.write(len(upload_content))
 st.write(len(series_list))
-st.write(len(dataSet))
-st.write(len(processed_ds3))
-###############
+st.write(series_list)
 
