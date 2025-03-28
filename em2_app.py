@@ -271,9 +271,12 @@ with st.sidebar:
             dataSet = [series.strip('"') for series in series_list]
 
             # Process dataSet3 (index 2) by multiplying each data point with 16
-            processed_ds3 = ','.join([str(float(x.strip()) * 16) for x in dataSet[3].split(',')])
+            original_list = parse_input(dataSet[3])  # Assume this returns [5, 10, 15]
+            processed_ds3 = [x * 16 for x in original_list]  # Result: [80, 160, 240]
+            
 # Process dataSet4 (index 3) by multiplying each data point with 10
-            processed_ds4 = ','.join([str(float(x.strip()) * 10) for x in dataSet[4].split(',')])
+            original_list2 = parse_input(dataSet[4])  
+            processed_ds4 = [x * 16 for x in original_list2] 
             save_data(dataSet[0], dataSet[1], dataSet[2],processed_ds3, processed_ds4)
             st.rerun()
 
