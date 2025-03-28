@@ -266,9 +266,17 @@ with st.sidebar:
         if uploaded_file is not None:
             upload_content = uploaded_file.read().decode('utf-8')
             # Split the content by commas to separate the series
-            #series_list = upload_content.split(',')
+            series_list = upload_content.split(',')
             # Remove the quotation marks from each series and store in dataSet
-            #dataSet = [series.strip('"') for series in series_list]
+            dataSet = [series.strip('"') for series in series_list]
+
+            # Process dataSet3 (index 2) by multiplying each data point with 16
+            processed_ds3 = ','.join([str(float(x.strip()) * 16) for x in dataSet[3].split(',')])
+# Process dataSet4 (index 3) by multiplying each data point with 10
+            processed_ds4 = ','.join([str(float(x.strip()) * 10) for x in dataSet[4].split(',')])
+            save_data(dataSet[0], dataSet[1], dataSet[2],processed_ds3, processed_ds4)
+            st.rerun
+
             #save_data(dataSet[0], dataSet[1], dataSet[2], dataSet[3], dataSet[4])
                 
 #st.sidebar.text_area("复制以下格式化字符串：", value=formatted_string, height=100, key="formatted_output")
