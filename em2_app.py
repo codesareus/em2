@@ -273,6 +273,8 @@ with st.sidebar:
             # Process dataSet3 (index 2) by multiplying each data point with 16
             original_list = parse_input(dataSet[3])  # Assume this returns [5, 10, 15]
             processed_ds3 = [x * 16 for x in original_list]  # Result: [80, 160, 240]
+            
+            st.write("len")
             st.write(len(upload_content))
             st.write(len(series_list))
             st.write(len(dataSet))
@@ -336,6 +338,7 @@ st.sidebar.header("耳鸣级数参考方法")
 
 # Add the image (replace 'path_to_your_image.png' with the actual path to your image)
 st.sidebar.image("erming_jishu.png", caption="耳鸣级数参考图", use_container_width=True)
+
 
 # Check if data is valid
 if data is not None and data1 is not None and data2 is not None and data3 is not None and data4 is not None:
@@ -876,6 +879,10 @@ st.image(getImage(1))
 # Display the 
 #st.video(local_video_path)
 
-
+st.write("len")
+st.write(len(upload_content))
+st.write(len(series_list))
+st.write(len(dataSet))
+st.write(len(processed_ds3))
 ###############
 
