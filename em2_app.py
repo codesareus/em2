@@ -273,7 +273,7 @@ with st.sidebar:
             # Process dataSet3 (index 2) by multiplying each data point with 16
             original_list = parse_input(dataSet[3])  # Assume this returns [5, 10, 15]
             processed_ds3 = [x * 16 for x in original_list]  # Result: [80, 160, 240]
-            st.write(processed_ds3)
+            st.write(len(processed_ds3))
             
 # Process dataSet4 (index 3) by multiplying each data point with 10
             #original_list2 = parse_input(dataSet[4])  
