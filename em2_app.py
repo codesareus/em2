@@ -282,8 +282,8 @@ with st.sidebar:
             #dataSet = [series.strip('"') for series in series_list]
 
             # Process dataSet3 (index 2) by multiplying each data point with 16
-            result[3] = [x for x * 16 in result[3]]
-            result[4] = [x for x * 10 in result[4]]
+            result[3] = [ x * 16 for x in result[3]]
+            result[4] = [ x * 10 for x in result[4]]
     
             st.write(len(result))
             st.write(result[4])
