@@ -5,7 +5,6 @@ from datetime import datetime, timedelta
 import pytz
 import re  # Import regex
 import os
-import csv
 
 import matplotlib.pyplot as plt
         
