@@ -276,6 +276,7 @@ with st.sidebar:
             
             st.write("len")
             st.write(len(upload_content))
+            st.write(upload_content[:50])
             st.write(len(series_list))
             st.write(series_list)
             st.write(len(dataSet))
