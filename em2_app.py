@@ -282,13 +282,12 @@ with st.sidebar:
             #dataSet = [series.strip('"') for series in series_list]
 
             # Process dataSet3 (index 2) by multiplying each data point with 16
-            
-            st.write("len")
-            st.write(len(upload_content))
-            st.write(upload_content[:50])
+            result[3] = [x for x * 16 in result[3]]
+            result[4] = [x for x * 10 in result[4]]
+    
             st.write(len(result))
             st.write(result[4])
-        
+            save_data(result[0], result[1], result[2], result[3], result[4])
             
 # Process dataSet4 (index 3) by multiplying each data point with 10
             #original_list2 = parse_input(dataSet[4])  
