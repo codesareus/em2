@@ -778,7 +778,7 @@ def single_correlation(dataA, dataB, num=0):
     )
         
     current_date = datetime.now(chicago_tz).strftime("%Y-%m-%d")
-    km = days_difference * 5
+    km = distance
     if dataA == dataaa and dataB== databb:       
         axes[num].text(-3, -0.5,
             f"{current_date},第{days_difference}天,共{km}K：\n{dayData}\n{thought_input}",
