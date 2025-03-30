@@ -544,7 +544,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     
     # Display the current date and values in the plot
     today_date = current_date.strftime("%Y-%m-%d")
-    km = days_difference * 5
+    km = distance
     ax.text(0.3, 0.85, f"慢跑第{days_difference}天,共{km}K\n\n{today_date} \n耳鸣级数：{current_tinnitus_level:.2f}\n双动态均值：{current_double_ma_tinnitus_level:.2f}", 
         horizontalalignment='left', verticalalignment='center', 
         transform=ax.transAxes, fontsize=12, color="blue")
