@@ -56,7 +56,7 @@ if current_time.hour >= 6:  # Update only after 6:00 AM St. Louis time
 else:
     days = START_DAYS + days_elapsed - 1
 
-distance = days * DAILY_DISTANCE_INCREMENT  # Distance in km
+distance = days * DAILY_DISTANCE_INCREMENT+ 20# Distance in km
 
 # Total days needed to reach the Moon (assuming 5 km/day)
 max_days = EARTH_MOON_DISTANCE_KM / DAILY_DISTANCE_INCREMENT
