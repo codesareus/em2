@@ -564,7 +564,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
         xytext=(time_steps[-1], current_double_ma_tinnitus_level + 0.2),
         arrowprops=dict(facecolor='blue', shrink=0.05, headwidth=10, width=3),
         fontsize=10,
-        color="red",
+        color="blue",
         ha="center"
     )
 
