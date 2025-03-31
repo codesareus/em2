@@ -567,7 +567,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
         color="red",
         ha="center"
     )
-    
+
     ax.annotate(
         f"{future_date_str}: {last_linear_prediction:.2f} (线性)",
         xy=(future_time_steps[-1], last_linear_prediction),
@@ -593,6 +593,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     last_21_days_time_steps = np.arange(len(double_ma_data) -60, len(double_ma_data)).reshape(-1, 1)
 
     ax.scatter(last_21_days_time_steps, last_21_days_data, color="gray", label="最近8周耳鸣级数", marker=".", s=100)
+    ax.scatter(last_21_days_time_steps[-1], last_21_days_data[-1], color="Red", s=100)
     ax.set_facecolor(bgColor)
     # Add labels and legend
     ax.set_xlabel("天数")
