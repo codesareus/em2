@@ -572,9 +572,9 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
         f"{future_date_str}: {last_linear_prediction:.2f} (线性)",
         xy=(future_time_steps[-1], last_linear_prediction),
         xytext=(future_time_steps[-1], last_linear_prediction + 0.1),
-        arrowprops=dict(facecolor='orange', shrink=0.05, headwidth=10, width=2),
+        arrowprops=dict(facecolor='darkorange', shrink=0.05, headwidth=10, width=2),
         fontsize=10,
-        color="red",
+        color="darkorange",
         ha="center"
     )
 
@@ -584,7 +584,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
         xytext=(future_time_steps[-1], last_poly_prediction + 0.1),
         arrowprops=dict(facecolor='purple', shrink=0.05, headwidth=10, width=2),
         fontsize=10,
-        color="green",
+        color="purple",
         ha="center"
     )
 
