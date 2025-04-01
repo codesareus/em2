@@ -120,7 +120,7 @@ moon_text = ("We choose to go to the Moon \n"
              "not because it is easy,  \n"
              "but because it is hard :)")
 
-#font_path = "Arial.ttf"
+em_text = "1 改掉不良生活习惯，重中之重，2 适当，足量的运动，让身体有个向健康发展的好基础，\n3 调整好自己的情绪，不嗔，4 多多照顾经络，按揉或者是艾灸，\n5 如果脾胃不好，或许头等大事是应该检查一下，是否饮食上，\n即便自己习以为常，多年没事的食物，有些可能的潜在问题。"
 
 font_size = 24
 font = ImageFont.truetype(font_path, font_size)
@@ -154,7 +154,7 @@ draw.polygon(arrowhead, fill="navy")  # Draw the arrowhead
 # Add labels directly above Home and Moon
 draw.text((HOME_POSITION[0] - 10, HOME_POSITION[1] +10), "Home", fill="black")  # Above Home
 draw.text((MOON_POSITION[0] - 30, MOON_POSITION[1] - 80), "Moon\n384,400km", fill="black")  # Above Moon
-
+draw.text((MOON_POSITION[0] - 10, HOME_POSITION[1] +10), em_text, fill="black")  
 # Display the image in Streamlit
 st.title("Earth to Moon Running Visualization")
 st.image(image, caption="A young man running from Home to the Moon 2075(2025) will be 91,250 km", use_container_width=True)
