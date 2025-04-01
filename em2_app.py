@@ -42,7 +42,7 @@ START_DATE = datetime(2025, 1, 29)
 START_DAYS = 137
 
 
-font_path = "SimHei.ttf"
+font_path = "Ariel.ttf"
 bgColor = "lightblue"
 
 fm.fontManager.addfont('SimHei.ttf')
