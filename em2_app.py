@@ -45,6 +45,10 @@ START_DAYS = 137
 font_path = "Arial.ttf"
 bgColor = "lightblue"
 
+# 添加中文字体支持（示例使用微软雅黑，请确保系统有该字体）
+# 也可以替换为其他中文字体路径如 "simhei.ttf"
+chinese_font = ImageFont.truetype("SimHei.ttf", 12)  # 调整字体大小
+
 fm.fontManager.addfont('SimHei.ttf')
 
 set_message="健康第一，做有意义的事，不懈怠，不贪不嗔不痴，无证据不假定"
@@ -156,7 +160,9 @@ draw.polygon(arrowhead, fill="navy")  # Draw the arrowhead
 # Add labels directly above Home and Moon
 draw.text((HOME_POSITION[0] - 10, HOME_POSITION[1] +10), "Home", fill="black")  # Above Home
 draw.text((MOON_POSITION[0] - 30, MOON_POSITION[1] - 80), "Moon\n384,400km", fill="black")  # Above Moon
-draw.text((MOON_POSITION[0] - 10, HOME_POSITION[1] +10), em_text, fill="black")  
+# 绘制文本时指定字体
+draw.text((MOON_POSITION[0] - 10, HOME_POSITION[1] +10), em_text, fill="black", font=chinese_font)
+
 # Display the image in Streamlit
 st.title("Earth to Moon Running Visualization")
 st.image(image, caption="A young man running from Home to the Moon 2075(2025) will be 91,250 km", use_container_width=True)
