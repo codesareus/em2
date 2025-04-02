@@ -218,7 +218,7 @@ def load_data(filename="data.csv"):
 st.title("健康数据分析")
 
 st.sidebar.subheader("每日观察")
-thought_input = st.sidebar.text_area("", value="避免伤脾四大要素，膻中为心，五脏平衡是本源")
+thought_input = st.sidebar.text_area("", value="避免伤脾五大要素，膻中为心，五脏平衡是本源")
 # Data Entry Page
 st.sidebar.header("数据输入")
 st.sidebar.write("请在下方输入或上传数据集。")
