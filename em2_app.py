@@ -315,20 +315,6 @@ if key_input.strip() == "zzzzzzzzz":
         mime="text/plain"
     )
 
-# Add a button to download the saved data as a CSV file
-#if st.sidebar.button("下载数据为CSV文件"):
-    #if data is not None and data1 is not None and data2 is not None and data3 is not None and data4 is not None:
-       # save_data(data, data1, data2, dataa, datab, "health_data.csv")
-        #with open("health_data.csv", "rb") as file:
-         #   st.sidebar.download_button(
-             #   label="点击下载CSV文件",
-               # data=file,
-               # file_name="health_data.csv",
-               # mime="text/csv"
-            #)
-    #else:
-       # st.sidebar.error("没有可下载的数据，请先输入数据并保存。")
-
 # Add a divider before the new section
 st.sidebar.markdown("---") #day
 
@@ -490,7 +476,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     st.header("耳鸣级数双动态均值趋势分析")
 
     if "prdegree" not in st.session_state:
-        st.session_state.prdegree = 2
+        st.session_state.prdegree = 3
     # Trend Analysis: Double Moving Averages and Linear Regression
     col1, col2= st.columns(2)
     with col1:
