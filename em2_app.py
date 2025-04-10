@@ -785,7 +785,7 @@ def single_correlation(dataA, dataB, num=0):
    # st.markdown(f"Date: {current_date}")
     # Display correlation coefficient below the plot
     title = f"{current_date}慢跑第{days_difference}天,{nameA}和{nameB}双动态均值：相关性和趋势分析" 
-    correlation_coeff = f"__相关系数:{np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}"
+    correlation_coeff = f"__线性相关系数:{np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}"
     #print(22, f"**Correlation Coefficient:** {np.corrcoef(user_data1_smooth, user_data2_smooth)[0, 1]:.2f}")
     axes[num].set_xlabel("天数")
     axes[num].set_ylabel("双动态均值")
