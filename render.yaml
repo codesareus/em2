@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: em2
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "streamlit run em2_app.py --server.port=$PORT --server.enableCORS=false"
