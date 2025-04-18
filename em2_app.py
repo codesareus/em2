@@ -646,7 +646,7 @@ def process_data (dataA, dataB):
     xiaimi_data_num = days_difference - 110 #(70 on 180 days of running)
     lengthHere = min(len(user_data1_smooth),len(user_data2_smooth))
 
-    xiaimi_data_num = lengthHere
+   # xiaimi_data_num = lengthHere
 
     if dataA in (data3, data4) or dataB in (data3, data4) :
         user_data1_smooth = user_data1_smooth[-xiaimi_data_num:]
