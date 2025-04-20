@@ -177,7 +177,7 @@ plt.rcParams['font.sans-serif'] = ['SimHei']  # Use SimHei or Arial Unicode MS
 plt.rcParams['axes.unicode_minus'] = False
 
 # Function to calculate 7-point moving average#########
-def moving_average(data, window_size=3):
+def moving_average(data, window_size=4):
 #def moving_average(data, window_size=7):
     return np.convolve(data, np.ones(window_size) / window_size, mode='valid')
 
