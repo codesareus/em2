@@ -51,7 +51,7 @@ chinese_font = ImageFont.truetype("SimHei.ttf", 12)  # 调整字体大小
 
 fm.fontManager.addfont('SimHei.ttf')
 
-set_message="健康第一，做有意义的事，不懈怠，不贪不嗔不痴，无证据不假定"
+set_message=""
 # Calculate updated Days and Distance based on the current date
 LOCAL_TIMEZONE = pytz.timezone('America/Chicago')  # Replace with your local timezone
 current_time = datetime.now(LOCAL_TIMEZONE)
