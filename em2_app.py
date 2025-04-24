@@ -298,10 +298,10 @@ st.sidebar.code(upload_content)
 
 # Add a "key" input box for automatic saving
 st.sidebar.subheader("自动保存设置")
-key_input = st.sidebar.text_input("输入密钥以自动保存数据:", type="password")  # Hide the entered key
+key_input = st.sidebar.text_input("输入密钥以自动保存数据:", type="default")  # Hide the entered key
 
 # Automatically save data if the key is "zzzzzzzzz"
-if key_input.strip() == "zzzzzzzzz":
+if key_input.strip() == "z":
     if data is not None and data1 is not None and data2 is not None and data3 is not None and data4 is not None:
         save_data(data, data1, data2, dataa, datab)
         st.sidebar.success("数据已自动保存！")
