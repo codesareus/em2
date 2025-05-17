@@ -469,7 +469,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     
     ax.text(v_line_pos, 2.5,
         message1 +set_message   + "\n"+ wrapped_input + "\n"+ dayData,
-        color='navy', fontsize=16, ha='right', 
+        color='navy', fontsize=16, ha='left', 
         bbox={
             'facecolor': '#FFCCCB',  # Light red (hex code for "light coral")
             'edgecolor': 'none',    # Remove border
