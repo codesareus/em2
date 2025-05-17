@@ -435,14 +435,27 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     v_line_pos = st.sidebar.slider('Vertical Line Position', 5 , days_difference, days_difference -38)
     
    # Function to wrap text into lines of a specified width
-    def wrap_text(text, width):
-        return "\n".join(textwrap.wrap(text, width=width))
+   # def wrap_text(text, width):
+       # return "\n".join(textwrap.wrap(text, width=width))
+    def wrap_text(text):
+    # Split text into paragraphs using "@" as the separator
+        paragraphs = text.split("@")
+    
+    # Wrap each paragraph and join with newlines
+        wrapped_paragraphs = [
+            "\n".join(textwrap.wrap(paragraph.strip()))
+            for paragraph in paragraphs
+            if paragraph.strip()  # Ignore empty paragraphs
+        ]
+    
+    # Join paragraphs with a blank line between them
+        return "\n\n".join(wrapped_paragraphs)
 
 # Position and content for the text annotation
     
     current_date = datetime.now(LOCAL_TIMEZONE).strftime("%Y年%m月%d日")
     message1 = f"慢跑第{days_difference}天, {current_date}: \n"
-    wrapped_input = wrap_text(marker_message_input, 30)  # Wrap text to 25 characters per line
+    wrapped_input = wrap_text(marker_message_input)  # Wrap text to 25 characters per line
     dayData = f"\n耳鸣：{data[-1]}, 脾胃：{data1[-1]}, 睡眠：{data2[-1]},慢跑心率（最高值百分比）：{data3[-1] *10}, 时长：{data4[-1]*10}分"
     
     ax.text(v_line_pos, 2.5,
