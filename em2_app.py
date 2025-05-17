@@ -312,7 +312,7 @@ if key_input.strip() == "z":
     st.sidebar.download_button(
         label="下载为文本文件",
         data=formatted_string,
-        file_name="健康数据.txt",
+        file_name="health_Data.txt",
         mime="text/plain"
     )
 
