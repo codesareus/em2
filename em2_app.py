@@ -445,8 +445,14 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     
     ax.text(v_line_pos, 2.5,
         message1 +set_message   + "\n"+ wrapped_input + "\n"+ dayData,
-        color='navy', fontsize=16, ha='right', backgroundcolor='#FFCCCB')
-
+        color='navy', fontsize=16, ha='right', 
+        bbox={
+            'facecolor': '#FFCCCB',  # Light red (hex code for "light coral")
+            'edgecolor': 'none',    # Remove border
+            'boxstyle': 'round',     # Optional: rounded corners
+            'pad': 0.5      }
+            # Padding around text)
+           )
     # Add lines based on slider values
     ax.axhline(y=h_line_pos, color='orange', lw=2, linestyle='--')
     ax.axvline(x=v_line_pos, color='orange', lw=2, linestyle='--')
