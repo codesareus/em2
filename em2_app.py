@@ -437,19 +437,28 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
    # Function to wrap text into lines of a specified width
    # def wrap_text(text, width):
        # return "\n".join(textwrap.wrap(text, width=width))
+    
+
     def wrap_text(text):
-    # Split text into paragraphs using "@" as the separator
-        paragraphs = text.split("@")
+    # Split text into sections using "@"
+        sections = text.split("@")
     
-    # Wrap each paragraph and join with newlines
-        wrapped_paragraphs = [
-            "\n".join(textwrap.wrap(paragraph.strip()))
-            for paragraph in paragraphs
-            if paragraph.strip()  # Ignore empty paragraphs
-        ]
+    # Process each section:
+        wrapped_lines = []
+        for section in sections:
+        # Strip whitespace and skip empty sections
+            stripped = section.strip()
+            if not stripped:
+                continue
+        
+        # Wrap the section into 32-character lines
+            wrapped = textwrap.wrap(stripped, width=32)
+        
+        # Add the wrapped lines to the result
+            wrapped_lines.extend(wrapped)
     
-    # Join paragraphs with a blank line between them
-        return "\n\n".join(wrapped_paragraphs)
+    # Join all lines with single newlines
+        return "\n".join(wrapped_lines)
 
 # Position and content for the text annotation
     
