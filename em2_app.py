@@ -431,7 +431,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     v_line_pos = st.sidebar.slider('Vertical Line Position', 5 , days_difference, days_difference -38)
     
     #st.sidebar.subheader("marker_message")
-    marker_message_input = st.sidebar.text_area("输入分析信息：", value="\n")
+    marker_message_input = st.sidebar.text_area("输入分析信息：", value="今天耳鸣特别好，是因为?-++- \n")
     # Function to wrap text into lines of a specified width
     def wrap_text(text, width):
         return "\n".join(textwrap.wrap(text, width=width))
