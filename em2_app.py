@@ -396,6 +396,9 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
         ax.yaxis.set_major_locator(ticker.MultipleLocator(0.5))
 
  ##########. add labels separately
+ #st.sidebar.subheader("marker_message")
+marker_message_input = st.sidebar.text_area("输入分析信息：", value="今天耳鸣特别好，是因为?-++- \n" if data[-1]<= 1 else " \n")
+    
     ax.text(10, 7.8,
         "心率（最高值百分比/10）（小米）",
         color='blue', fontsize=15, ha='left')   
@@ -430,9 +433,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     h_line_pos = st.sidebar.slider('Horizontal Line Position', - 1, 9, 1)
     v_line_pos = st.sidebar.slider('Vertical Line Position', 5 , days_difference, days_difference -38)
     
-    #st.sidebar.subheader("marker_message")
-    marker_message_input = st.sidebar.text_area("输入分析信息：", value="今天耳鸣特别好，是因为?-++- \n" if data[-1]<= 1 else " \n")
-    # Function to wrap text into lines of a specified width
+   # Function to wrap text into lines of a specified width
     def wrap_text(text, width):
         return "\n".join(textwrap.wrap(text, width=width))
 
