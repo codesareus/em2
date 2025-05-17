@@ -467,7 +467,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     wrapped_input = wrap_text(marker_message_input)  # Wrap text to 25 characters per line
     dayData = f"\n耳鸣：{data[-1]}, 脾胃：{data1[-1]}, 睡眠：{data2[-1]},慢跑心率（最高值百分比）：{data3[-1] *10}, 时长：{data4[-1]*10}分"
     
-    ax.text(v_line_pos, 2.5,
+    ax.text(0.5, 2.5,
         message1 +set_message   + "\n"+ wrapped_input + "\n"+ dayData,
         color='navy', fontsize=16, ha='left', 
         bbox={
