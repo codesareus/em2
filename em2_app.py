@@ -221,7 +221,7 @@ st.title("健康数据分析")
 st.sidebar.subheader("每日观察")
 thought_input = st.sidebar.text_area("", value="")
  #st.sidebar.subheader("marker_message")
-marker_message_input = st.sidebar.text_area("输入分析信息：", value="今天耳鸣特别好，是因为?-++- \n" )
+marker_message_input = st.sidebar.text_area("输入分析信息：", value="今天耳鸣特别好，是因为?-++- @######\n" )
     
 # Data Entry Page
 st.sidebar.header("数据输入")
@@ -452,7 +452,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
                 continue
         
         # Wrap the section into 32-character lines
-            wrapped = textwrap.wrap(stripped, width=32)
+            wrapped = textwrap.wrap(stripped, width=38)
         
         # Add the wrapped lines to the result
             wrapped_lines.extend(wrapped)
