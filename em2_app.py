@@ -397,7 +397,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
 
  ##########. add labels separately
  #st.sidebar.subheader("marker_message")
-marker_message_input = st.sidebar.text_area("输入分析信息：", value="今天耳鸣特别好，是因为?-++- \n" if data[-1]<= 1 else " \n")
+    marker_message_input = st.sidebar.text_area("输入分析信息：", value="今天耳鸣特别好，是因为?-++- \n" if data[-1]<= 1 else " \n")
     
     ax.text(10, 7.8,
         "心率（最高值百分比/10）（小米）",
