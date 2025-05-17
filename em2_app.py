@@ -441,7 +441,7 @@ if data is not None and data1 is not None and data2 is not None and data3 is not
     current_date = datetime.now(LOCAL_TIMEZONE).strftime("%Y年%m月%d日")
     message1 = f"慢跑第{days_difference}天, {current_date}: \n"
     wrapped_input = wrap_text(marker_message_input, 25)  # Wrap text to 25 characters per line
-    dayData = f"耳鸣：{data[-1]}, 脾胃：{data1[-1]}, 睡眠：{data2[-1]},慢跑心率（最高值百分比）：{data3[-1] *10}, 时长：{data4[-1]*10}分"
+    dayData = f"\n耳鸣：{data[-1]}, 脾胃：{data1[-1]}, 睡眠：{data2[-1]},慢跑心率（最高值百分比）：{data3[-1] *10}, 时长：{data4[-1]*10}分"
     
     ax.text(v_line_pos, 3.5,
         message1 +set_message   + "\n"+ wrapped_input + "\n"+ dayData,
