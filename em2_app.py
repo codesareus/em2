@@ -898,7 +898,7 @@ def get_cst_date():
     now_utc = datetime.now(pytz.utc)
     return now_utc.astimezone(cst).date()
 
-data_input = st.text_area("Paste your series of numbers (comma or newline separated):", height=200)
+data_input = er_ming_input
 
 if data_input:
     raw_data = [x.strip() for x in data_input.replace(',', '\n').split('\n')]
