@@ -962,5 +962,4 @@ for ax, raw_data, title_name in zip(axes, dataSets, names):
         ax.axis('on')
 
 # Display the full figure in Streamlit
-ax.set_facecolor('#e6f7ff')  # Light blue background
 st.pyplot(fig)
