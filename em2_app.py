@@ -908,6 +908,9 @@ data3= [round(x /1.6, 1) for x in dataa]
 datab = parse_input(wqshijian_input)
 data4 = [round(x /1.0, 1) for x in datab] 
 
+dataSets =[data, data2, data3, data4]
+names = ['耳鸣级数','睡眠质量', '心率均值（最高值百分比）','5K时长(分钟）']
+
 #data_input = er_ming_input
 
 if data:
@@ -1122,3 +1125,59 @@ if data4:
         st.error("Please ensure all inputs are valid numbers.")
     except pytz.UnknownTimeZoneError:
         st.error("Timezone configuration error - please ensure pytz is installed.")
+
+##########
+
+dataSets = [data, data2, data3, data4]
+names = ['耳鸣级数','睡眠质量', '心率均值（最高值百分比）','5K时长(分钟）']
+
+# Create a single figure with 4 subplots stacked vertically
+fig, axes = plt.subplots(nrows=4, ncols=1, figsize=(10, 1.75 * 4))
+plt.rcParams['font.family'] = 'sans-serif'
+plt.rcParams['font.sans-serif'] = ['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
+plt.subplots_adjust(hspace=0.6)  # Add space between plots
+
+for i, (ax, raw_data, title_name) in enumerate(zip(axes, dataSets, names)):
+    try:
+        numbers = [float(x) for x in raw_data if x]
+        if len(numbers) < 27:
+            ax.text(0.5, 0.5, f"Not enough data ({len(numbers)} points)\nNeed at least 27", 
+                    ha='center', va='center', color='red')
+            ax.set_title(title_name)
+            ax.axis('on')
+            continue
+
+        # Generate dates
+        today_cst = get_cst_date()
+        dates = [today_cst - timedelta(days=i) for i in range(20, -1, -1)]  # Last 21 days
+        last_27 = numbers[-27:]
+
+        # Moving average
+        moving_avg = [sum(last_27[i:i+7])/7 for i in range(21)]
+        original_data = last_27[-21:]
+
+        # Plotting
+        ax.plot(dates, original_data, marker='o', label='Daily Data')
+        ax.plot(dates, moving_avg, label='7-Day Moving Average', color='orange', linestyle='--', linewidth=2)
+
+        ax.set_title(title_name)
+        ax.set_xlabel(f"Date (Central Time)\n{today_cst.strftime('%Y-%m-%d')}")
+        ax.set_ylabel("Value")
+        ax.set_xticks(dates)
+        ax.set_xticklabels([d.strftime("%m-%d\n%a") for d in dates], rotation=0)
+        ax.grid(True, alpha=0.3)
+        ax.legend()
+
+    except ValueError:
+        ax.text(0.5, 0.5, "Invalid input: Only numeric values allowed", ha='center', va='center', color='red')
+        ax.set_title(title_name)
+        ax.axis('on')
+    except Exception as e:
+        ax.text(0.5, 0.5, f"Error: {str(e)}", ha='center', va='center', color='red')
+        ax.set_title(title_name)
+        ax.axis('on')
+
+# Display the full figure in Streamlit
+st.pyplot(fig)
+
