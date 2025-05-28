@@ -1136,9 +1136,11 @@ fig, axes = plt.subplots(nrows=4, ncols=1, figsize=(10, 1.75 * 4))
 plt.rcParams['font.family'] = 'sans-serif'
 plt.rcParams['font.sans-serif'] = ['SimHei']
 plt.rcParams['axes.unicode_minus'] = False
-plt.subplots_adjust(hspace=0.6)  # Add space between plots
 
-for i, (ax, raw_data, title_name) in enumerate(zip(axes, dataSets, names)):
+# Increase vertical spacing between subplots to avoid overlap
+plt.subplots_adjust(hspace=1)  # You can tweak this value as needed
+
+for ax, raw_data, title_name in zip(axes, dataSets, names):
     try:
         numbers = [float(x) for x in raw_data if x]
         if len(numbers) < 27:
@@ -1180,4 +1182,3 @@ for i, (ax, raw_data, title_name) in enumerate(zip(axes, dataSets, names)):
 
 # Display the full figure in Streamlit
 st.pyplot(fig)
-
