@@ -909,7 +909,7 @@ datab = parse_input(wqshijian_input)
 data4 = [round(x /1.0, 1) for x in datab] 
 
 dataSets =[data, data2, data3, data4]
-names = ['耳鸣级数','睡眠质量', '心率均值（最高值百分比）','5K时长(分钟）']
+names = ['耳鸣级数','睡眠质量', '5K心率均值（最高值百分比）','5K时长(分钟）']
 
 # Create a single figure with 4 subplots stacked vertically
 fig, axes = plt.subplots(nrows=4, ncols=1, figsize=(10, 2.5*4))
