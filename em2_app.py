@@ -919,7 +919,7 @@ plt.rcParams['axes.unicode_minus'] = False
 
 # Increase vertical spacing between subplots to avoid overlap
 plt.subplots_adjust(hspace=1)  # You can tweak this value as needed
-plt.set_facecolor('#e6f7ff') 
+
 for ax, raw_data, title_name in zip(axes, dataSets, names):
     ax.set_facecolor('#e6f7ff')  # Light blue background
     try:
