@@ -918,7 +918,7 @@ plt.rcParams['font.sans-serif'] = ['SimHei']
 plt.rcParams['axes.unicode_minus'] = False
 
 # Increase vertical spacing between subplots to avoid overlap
-plt.subplots_adjust(hspace=1.25)  # You can tweak this value as needed
+plt.subplots_adjust(hspace=1)  # You can tweak this value as needed
 
 for ax, raw_data, title_name in zip(axes, dataSets, names):
     try:
