@@ -946,7 +946,7 @@ for ax, raw_data, title_name in zip(axes, dataSets, names):
 
         ax.set_title(title_name)
         ax.set_xlabel(f"Date (Central Time)\n{today_cst.strftime('%Y-%m-%d')}")
-        ax.set_ylabel("Value")
+        ax.set_ylabel(title_name)
         ax.set_xticks(dates)
         ax.set_xticklabels([d.strftime("%m-%d\n%a") for d in dates], rotation=0)
         ax.grid(True, alpha=0.3)
