@@ -921,6 +921,7 @@ plt.rcParams['axes.unicode_minus'] = False
 plt.subplots_adjust(hspace=1)  # You can tweak this value as needed
 
 for ax, raw_data, title_name in zip(axes, dataSets, names):
+    ax.set_facecolor('#e6f7ff')  # Light blue background
     try:
         numbers = [float(x) for x in raw_data if x]
         if len(numbers) < 27:
