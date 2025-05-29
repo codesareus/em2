@@ -959,4 +959,4 @@ for i, (dataA, dataB) in enumerate(data_pairs[:3]):
 plt.tight_layout()
 st.pyplot(fig)
 
-st.write("================)
+st.write("================")
