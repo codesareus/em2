@@ -251,7 +251,90 @@ st.sidebar.subheader("5K时间")
 wqshijian_input = st.sidebar.text_area("输入5K时间数据（逗号分隔）：", value=",".join(map(str, data4)) if data4 else "")
 
 ##############
+from datetime import datetime, timedelta
+import pytz  # Needed for timezone handling
+import matplotlib.font_manager as fm
 
+# Add the SimHei font to Matplotlib's font manager
+fm.fontManager.addfont('SimHei.ttf')
+
+st.title("Plot the Last 21 Daily Data Points with Moving Average (Central Time)")
+
+# Configure Central Time zone
+cst = pytz.timezone('America/Chicago')
+
+def get_cst_date():
+    """Get current date in US Central Time"""
+    now_utc = datetime.now(pytz.utc)
+    return now_utc.astimezone(cst).date()
+
+
+# Parse input data
+data = parse_input(er_ming_input)
+#data1 = parse_input(pi_wei_input)
+data2 = parse_input(sleep_input)
+dataa = parse_input(xinlv_input)
+data3= [round(x /1.6, 1) for x in dataa] 
+datab = parse_input(wqshijian_input)
+data4 = [round(x /1.0, 1) for x in datab] 
+
+dataSets =[data, data4, data3, data2]
+names = ['耳鸣级数','5K时长(分钟)','5K心率均值(最高值百分比)','睡眠质量']
+
+# Create a single figure with 4 subplots stacked vertically
+fig, axes = plt.subplots(nrows=4, ncols=1, figsize=(10, 2.5*4))
+plt.rcParams['font.family'] = 'sans-serif'
+plt.rcParams['font.sans-serif'] = ['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
+
+# Increase vertical spacing between subplots to avoid overlap
+plt.subplots_adjust(hspace=1)  # You can tweak this value as needed
+
+for ax, raw_data, title_name in zip(axes, dataSets, names):
+    ax.set_facecolor('#e6f7ff')  # Light blue background
+    try:
+        numbers = [float(x) for x in raw_data if x]
+        if len(numbers) < 27:
+            ax.text(0.5, 0.5, f"Not enough data ({len(numbers)} points)\nNeed at least 27", 
+                    ha='center', va='center', color='red')
+            ax.set_title(title_name)
+            ax.axis('on')
+            continue
+
+        # Generate dates
+        today_cst = get_cst_date()
+        dates = [today_cst - timedelta(days=i) for i in range(20, -1, -1)]  # Last 21 days
+        last_27 = numbers[-27:]
+
+        # Moving average
+        moving_avg = [sum(last_27[i:i+7])/7 for i in range(21)]
+        original_data = last_27[-21:]
+
+        # Plotting
+        ax.plot(dates, original_data, marker='o', label='Daily Data')
+        ax.plot(dates, moving_avg, label='7-Day Moving Average', color='orange', linestyle='--', linewidth=2)
+
+        ax.set_title(title_name)
+        ax.set_xlabel(f"Date (Central Time)\n{today_cst.strftime('%Y-%m-%d')}")
+        ax.set_ylabel(title_name)
+        ax.set_xticks(dates)
+        ax.set_xticklabels([d.strftime("%m-%d\n%a") for d in dates], rotation=0)
+        ax.grid(True, alpha=0.3)
+        ax.legend()
+
+    except ValueError:
+        ax.text(0.5, 0.5, "Invalid input: Only numeric values allowed", ha='center', va='center', color='red')
+        ax.set_title(title_name)
+        ax.axis('on')
+    except Exception as e:
+        ax.text(0.5, 0.5, f"Error: {str(e)}", ha='center', va='center', color='red')
+        ax.set_title(title_name)
+        ax.axis('on')
+
+# Display the full figure in Streamlit
+st.pyplot(fig)
+st.write("==============")
+st.write("==============")
 
 
 # Parse input data for original
@@ -878,87 +961,3 @@ st.pyplot(fig)
 
 st.write("================")
 
-from datetime import datetime, timedelta
-import pytz  # Needed for timezone handling
-import matplotlib.font_manager as fm
-
-# Add the SimHei font to Matplotlib's font manager
-fm.fontManager.addfont('SimHei.ttf')
-
-st.title("Plot the Last 21 Daily Data Points with Moving Average (Central Time)")
-
-# Configure Central Time zone
-cst = pytz.timezone('America/Chicago')
-
-def get_cst_date():
-    """Get current date in US Central Time"""
-    now_utc = datetime.now(pytz.utc)
-    return now_utc.astimezone(cst).date()
-
-
-# Parse input data
-data = parse_input(er_ming_input)
-#data1 = parse_input(pi_wei_input)
-data2 = parse_input(sleep_input)
-dataa = parse_input(xinlv_input)
-data3= [round(x /1.6, 1) for x in dataa] 
-datab = parse_input(wqshijian_input)
-data4 = [round(x /1.0, 1) for x in datab] 
-
-dataSets =[data, data4, data3, data2]
-names = ['耳鸣级数','5K时长(分钟)','5K心率均值(最高值百分比)','睡眠质量']
-
-# Create a single figure with 4 subplots stacked vertically
-fig, axes = plt.subplots(nrows=4, ncols=1, figsize=(10, 2.5*4))
-plt.rcParams['font.family'] = 'sans-serif'
-plt.rcParams['font.sans-serif'] = ['SimHei']
-plt.rcParams['axes.unicode_minus'] = False
-
-# Increase vertical spacing between subplots to avoid overlap
-plt.subplots_adjust(hspace=1)  # You can tweak this value as needed
-
-for ax, raw_data, title_name in zip(axes, dataSets, names):
-    ax.set_facecolor('#e6f7ff')  # Light blue background
-    try:
-        numbers = [float(x) for x in raw_data if x]
-        if len(numbers) < 27:
-            ax.text(0.5, 0.5, f"Not enough data ({len(numbers)} points)\nNeed at least 27", 
-                    ha='center', va='center', color='red')
-            ax.set_title(title_name)
-            ax.axis('on')
-            continue
-
-        # Generate dates
-        today_cst = get_cst_date()
-        dates = [today_cst - timedelta(days=i) for i in range(20, -1, -1)]  # Last 21 days
-        last_27 = numbers[-27:]
-
-        # Moving average
-        moving_avg = [sum(last_27[i:i+7])/7 for i in range(21)]
-        original_data = last_27[-21:]
-
-        # Plotting
-        ax.plot(dates, original_data, marker='o', label='Daily Data')
-        ax.plot(dates, moving_avg, label='7-Day Moving Average', color='orange', linestyle='--', linewidth=2)
-
-        ax.set_title(title_name)
-        ax.set_xlabel(f"Date (Central Time)\n{today_cst.strftime('%Y-%m-%d')}")
-        ax.set_ylabel(title_name)
-        ax.set_xticks(dates)
-        ax.set_xticklabels([d.strftime("%m-%d\n%a") for d in dates], rotation=0)
-        ax.grid(True, alpha=0.3)
-        ax.legend()
-
-    except ValueError:
-        ax.text(0.5, 0.5, "Invalid input: Only numeric values allowed", ha='center', va='center', color='red')
-        ax.set_title(title_name)
-        ax.axis('on')
-    except Exception as e:
-        ax.text(0.5, 0.5, f"Error: {str(e)}", ha='center', va='center', color='red')
-        ax.set_title(title_name)
-        ax.axis('on')
-
-# Display the full figure in Streamlit
-st.pyplot(fig)
-st.write("==============")
-st.write("==============")
