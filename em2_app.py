@@ -933,7 +933,7 @@ options = [
 ]
 
 
-st.image(imageName,width=705)
+#st.image(imageName,width=705)
 # Create a dropdown menu
 st.header("相关度分析：单图")
             
