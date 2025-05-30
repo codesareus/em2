@@ -951,7 +951,7 @@ st.pyplot(fig)
 
 
 st.markdown("")
-st.image(imageName,width=705)
+#st.image(imageName,width=705)
 st.header("相关度分析：多图一组")
 
 ####### 3 & 5 plots together
