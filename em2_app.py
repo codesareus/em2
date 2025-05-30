@@ -25,149 +25,10 @@ from sklearn.metrics import r2_score
 ##################################
 
 #divider image
-imageName = "cherry.jpeg"
-st.image("cherry.jpeg",width=705)
-###############.    draw moon and runner
-# Constants
-IMAGE_WIDTH = 800
-IMAGE_HEIGHT = 600
-HOME_RADIUS = 10
-MOON_RADIUS = 50
-MOON_POSITION = (100, 100)  # Upper left corner
-HOME_POSITION = (IMAGE_WIDTH - 150, IMAGE_HEIGHT - 100)  # Lower right corner
-HORIZON_Y = HOME_POSITION[1]  # Align horizon with Home
-EARTH_MOON_DISTANCE_KM = 384400  # Actual distance in kilometers
-DAILY_DISTANCE_INCREMENT = 5  # km per day
-START_DATE = datetime(2025, 1, 29)
-START_DAYS = 137
+#imageName = "cherry.jpeg"
+#st.image("cherry.jpeg",width=705)
 
-
-font_path = "Arial.ttf"
-bgColor = "lightblue"
-
-# 添加中文字体支持（示例使用微软雅黑，请确保系统有该字体）
-# 也可以替换为其他中文字体路径如 "simhei.ttf"
-chinese_font = ImageFont.truetype("SimHei.ttf", 12)  # 调整字体大小
-
-fm.fontManager.addfont('SimHei.ttf')
-
-set_message=""
-# Calculate updated Days and Distance based on the current date
-LOCAL_TIMEZONE = pytz.timezone('America/Chicago')  # Replace with your local timezone
-current_time = datetime.now(LOCAL_TIMEZONE)
-
-days_elapsed = (current_time.date() - START_DATE.date()).days
-if current_time.hour >= 6:  # Update only after 6:00 AM St. Louis time
-    days = START_DAYS + days_elapsed
-else:
-    days = START_DAYS + days_elapsed - 1
-
-distance = days * DAILY_DISTANCE_INCREMENT+ 20# Distance in km
-
-# Total days needed to reach the Moon (assuming 5 km/day)
-max_days = EARTH_MOON_DISTANCE_KM / DAILY_DISTANCE_INCREMENT
-print(max_days)
-
-#days = 18250 #50 years need to multiply by 4.22 to make it to 76880 max_days
-# Calculate runner position with polynomial scaling
-t = (days * 4.22 / max_days)  # 50 years will be 91,250 km, have to make it to the moon == 384,400
-runner_x = int((1 - t) * HOME_POSITION[0] + t * MOON_POSITION[0])
-runner_y = int((1 - t) * HOME_POSITION[1] + t * MOON_POSITION[1])
-
-print(days, 1- t)
-
-# Create an image
-image = Image.new("RGB", (IMAGE_WIDTH, IMAGE_HEIGHT), "lightblue")
-draw = ImageDraw.Draw(image)
-
-# Draw the horizon at Home's level
-draw.line([(0, HORIZON_Y), (IMAGE_WIDTH, HORIZON_Y)], fill="blue", width=2)
-
-# Draw the Moon
-draw.ellipse(
-    [
-        (MOON_POSITION[0] - MOON_RADIUS, MOON_POSITION[1] - MOON_RADIUS),
-        (MOON_POSITION[0] + MOON_RADIUS, MOON_POSITION[1] + MOON_RADIUS),
-    ],
-    #fill="#ADD8E6",
-    fill="#4444FF",
-    outline="yellow",
-)
-
-# Draw Home
-draw.ellipse(
-    [
-        (HOME_POSITION[0] - HOME_RADIUS, HOME_POSITION[1] - HOME_RADIUS),
-        (HOME_POSITION[0] + HOME_RADIUS, HOME_POSITION[1] + HOME_RADIUS),
-    ],
-    fill="red",
-    outline="black",
-)
-
-# Draw a line connecting Home and the Moon
-draw.line([MOON_POSITION, HOME_POSITION], fill="orange", width=2)
-
-# Draw the runner (small circle)
-RUNNER_RADIUS = 8
-draw.ellipse(
-    [
-        (runner_x - RUNNER_RADIUS, runner_y - RUNNER_RADIUS),
-        (runner_x + RUNNER_RADIUS, runner_y + RUNNER_RADIUS),
-    ],
-    fill="green",
-    outline="black",
-)
-
-label_text = f"Date: {current_time.strftime('%Y-%m-%d')}\nDays: {days}\nDistance: {distance} km"
-#draw.text((runner_x - 50, runner_y - 100), label_text, fill="navy", font=font)
-
-moon_text = ("We choose to go to the Moon \n"
-             "in this lifetime (and beyond?), \n"
-             "not because it is easy,  \n"
-             "but because it is hard :)")
-
-em_text = "1 改掉不良生活习惯，重中之重，2 适当，足量的运动，让身体有个向健康发展的好基础，\n3 调整好自己的情绪，不嗔，4 多多照顾经络，按揉或者是艾灸，\n5 如果脾胃不好，应该检查一下，是否饮食上，即便多年没事的食物，有些可能的潜在问题。\n6.颈部运动，头/颈部经络，胆经，三焦经。__耳鸣提示"
-
-font_size = 24
-font = ImageFont.truetype(font_path, font_size)
-font2 = ImageFont.truetype(font_path, 20)
-
-#draw.text((runner_x - 50, runner_y - 100), label_text, fill="navy", font=font)
-#draw.text((runner_x - 300, runner_y - 200), moon_text, fill="navy",font= font)  # Cent
-draw.text((runner_x - 25, runner_y - 100), label_text, fill="navy",font = font2)  # Centered above the runner
-
-runa, runb = (runner_x - 300), ( runner_y - 200) # Example position
-
-# Simulate bold by drawing multiple times with slight offsets
-for offset in [(0, 0), (1, 0), (0, 1), (1, 1)]:  
-    draw.text(( runa- 20 + offset[0], runb - 20 + offset[1]), 
-             moon_text, fill="navy", font=font)
-
-# Add a small arrow pointing down from the label
-arrow_start = (runner_x, runner_y - 20)  # Start of the arrow (just below the label)
-arrow_end = (runner_x, runner_y-10)        # End of the arrow (pointing to the runner)
-draw.line([arrow_start, arrow_end], fill="navy", width=2)  # Draw the arrow line
-
-# Optional: Add arrowhead (a small triangle)
-arrowhead_size = 5
-arrowhead = [
-    (runner_x - arrowhead_size, runner_y - 2* arrowhead_size),  # Left point
-    (runner_x + arrowhead_size, runner_y - 2* arrowhead_size),  # Right point
-    (runner_x, runner_y-arrowhead_size)                                     # Tip of the arrow
-]
-draw.polygon(arrowhead, fill="navy")  # Draw the arrowhead
-############
-# Add labels directly above Home and Moon
-draw.text((HOME_POSITION[0] - 10, HOME_POSITION[1] +10), "Home", fill="black")  # Above Home
-draw.text((MOON_POSITION[0] - 30, MOON_POSITION[1] - 80), "Moon\n384,400km", fill="black")  # Above Moon
-# 绘制文本时指定字体
-draw.text((MOON_POSITION[0] - 10, HOME_POSITION[1] +10), em_text, fill="black", font=chinese_font)
-
-# Display the image in Streamlit
-st.title("Earth to Moon Running Visualization")
-st.image(image, caption="A young man running from Home to the Moon 2075(2025) will be 91,250 km", use_container_width=True)
-
-st.image("cherry.jpeg",width=710)
+#st.image("cherry.jpeg",width=710)
 
 
 ##############。 耳鸣分析
@@ -335,7 +196,148 @@ for ax, raw_data, title_name in zip(axes, dataSets, names):
 st.pyplot(fig)
 st.write("==============")
 st.write("==============")
+###############
+###############.    draw moon and runner
+# Constants
+IMAGE_WIDTH = 800
+IMAGE_HEIGHT = 600
+HOME_RADIUS = 10
+MOON_RADIUS = 50
+MOON_POSITION = (100, 100)  # Upper left corner
+HOME_POSITION = (IMAGE_WIDTH - 150, IMAGE_HEIGHT - 100)  # Lower right corner
+HORIZON_Y = HOME_POSITION[1]  # Align horizon with Home
+EARTH_MOON_DISTANCE_KM = 384400  # Actual distance in kilometers
+DAILY_DISTANCE_INCREMENT = 5  # km per day
+START_DATE = datetime(2025, 1, 29)
+START_DAYS = 137
 
+
+font_path = "Arial.ttf"
+bgColor = "lightblue"
+
+# 添加中文字体支持（示例使用微软雅黑，请确保系统有该字体）
+# 也可以替换为其他中文字体路径如 "simhei.ttf"
+chinese_font = ImageFont.truetype("SimHei.ttf", 12)  # 调整字体大小
+
+fm.fontManager.addfont('SimHei.ttf')
+
+set_message=""
+# Calculate updated Days and Distance based on the current date
+LOCAL_TIMEZONE = pytz.timezone('America/Chicago')  # Replace with your local timezone
+current_time = datetime.now(LOCAL_TIMEZONE)
+
+days_elapsed = (current_time.date() - START_DATE.date()).days
+if current_time.hour >= 6:  # Update only after 6:00 AM St. Louis time
+    days = START_DAYS + days_elapsed
+else:
+    days = START_DAYS + days_elapsed - 1
+
+distance = days * DAILY_DISTANCE_INCREMENT+ 20# Distance in km
+
+# Total days needed to reach the Moon (assuming 5 km/day)
+max_days = EARTH_MOON_DISTANCE_KM / DAILY_DISTANCE_INCREMENT
+print(max_days)
+
+#days = 18250 #50 years need to multiply by 4.22 to make it to 76880 max_days
+# Calculate runner position with polynomial scaling
+t = (days * 4.22 / max_days)  # 50 years will be 91,250 km, have to make it to the moon == 384,400
+runner_x = int((1 - t) * HOME_POSITION[0] + t * MOON_POSITION[0])
+runner_y = int((1 - t) * HOME_POSITION[1] + t * MOON_POSITION[1])
+
+print(days, 1- t)
+
+# Create an image
+image = Image.new("RGB", (IMAGE_WIDTH, IMAGE_HEIGHT), "lightblue")
+draw = ImageDraw.Draw(image)
+
+# Draw the horizon at Home's level
+draw.line([(0, HORIZON_Y), (IMAGE_WIDTH, HORIZON_Y)], fill="blue", width=2)
+
+# Draw the Moon
+draw.ellipse(
+    [
+        (MOON_POSITION[0] - MOON_RADIUS, MOON_POSITION[1] - MOON_RADIUS),
+        (MOON_POSITION[0] + MOON_RADIUS, MOON_POSITION[1] + MOON_RADIUS),
+    ],
+    #fill="#ADD8E6",
+    fill="#4444FF",
+    outline="yellow",
+)
+
+# Draw Home
+draw.ellipse(
+    [
+        (HOME_POSITION[0] - HOME_RADIUS, HOME_POSITION[1] - HOME_RADIUS),
+        (HOME_POSITION[0] + HOME_RADIUS, HOME_POSITION[1] + HOME_RADIUS),
+    ],
+    fill="red",
+    outline="black",
+)
+
+# Draw a line connecting Home and the Moon
+draw.line([MOON_POSITION, HOME_POSITION], fill="orange", width=2)
+
+# Draw the runner (small circle)
+RUNNER_RADIUS = 8
+draw.ellipse(
+    [
+        (runner_x - RUNNER_RADIUS, runner_y - RUNNER_RADIUS),
+        (runner_x + RUNNER_RADIUS, runner_y + RUNNER_RADIUS),
+    ],
+    fill="green",
+    outline="black",
+)
+
+label_text = f"Date: {current_time.strftime('%Y-%m-%d')}\nDays: {days}\nDistance: {distance} km"
+#draw.text((runner_x - 50, runner_y - 100), label_text, fill="navy", font=font)
+
+moon_text = ("We choose to go to the Moon \n"
+             "in this lifetime (and beyond?), \n"
+             "not because it is easy,  \n"
+             "but because it is hard :)")
+
+em_text = "1 改掉不良生活习惯，重中之重，2 适当，足量的运动，让身体有个向健康发展的好基础，\n3 调整好自己的情绪，不嗔，4 多多照顾经络，按揉或者是艾灸，\n5 如果脾胃不好，应该检查一下，是否饮食上，即便多年没事的食物，有些可能的潜在问题。\n6.颈部运动，头/颈部经络，胆经，三焦经。__耳鸣提示"
+
+font_size = 24
+font = ImageFont.truetype(font_path, font_size)
+font2 = ImageFont.truetype(font_path, 20)
+
+#draw.text((runner_x - 50, runner_y - 100), label_text, fill="navy", font=font)
+#draw.text((runner_x - 300, runner_y - 200), moon_text, fill="navy",font= font)  # Cent
+draw.text((runner_x - 25, runner_y - 100), label_text, fill="navy",font = font2)  # Centered above the runner
+
+runa, runb = (runner_x - 300), ( runner_y - 200) # Example position
+
+# Simulate bold by drawing multiple times with slight offsets
+for offset in [(0, 0), (1, 0), (0, 1), (1, 1)]:  
+    draw.text(( runa- 20 + offset[0], runb - 20 + offset[1]), 
+             moon_text, fill="navy", font=font)
+
+# Add a small arrow pointing down from the label
+arrow_start = (runner_x, runner_y - 20)  # Start of the arrow (just below the label)
+arrow_end = (runner_x, runner_y-10)        # End of the arrow (pointing to the runner)
+draw.line([arrow_start, arrow_end], fill="navy", width=2)  # Draw the arrow line
+
+# Optional: Add arrowhead (a small triangle)
+arrowhead_size = 5
+arrowhead = [
+    (runner_x - arrowhead_size, runner_y - 2* arrowhead_size),  # Left point
+    (runner_x + arrowhead_size, runner_y - 2* arrowhead_size),  # Right point
+    (runner_x, runner_y-arrowhead_size)                                     # Tip of the arrow
+]
+draw.polygon(arrowhead, fill="navy")  # Draw the arrowhead
+############
+# Add labels directly above Home and Moon
+draw.text((HOME_POSITION[0] - 10, HOME_POSITION[1] +10), "Home", fill="black")  # Above Home
+draw.text((MOON_POSITION[0] - 30, MOON_POSITION[1] - 80), "Moon\n384,400km", fill="black")  # Above Moon
+# 绘制文本时指定字体
+draw.text((MOON_POSITION[0] - 10, HOME_POSITION[1] +10), em_text, fill="black", font=chinese_font)
+
+# Display the image in Streamlit
+st.title("Earth to Moon Running Visualization")
+st.image(image, caption="A young man running from Home to the Moon 2075(2025) will be 91,250 km", use_container_width=True)
+
+###############
 
 # Parse input data for original
 data = parse_input(er_ming_input)
