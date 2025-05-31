@@ -173,8 +173,8 @@ for ax, raw_data, title_name, unit in zip(axes, dataSets, names, units):
         original_data = last_27[-21:]
 
         # Plotting
-        ax.plot(dates, original_data, marker='o', label='Daily Data')
-        ax.plot(dates, moving_avg, label='7-Day Moving Average', color='orange', linestyle='--', linewidth=2)
+        ax.plot(dates, original_data, marker='o', label=title_name)
+        ax.plot(dates, moving_avg, label='7-天动态均值', color='orange', linestyle='--', linewidth=2)
 
         ax.set_title(title_name)
         ax.set_xlabel(f"Date (Central Time)\n{today_cst.strftime('%Y-%m-%d')}({raw_data[-1]}{unit})")
