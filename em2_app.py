@@ -141,6 +141,7 @@ data4 = [round(x /1.0, 1) for x in datab]
 
 dataSets =[data, data4, data3, data2]
 names = ['耳鸣级数','5K时长(分钟)','5K心率均值(最高值百分比)','睡眠质量']
+units =  ['级','分钟','(最高值百分比)','（最高1.0)']
 
 # Create a single figure with 4 subplots stacked vertically
 fig, axes = plt.subplots(nrows=4, ncols=1, figsize=(10, 2.5*4))
@@ -151,7 +152,7 @@ plt.rcParams['axes.unicode_minus'] = False
 # Increase vertical spacing between subplots to avoid overlap
 plt.subplots_adjust(hspace=1)  # You can tweak this value as needed
 
-for ax, raw_data, title_name in zip(axes, dataSets, names):
+for ax, raw_data, title_name, unit in zip(axes, dataSets, names, units):
     ax.set_facecolor('#e6f7ff')  # Light blue background
     try:
         numbers = [float(x) for x in raw_data if x]
@@ -176,7 +177,7 @@ for ax, raw_data, title_name in zip(axes, dataSets, names):
         ax.plot(dates, moving_avg, label='7-Day Moving Average', color='orange', linestyle='--', linewidth=2)
 
         ax.set_title(title_name)
-        ax.set_xlabel(f"Date (Central Time)\n{today_cst.strftime('%Y-%m-%d')}")
+        ax.set_xlabel(f"Date (Central Time)\n{today_cst.strftime('%Y-%m-%d')}/{raw_data[-1]}{unit}")
         ax.set_ylabel(title_name)
         ax.set_xticks(dates)
         ax.set_xticklabels([d.strftime("%m-%d\n%a") for d in dates], rotation=0)
