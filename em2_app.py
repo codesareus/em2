@@ -177,7 +177,7 @@ for ax, raw_data, title_name, unit in zip(axes, dataSets, names, units):
         ax.plot(dates, moving_avg, label='7-Day Moving Average', color='orange', linestyle='--', linewidth=2)
 
         ax.set_title(title_name)
-        ax.set_xlabel(f"Date (Central Time)\n{today_cst.strftime('%Y-%m-%d')}/{raw_data[-1]}{unit}")
+        ax.set_xlabel(f"Date (Central Time)\n{today_cst.strftime('%Y-%m-%d')}({raw_data[-1]}{unit})")
         ax.set_ylabel(title_name)
         ax.set_xticks(dates)
         ax.set_xticklabels([d.strftime("%m-%d\n%a") for d in dates], rotation=0)
