@@ -139,9 +139,9 @@ data3= [round(x /1.6, 1) for x in dataa]
 datab = parse_input(wqshijian_input)
 data4 = [round(x /1.0, 1) for x in datab] 
 
-dataSets =[data, data1, data4, data3, data2]
+dataSets =[data, data1, data2, data4, data3]
 
-units =  ['级','（最高1.0)', '分钟','(最高值百分比)','（最高1.0)']
+units =  ['级','（最高1.0)','（最高1.0)','分钟','(最高值百分比)']
 
 LOCAL_TIMEZONE = pytz.timezone('America/Chicago') 
 today = datetime.now(LOCAL_TIMEZONE)
@@ -157,7 +157,7 @@ days_difference = delta.days
 current_date = datetime.now(LOCAL_TIMEZONE).strftime("%Y年%m月%d日")
 message2 = f"慢跑第{days_difference}天, {current_date} >>>>> 耳鸣级数"
 
-names = [message2,'脾胃','5K时长(分钟)','5K心率均值(最高值百分比)','睡眠质量']
+names = [message2,'脾胃','睡眠质量','5K时长(分钟)','5K心率均值(最高值百分比)']
 
 # Create a single figure with 4 subplots stacked vertically
 fig, axes = plt.subplots(nrows=5, ncols=1, figsize=(12.5, 2.5*5))
