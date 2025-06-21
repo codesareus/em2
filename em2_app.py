@@ -160,7 +160,7 @@ message2 = f"慢跑第{days_difference}天, {current_date} >>>>> 耳鸣级数"
 names = [message2,'脾胃','5K时长(分钟)','5K心率均值(最高值百分比)','睡眠质量']
 
 # Create a single figure with 4 subplots stacked vertically
-fig, axes = plt.subplots(nrows=4, ncols=1, figsize=(10, 2.5*4))
+fig, axes = plt.subplots(nrows=5, ncols=1, figsize=(12.5, 2.5*5))
 plt.rcParams['font.family'] = 'sans-serif'
 plt.rcParams['font.sans-serif'] = ['SimHei']
 plt.rcParams['axes.unicode_minus'] = False
