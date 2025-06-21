@@ -132,16 +132,16 @@ def get_cst_date():
 
 # Parse input data
 data = parse_input(er_ming_input)
-#data1 = parse_input(pi_wei_input)
+data1 = parse_input(pi_wei_input)
 data2 = parse_input(sleep_input)
 dataa = parse_input(xinlv_input)
 data3= [round(x /1.6, 1) for x in dataa] 
 datab = parse_input(wqshijian_input)
 data4 = [round(x /1.0, 1) for x in datab] 
 
-dataSets =[data, data4, data3, data2]
+dataSets =[data, data1, data4, data3, data2]
 
-units =  ['级','分钟','(最高值百分比)','（最高1.0)']
+units =  ['级','（最高1.0)', '分钟','(最高值百分比)','（最高1.0)']
 
 LOCAL_TIMEZONE = pytz.timezone('America/Chicago') 
 today = datetime.now(LOCAL_TIMEZONE)
@@ -157,7 +157,7 @@ days_difference = delta.days
 current_date = datetime.now(LOCAL_TIMEZONE).strftime("%Y年%m月%d日")
 message2 = f"慢跑第{days_difference}天, {current_date} >>>>> 耳鸣级数"
 
-names = [message2,'5K时长(分钟)','5K心率均值(最高值百分比)','睡眠质量']
+names = [message2,'脾胃','5K时长(分钟)','5K心率均值(最高值百分比)','睡眠质量']
 
 # Create a single figure with 4 subplots stacked vertically
 fig, axes = plt.subplots(nrows=4, ncols=1, figsize=(10, 2.5*4))
