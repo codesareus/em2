@@ -159,6 +159,63 @@ message2 = f"慢跑第{days_difference}天, {current_date} >>>>> 耳鸣级数"
 
 names = [message2,'脾胃','睡眠质量','5K时长(分钟)','5K心率均值(最高值百分比)']
 
+##### plot 耳鸣 only
+
+# Create a SINGLE plot figure
+fig, ax = plt.subplots(figsize=(12.5, 5))  # Adjusted height for clarity
+plt.rcParams['font.family'] = 'sans-serif'
+plt.rcParams['font.sans-serif'] = ['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
+
+# Use only the FIRST dataset (index 0)
+raw_data = dataSets[0]
+title_name = names[0]
+unit = units[0]
+
+ax.set_facecolor('#e6f7ff')  # Light blue background
+
+try:
+    numbers = [float(x) for x in raw_data if x]
+    if len(numbers) < 27:
+        ax.text(0.5, 0.5, f"Not enough data ({len(numbers)} points)\nNeed at least 27", 
+                ha='center', va='center', color='red')
+        ax.set_title(title_name)
+        ax.axis('on')
+    else:
+        # Generate dates
+        today_cst = get_cst_date()
+        dates = [today_cst - timedelta(days=i) for i in range(20, -1, -1)]  # Last 21 days
+        last_27 = numbers[-27:]
+
+        # Moving average
+        moving_avg = [sum(last_27[i:i+7])/7 for i in range(21)]
+        original_data = last_27[-21:]
+
+        # Plotting
+        ax.plot(dates, original_data, marker='o', label=title_name)
+        ax.plot(dates, moving_avg, label='7-天动态均值', color='orange', linestyle='--', linewidth=2)
+
+        ax.set_title(title_name)
+        ax.set_xlabel(f"Date (Central Time)\n{today_cst.strftime('%Y-%m-%d')}({raw_data[-1]}{unit})")
+        ax.set_ylabel(title_name)
+        ax.set_xticks(dates)
+        ax.set_xticklabels([d.strftime("%m-%d\n%a") for d in dates], rotation=0)
+        ax.grid(True, alpha=0.3)
+        ax.legend(loc='lower left')
+
+except ValueError:
+    ax.text(0.5, 0.5, "Invalid input: Only numeric values allowed", ha='center', va='center', color='red')
+    ax.set_title(title_name)
+    ax.axis('on')
+except Exception as e:
+    ax.text(0.5, 0.5, f"Error: {str(e)}", ha='center', va='center', color='red')
+    ax.set_title(title_name)
+    ax.axis('on')
+
+# Display the figure in Streamlit
+st.pyplot(fig)
+
+
 # Create a single figure with 4 subplots stacked vertically
 fig, axes = plt.subplots(nrows=5, ncols=1, figsize=(12.5, 2.5*5))
 plt.rcParams['font.family'] = 'sans-serif'
