@@ -119,7 +119,7 @@ import matplotlib.font_manager as fm
 # Add the SimHei font to Matplotlib's font manager
 fm.fontManager.addfont('SimHei.ttf')
 
-st.title("Plot the Last 60 Daily Data Points with Moving Average (Central Time)")
+st.title("Plot the Last 21 Daily Data Points with Moving Average (Central Time)")
 
 # Configure Central Time zone
 cst = pytz.timezone('America/Chicago')
@@ -176,8 +176,8 @@ ax.set_facecolor('#e6f7ff')  # Light blue background
 
 try:
     numbers = [float(x) for x in raw_data if x]
-    if len(numbers) < 67:
-        ax.text(0.5, 0.5, f"Not enough data ({len(numbers)} points)\nNeed at least 67", 
+    if len(numbers) < 29:
+        ax.text(0.5, 0.5, f"Not enough data ({len(numbers)} points)\nNeed at least 29", 
                 ha='center', va='center', color='red')
         ax.set_title(title_name)
         ax.axis('on')
@@ -185,11 +185,11 @@ try:
         # Generate dates
         today_cst = get_cst_date()
         dates = [today_cst - timedelta(days=i) for i in range(20, -1, -1)]  # Last 21 days
-        last_27 = numbers[-67:]
+        last_27 = numbers[-27:]
 
         # Moving average
         moving_avg = [sum(last_27[i:i+7])/7 for i in range(21)]
-        original_data = last_27[-60:]
+        original_data = last_27[-21:]
 
         # Plotting
         ax.plot(dates, original_data, marker='o', label=title_name)
